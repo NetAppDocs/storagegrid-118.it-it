@@ -1,0 +1,237 @@
+---
+permalink: swift/storagegrid-swift-rest-api-operations.html 
+sidebar: sidebar 
+keywords: swift rest api operations 
+summary: 'Sono state aggiunte operazioni all"API di Swift REST specifiche per il sistema StorageGRID.' 
+---
+= Operazioni API Swift REST di StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Sono state aggiunte operazioni all'API di Swift REST specifiche per il sistema StorageGRID.
+
+
+
+== OTTENERE una richiesta di coerenza dei container
+
+link:../s3/consistency-controls.html["Valori di coerenza"] Fornire un equilibrio tra la disponibilità degli oggetti e la coerenza di tali oggetti nei diversi nodi e siti di storage. La richiesta di coerenza del contenitore GET consente di determinare la coerenza applicata a un determinato contenitore.
+
+
+
+=== Richiesta
+
+[cols="2a,4a"]
+|===
+| Richiedi intestazione HTTP | Descrizione 
+
+
+| X-Auth-Token  a| 
+Specifica il token di autenticazione Swift per l'account da utilizzare per la richiesta.
+
+
+
+| x-ntap-sg-consistency  a| 
+Specifica il tipo di richiesta, dove `true` = OTTENERE la coerenza del container, e. `false` = GET container (OTTIENI container).
+
+
+
+| Host  a| 
+Il nome host a cui viene indirizzata la richiesta.
+
+|===
+
+
+=== Esempio di richiesta
+
+[listing]
+----
+GET /v1/28544923908243208806/Swift container
+X-Auth-Token: SGRD_3a877009a2d24cb1801587bfa9050f29
+x-ntap-sg-consistency: true
+Host: test.com
+----
+
+
+=== Risposta
+
+[cols="2a,4a"]
+|===
+| Intestazione HTTP di risposta | Descrizione 
+
+
+| Data  a| 
+La data e l'ora della risposta.
+
+
+
+| Connessione  a| 
+Se la connessione al server è aperta o chiusa.
+
+
+
+| ID trasm. X  a| 
+Identificativo univoco della transazione per la richiesta.
+
+
+
+| Contenuto-lunghezza  a| 
+La lunghezza del corpo di risposta.
+
+
+
+| x-ntap-sg-consistency  a| 
+La consistenza applicata al contenitore. Sono supportati i seguenti valori:
+
+*All*: Tutti i nodi ricevono i dati immediatamente o la richiesta non riesce.
+
+*Strong-Global*: Garantisce la coerenza di lettura dopo scrittura per tutte le richieste dei client in tutti i siti.
+
+*Strong-Site*: Garantisce la coerenza di lettura dopo scrittura per tutte le richieste dei client all'interno di un sito.
+
+*Read-after-new-write*: (Default) fornisce coerenza lettura dopo scrittura per nuovi oggetti ed eventuale coerenza per gli aggiornamenti degli oggetti. Offre alta disponibilità e garanzie di protezione dei dati. Consigliato per la maggior parte dei casi.
+
+*Available*: Fornisce una coerenza finale sia per i nuovi oggetti che per gli aggiornamenti degli oggetti. Per i bucket S3, utilizzare solo se necessario (ad esempio, per un bucket che contiene valori di log che vengono raramente letti o per operazioni HEAD o GET su chiavi che non esistono). Non supportato per i bucket S3 FabricPool.
+
+|===
+
+
+=== Esempio di risposta
+
+[listing]
+----
+HTTP/1.1 204 No Content
+Date: Sat, 29 Nov 2015 01:02:18 GMT
+Connection: CLOSE
+X-Trans-Id: 1936575373
+Content-Length: 0
+x-ntap-sg-consistency: strong-site
+----
+
+
+== INVIO di una richiesta di coerenza del container
+
+La richiesta di coerenza del contenitore PUT consente di specificare la coerenza da applicare alle operazioni eseguite su un contenitore. Per impostazione predefinita, i nuovi contenitori vengono creati utilizzando la coerenza "Read-after-new-write".
+
+
+
+=== Richiesta
+
+[cols="2a,4a"]
+|===
+| Richiedi intestazione HTTP | Descrizione 
+
+
+| X-Auth-Token  a| 
+Il token di autenticazione Swift per l'account da utilizzare per la richiesta.
+
+
+
+| x-ntap-sg-consistency  a| 
+La coerenza da applicare alle operazioni sul contenitore. Sono supportati i seguenti valori:
+
+*All*: Tutti i nodi ricevono i dati immediatamente o la richiesta non riesce.
+
+*Strong-Global*: Garantisce la coerenza di lettura dopo scrittura per tutte le richieste dei client in tutti i siti.
+
+*Strong-Site*: Garantisce la coerenza di lettura dopo scrittura per tutte le richieste dei client all'interno di un sito.
+
+*Read-after-new-write*: (Default) fornisce coerenza lettura dopo scrittura per nuovi oggetti ed eventuale coerenza per gli aggiornamenti degli oggetti. Offre alta disponibilità e garanzie di protezione dei dati. Consigliato per la maggior parte dei casi.
+
+*Available*: Fornisce una coerenza finale sia per i nuovi oggetti che per gli aggiornamenti degli oggetti. Per i bucket S3, utilizzare solo se necessario (ad esempio, per un bucket che contiene valori di log che vengono raramente letti o per operazioni HEAD o GET su chiavi che non esistono). Non supportato per i bucket S3 FabricPool.
+
+
+
+ a| 
+`Host`
+ a| 
+Il nome host a cui viene indirizzata la richiesta.
+
+|===
+
+
+=== L'interazione tra coerenza e regole ILM per influire sulla protezione dei dati
+
+Entrambi i tipi di scelta link:../s3/consistency-controls.html["valore di coerenza"] Inoltre, la regola ILM influisce sulla modalità di protezione degli oggetti. Queste impostazioni possono interagire.
+
+Ad esempio, la coerenza utilizzata durante la memorizzazione di un oggetto influisce sul posizionamento iniziale dei metadati degli oggetti, mentre l' link:../ilm/what-ilm-rule-is.html#ilm-rule-ingest-behavior["comportamento di acquisizione"] La selezione per la regola ILM influisce sul posizionamento iniziale delle copie a oggetti. Poiché StorageGRID richiede l'accesso sia ai metadati dell'oggetto che ai relativi dati per soddisfare le richieste del client, la selezione di livelli di protezione corrispondenti per il comportamento di coerenza e acquisizione può offrire una migliore protezione iniziale dei dati e risposte di sistema più prevedibili.
+
+
+
+=== Esempio di interazione tra le regole di coerenza e ILM
+
+Si supponga di disporre di una griglia a due siti con la seguente regola ILM e la seguente coerenza:
+
+* *ILM rule*: Creare due copie di oggetti, una nel sito locale e una in un sito remoto. Viene selezionato il comportamento rigoroso dell'acquisizione.
+* **: "Strong-Global" (i metadati degli oggetti vengono immediatamente distribuiti a tutti i siti).
+
+
+Quando un client memorizza un oggetto nella griglia, StorageGRID esegue entrambe le copie degli oggetti e distribuisce i metadati a entrambi i siti prima di restituire il risultato al client.
+
+L'oggetto è completamente protetto contro la perdita al momento dell'acquisizione del messaggio di successo. Ad esempio, se il sito locale viene perso poco dopo l'acquisizione, le copie dei dati dell'oggetto e dei metadati dell'oggetto rimangono nel sito remoto. L'oggetto è completamente recuperabile.
+
+Se invece si è utilizzata la stessa regola ILM e la coerenza "strong-Site", il client potrebbe ricevere un messaggio di successo dopo la replica dei dati dell'oggetto nel sito remoto ma prima della distribuzione dei metadati dell'oggetto. In questo caso, il livello di protezione dei metadati degli oggetti non corrisponde al livello di protezione dei dati degli oggetti. Se il sito locale viene perso poco dopo l'acquisizione, i metadati dell'oggetto andranno persi. Impossibile recuperare l'oggetto.
+
+L'interrelazione tra coerenza e regole ILM può essere complessa. Contattare NetApp per assistenza.
+
+
+
+=== Esempio di richiesta
+
+[listing]
+----
+PUT /v1/28544923908243208806/_Swift container_
+X-Auth-Token: SGRD_3a877009a2d24cb1801587bfa9050f29
+x-ntap-sg-consistency: strong-site
+Host: test.com
+----
+
+
+=== Risposta
+
+[cols="1a,2a"]
+|===
+| Intestazione HTTP di risposta | Descrizione 
+
+
+ a| 
+`Date`
+ a| 
+La data e l'ora della risposta.
+
+
+
+ a| 
+`Connection`
+ a| 
+Se la connessione al server è aperta o chiusa.
+
+
+
+ a| 
+`X-Trans-Id`
+ a| 
+Identificativo univoco della transazione per la richiesta.
+
+
+
+ a| 
+`Content-Length`
+ a| 
+La lunghezza del corpo di risposta.
+
+|===
+
+
+=== Esempio di risposta
+
+[listing]
+----
+HTTP/1.1 204 No Content
+Date: Sat, 29 Nov 2015 01:02:18 GMT
+Connection: CLOSE
+X-Trans-Id: 1936575373
+Content-Length: 0
+----

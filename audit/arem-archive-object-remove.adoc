@@ -1,0 +1,51 @@
+---
+permalink: audit/arem-archive-object-remove.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, AREM, Archive Object Remove 
+summary: 'Il messaggio di controllo Archive Object Remove (Rimozione oggetto archivio) indica che un blocco di contenuto è stato eliminato correttamente o senza successo da un nodo di archivio. Se il risultato è positivo, il nodo di archiviazione ha informato correttamente il sistema di storage di archiviazione esterno che StorageGRID ha rilasciato una posizione dell"oggetto. La rimozione dell"oggetto dal sistema di storage di archiviazione esterno dipende dal tipo di sistema e dalla relativa configurazione.' 
+---
+= AREM: Rimozione dell'oggetto di archiviazione
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il messaggio di controllo Archive Object Remove (Rimozione oggetto archivio) indica che un blocco di contenuto è stato eliminato correttamente o senza successo da un nodo di archivio. Se il risultato è positivo, il nodo di archiviazione ha informato correttamente il sistema di storage di archiviazione esterno che StorageGRID ha rilasciato una posizione dell'oggetto. La rimozione dell'oggetto dal sistema di storage di archiviazione esterno dipende dal tipo di sistema e dalla relativa configurazione.
+
+[cols="1a,1a,4a"]
+|===
+| Codice | Campo | Descrizione 
+
+
+ a| 
+CBID
+ a| 
+ID blocco di contenuto
+ a| 
+Identificatore univoco del blocco di contenuti da recuperare dal sistema di supporti di archiviazione esterno.
+
+
+
+ a| 
+VLID
+ a| 
+Identificatore del volume
+ a| 
+L'identificativo del volume su cui sono stati archiviati i dati dell'oggetto.
+
+
+
+ a| 
+RSLT
+ a| 
+Risultato
+ a| 
+Lo stato di completamento del processo di rimozione dell'archivio:
+
+* SUC: Riuscito
+* ARUN: Errore (sistema storage di archiviazione esterno non disponibile)
+* GERR: Failed (errore generale)
+
+
+|===

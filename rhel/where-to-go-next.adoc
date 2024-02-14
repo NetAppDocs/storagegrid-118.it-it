@@ -1,0 +1,45 @@
+---
+permalink: rhel/where-to-go-next.html 
+sidebar: sidebar 
+keywords: what to do after red hat linux installation 
+summary: 'Dopo aver completato un"installazione, eseguire le attività di integrazione e configurazione richieste. È possibile eseguire le attività opzionali in base alle necessità.' 
+---
+= Dove andare
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dopo aver completato un'installazione, eseguire le attività di integrazione e configurazione richieste. È possibile eseguire le attività opzionali in base alle necessità.
+
+
+
+== Attività richieste
+
+* link:../admin/managing-tenants.html["Creare un account tenant"] Per ogni protocollo client (Swift o S3) che verrà utilizzato per memorizzare gli oggetti nel sistema StorageGRID.
+* link:../admin/controlling-storagegrid-access.html["Controllare l'accesso al sistema"] configurando gruppi e account utente. Se lo si desidera, è possibile link:../admin/using-identity-federation.html["configurare un'origine di identità federata"] (Ad esempio Active Directory o OpenLDAP), in modo da poter importare utenti e gruppi di amministrazione. In alternativa, è possibile link:../admin/managing-users.html#create-a-local-user["creare utenti e gruppi locali"].
+* Integrare e testare link:../s3/configuring-tenant-accounts-and-connections.html["API S3"] oppure link:../swift/configuring-tenant-accounts-and-connections.html["API Swift"] Applicazioni client che verranno utilizzate per caricare oggetti nel sistema StorageGRID.
+* link:../ilm/index.html["Configurare le regole ILM (Information Lifecycle Management) e i criteri ILM"] da utilizzare per proteggere i dati degli oggetti.
+* Se l'installazione include nodi di storage dell'appliance, utilizzare SANtricity OS per completare le seguenti operazioni:
++
+** Connessione a ogni appliance StorageGRID.
+** Verificare la ricezione dei dati AutoSupport.
++
+Vedere https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/configuring-hardware.html["Configurare l'hardware"^].
+
+
+
+* Esaminare e seguire link:../harden/index.html["Linee guida per la protezione avanzata del sistema StorageGRID"] eliminare i rischi per la sicurezza.
+* link:../monitor/email-alert-notifications.html["Configurare le notifiche e-mail per gli avvisi di sistema"].
+* Se il sistema StorageGRID include nodi di archiviazione (non più presenti), configurare la connessione del nodo di archiviazione al sistema di archiviazione esterno di destinazione.
+
+
+
+
+== Attività facoltative
+
+* link:../maintain/changing-ip-addresses-and-mtu-values-for-all-nodes-in-grid.html["Aggiornare gli indirizzi IP del nodo griglia"] Se sono state modificate dopo la pianificazione dell'implementazione e la generazione del pacchetto di ripristino.
+* link:../admin/changing-network-options-object-encryption.html["Configurare la crittografia dello storage"], se necessario.
+* link:../admin/configuring-stored-object-compression.html["Configurare la compressione dello storage"] ridurre le dimensioni degli oggetti memorizzati, se necessario.
+

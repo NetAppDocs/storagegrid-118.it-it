@@ -1,0 +1,13 @@
+---
+layout: landing-page 
+sidebar: sidebar 
+permalink: landing-recover/index.html 
+summary: In caso di guasto di un nodo Grid, è possibile ripristinarlo sostituendo il server fisico o virtuale guasto, reinstallando il software StorageGRID e ripristinando i dati ripristinabili. 
+---
+= Recovery o sostituzione dei nodi
+:hardbreaks:
+:allow-uri-read: 
+:linkattrs: 
+:imagesdir: ./media/
+
+

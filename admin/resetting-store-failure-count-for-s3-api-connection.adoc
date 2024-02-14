@@ -1,0 +1,33 @@
+---
+permalink: admin/resetting-store-failure-count-for-s3-api-connection.html 
+sidebar: sidebar 
+keywords: archive node, store failure count 
+summary: 'Se il nodo di archiviazione si connette a un sistema di storage di archiviazione tramite l"API S3, è possibile reimpostare il numero di errori di archiviazione, che può essere utilizzato per cancellare l"allarme ARVF (Store Failures).' 
+---
+= Ripristinare il numero di errori di archiviazione per la connessione API S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se il nodo di archiviazione si connette a un sistema di storage di archiviazione tramite l'API S3, è possibile reimpostare il numero di errori di archiviazione, che può essere utilizzato per cancellare l'allarme ARVF (Store Failures).
+
+.Prima di iniziare
+* Hai effettuato l'accesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Lo hai fatto link:admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+
+
+.Fasi
+. Selezionare *SUPPORT* > *Tools* > *Grid topology*.
+. Selezionare *_Archive Node_* > *ARC* > *Store*.
+. Selezionare *Configurazione* > *principale*.
++
+image::../media/archive_store_s3.gif[Configurare le impostazioni di archiviazione per la connessione API S3]
+
+. Selezionare *Reset Store Failure Count*.
+. Selezionare *Applica modifiche*.
++
+L'attributo Store Failures viene reimpostato su zero.
+
+

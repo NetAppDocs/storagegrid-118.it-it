@@ -1,0 +1,22 @@
+---
+permalink: admin/configuring-tsm-server.html 
+sidebar: sidebar 
+keywords: tsm server, tivoli storage manager 
+summary: Questa sezione include istruzioni di esempio per preparare un server TSM seguendo le Best practice TSM. 
+---
+= Configurare il server TSM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Questa sezione include istruzioni di esempio per preparare un server TSM seguendo le Best practice TSM.
+
+Le seguenti istruzioni guidano l'utente nel processo di:
+
+* Definizione di un pool di storage su disco e di un pool di storage su nastro (se necessario) sul server TSM
+* Definizione di un criterio di dominio che utilizza la classe di gestione TSM per i dati salvati dal nodo di archiviazione e registrazione di un nodo per utilizzare questo criterio di dominio
+
+
+Queste istruzioni sono fornite esclusivamente a scopo informativo; non sono intese a sostituire la documentazione del TSM o a fornire istruzioni complete e complete adatte a tutte le configurazioni. Le istruzioni specifiche per l'implementazione devono essere fornite da un amministratore TSM che abbia familiarità con i requisiti dettagliati e con la documentazione completa di TSM Server.

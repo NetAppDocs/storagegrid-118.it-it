@@ -1,0 +1,75 @@
+---
+permalink: tenant/object-metadata-included-in-metadata-notifications.html 
+sidebar: sidebar 
+keywords: object metadata notification 
+summary: 'La tabella elenca tutti i campi inclusi nel documento JSON che viene inviato all"endpoint di destinazione quando è attivata l"integrazione della ricerca.' 
+---
+= Metadati degli oggetti inclusi nelle notifiche dei metadati
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La tabella elenca tutti i campi inclusi nel documento JSON che viene inviato all'endpoint di destinazione quando è attivata l'integrazione della ricerca.
+
+Il nome del documento include il nome del bucket, il nome dell'oggetto e l'ID della versione, se presente.
+
+[cols="1a,2a"]
+|===
+| Tipo | Nome e descrizione dell'elemento 
+
+
+ a| 
+Informazioni su bucket e oggetti
+ a| 
+`bucket`: Nome del bucket
+
+
+
+ a| 
+`key`: Nome chiave oggetto
+
+
+
+ a| 
+`versionID`: Versione oggetto, per gli oggetti nei bucket con versione
+
+
+
+ a| 
+`region`: Area bucket, ad esempio `us-east-1`
+
+
+
+ a| 
+Metadati di sistema
+ a| 
+`size`: Dimensione dell'oggetto (in byte) come visibile a un client HTTP
+
+
+
+ a| 
+`md5`: Hash di oggetto
+
+
+
+ a| 
+Metadati dell'utente
+ a| 
+`metadata`: Tutti i metadati dell'utente per l'oggetto, come coppie chiave-valore
+
+`key:value`
+
+
+
+ a| 
+Tag
+ a| 
+`tags`: Tutti i tag di oggetto definiti per l'oggetto, come coppie chiave-valore
+
+`key:value`
+
+|===
+
+NOTE: Per tag e metadati dell'utente, StorageGRID passa date e numeri a Elasticsearch come stringhe o come notifiche di eventi S3. Per configurare Elasticsearch in modo da interpretare queste stringhe come date o numeri, seguire le istruzioni di Elasticsearch per la mappatura dinamica dei campi e per i formati di mappatura dei dati. Prima di configurare il servizio di integrazione della ricerca, è necessario attivare le mappature dinamiche dei campi sull'indice. Una volta indicizzato un documento, non è possibile modificare i tipi di campo del documento nell'indice.

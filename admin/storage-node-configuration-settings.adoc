@@ -1,0 +1,269 @@
+---
+permalink: admin/storage-node-configuration-settings.html 
+sidebar: sidebar 
+keywords: storage node, configuration settings, counters 
+summary: 'Ogni nodo di storage utilizza diverse impostazioni di configurazione e contatori. Potrebbe essere necessario visualizzare le impostazioni correnti o reimpostare i contatori per cancellare gli allarmi (sistema legacy).' 
+---
+= Impostazioni di configurazione del nodo di storage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Ogni nodo di storage utilizza diverse impostazioni di configurazione e contatori. Potrebbe essere necessario visualizzare le impostazioni correnti o reimpostare i contatori per cancellare gli allarmi (sistema precedente).
+
+
+CAUTION: Ad eccezione di quando espressamente indicato nella documentazione, è necessario consultare il supporto tecnico prima di modificare le impostazioni di configurazione di Storage Node. Se necessario, è possibile reimpostare i contatori degli eventi per cancellare gli allarmi legacy.
+
+Per accedere alle impostazioni di configurazione e ai contatori di un nodo di storage, procedere come segue.
+
+.Fasi
+. Selezionare *SUPPORT* > *Tools* > *Grid topology*.
+. Selezionare *_Site_* > *_Storage Node_*.
+. Espandere il nodo di storage e selezionare il servizio o il componente.
+. Selezionare la scheda *Configurazione*.
+
+
+Le seguenti tabelle riassumono le impostazioni di configurazione del nodo di storage.
+
+
+
+== LDR
+
+[cols="2a,1a,3a"]
+|===
+| Nome attributo | Codice | Descrizione 
+
+
+ a| 
+HTTP state (Stato HTTP)
+ a| 
+HSTE
+ a| 
+Lo stato corrente di HTTP per S3, Swift e altro traffico StorageGRID interno:
+
+* Offline: Non sono consentite operazioni e qualsiasi applicazione client che tenta di aprire una sessione HTTP al servizio LDR riceve un messaggio di errore. Le sessioni attive vengono normalmente chiuse.
+* Online: Il funzionamento continua normalmente
+
+
+
+
+ a| 
+Avvio automatico HTTP
+ a| 
+HTA
+ a| 
+* Se selezionata, lo stato del sistema al riavvio dipende dallo stato del componente *LDR* > *Storage*. Se il componente *LDR* > *Storage* è di sola lettura al riavvio, anche l'interfaccia HTTP è di sola lettura. Se il componente *LDR* > *Storage* è Online, anche HTTP è Online. In caso contrario, l'interfaccia HTTP rimane in stato Offline.
+* Se l'opzione non è selezionata, l'interfaccia HTTP rimane offline fino a quando non viene attivata esplicitamente.
+
+
+|===
+
+
+== LDR > Archivio dati
+
+[cols="2a,1a,3a"]
+|===
+| Nome attributo | Codice | Descrizione 
+
+
+ a| 
+Ripristina conteggio oggetti persi
+ a| 
+RCOR
+ a| 
+Ripristina il contatore per il numero di oggetti persi su questo servizio.
+
+|===
+
+
+== LDR > Storage (Storage)
+
+[cols="2a,1a,3a"]
+|===
+| Nome attributo | Codice | Descrizione 
+
+
+ a| 
+Stato di storage -- desiderato
+ a| 
+SSD
+ a| 
+Un'impostazione configurabile dall'utente per lo stato desiderato del componente di storage. Il servizio LDR legge questo valore e tenta di corrispondere allo stato indicato da questo attributo. Il valore è persistente durante i riavvii.
+
+Ad esempio, è possibile utilizzare questa impostazione per forzare lo storage a diventare di sola lettura anche in presenza di ampio spazio di storage disponibile. Questo può essere utile per la risoluzione dei problemi.
+
+L'attributo può assumere uno dei seguenti valori:
+
+* Offline: Quando lo stato desiderato è offline, il servizio LDR porta il componente *LDR* > *Storage* offline.
+* Sola lettura: Quando lo stato desiderato è di sola lettura, il servizio LDR sposta lo stato di archiviazione in sola lettura e interrompe l'accettazione del nuovo contenuto. Tuttavia, il servizio LDR continua ad accettare richieste di eliminazione e eliminazione S3 o gestite da ILM. Tenere presente che il contenuto potrebbe continuare a essere salvato nel nodo di storage per un breve periodo di tempo fino alla chiusura delle sessioni aperte.
+* Online: Lasciare il valore in Online durante le normali operazioni di sistema. Lo stato di storage -- corrente del componente di storage viene impostato dinamicamente dal servizio in base alle condizioni del servizio LDR, ad esempio la quantità di spazio di storage a oggetti disponibile. Se lo spazio è basso, il componente diventa di sola lettura.
+
+
+
+
+ a| 
+Timeout controllo stato di salute
+ a| 
+STC
+ a| 
+Il limite di tempo in secondi entro il quale deve essere completato un test di controllo dello stato di salute per poter considerare un volume di storage integro. Modificare questo valore solo se richiesto dal supporto.
+
+|===
+
+
+== LDR > verifica
+
+[cols="2a,1a,3a"]
+|===
+| Nome attributo | Codice | Descrizione 
+
+
+ a| 
+Ripristina numero oggetti mancanti
+ a| 
+VCMI
+ a| 
+Ripristina il numero di oggetti mancanti rilevati (OMIS). Utilizzare solo dopo il completamento del controllo dell'esistenza dell'oggetto. I dati degli oggetti replicati mancanti vengono ripristinati automaticamente dal sistema StorageGRID.
+
+
+
+ a| 
+Tasso di verifica
+ a| 
+VPRI
+ a| 
+Imposta la velocità con cui avviene la verifica in background. Vedere le informazioni sulla configurazione della velocità di verifica in background.
+
+
+
+ a| 
+Ripristina numero oggetti corrotti
+ a| 
+VCCR
+ a| 
+Ripristinare il contatore per i dati degli oggetti replicati danneggiati rilevati durante la verifica in background. Questa opzione può essere utilizzata per eliminare la condizione di allarme OCOR (Corrupt Objects Detected).
+
+
+
+ a| 
+Elimina oggetti in quarantena
+ a| 
+OQRT
+ a| 
+Eliminare gli oggetti corrotti dalla directory di quarantena, azzerare il numero di oggetti in quarantena e annullare l'allarme di rilevamento oggetti in quarantena (OQRT). Questa opzione viene utilizzata dopo il ripristino automatico degli oggetti corrotti da parte del sistema StorageGRID.
+
+Se viene attivato un allarme oggetti persi, il supporto tecnico potrebbe voler accedere agli oggetti in quarantena. In alcuni casi, gli oggetti in quarantena potrebbero essere utili per il ripristino dei dati o per il debug dei problemi sottostanti che hanno causato le copie degli oggetti corrotte.
+
+|===
+
+
+== LDR > Erasure coding (codifica cancellazione)
+
+[cols="2a,1a,3a"]
+|===
+| Nome attributo | Codice | Descrizione 
+
+
+ a| 
+Azzera conteggio errori di scrittura
+ a| 
+RSWF
+ a| 
+Reimpostare il contatore per gli errori di scrittura dei dati degli oggetti con codifica erasure sul nodo di storage.
+
+
+
+ a| 
+Il ripristino legge il numero di errori
+ a| 
+RSRF
+ a| 
+Reimpostare il contatore per gli errori di lettura dei dati degli oggetti con codifica erasure dal nodo di storage.
+
+
+
+ a| 
+Ripristina Elimina numero di errori
+ a| 
+RSDF
+ a| 
+Reimpostare il contatore per gli errori di eliminazione dei dati degli oggetti con codifica erasure dal nodo di storage.
+
+
+
+ a| 
+Ripristina numero copie corrotte rilevate
+ a| 
+RSCC
+ a| 
+Reimpostare il contatore per il numero di copie corrotte dei dati degli oggetti con codifica di cancellazione sul nodo di storage.
+
+
+
+ a| 
+Ripristina numero di frammenti corrotti rilevati
+ a| 
+RSCD
+ a| 
+Reimpostare il contatore per i frammenti corrotti di dati di oggetti con codifica di cancellazione sul nodo di storage.
+
+
+
+ a| 
+Ripristina numero frammenti mancanti rilevati
+ a| 
+RSMD
+ a| 
+Reimpostare il contatore per i frammenti mancanti di dati di oggetti con codifica di cancellazione sul nodo di storage. Utilizzare solo dopo il completamento del controllo dell'esistenza dell'oggetto.
+
+|===
+
+
+== LDR > Replica
+
+[cols="2a,1a,3a"]
+|===
+| Nome attributo | Codice | Descrizione 
+
+
+ a| 
+Ripristina conteggio errori replica in entrata
+ a| 
+RIC
+ a| 
+Reimpostare il contatore per gli errori di replica in entrata. Questa opzione può essere utilizzata per cancellare l'allarme RIRF (Inbound Replication -- Failed).
+
+
+
+ a| 
+Ripristina conteggio errori replica in uscita
+ a| 
+ROCR
+ a| 
+Reimpostare il contatore per gli errori di replica in uscita. Questa opzione può essere utilizzata per cancellare l'allarme RORF (Outbound Replications -- Failed).
+
+
+
+ a| 
+Disattiva replica in entrata
+ a| 
+DSIR
+ a| 
+Selezionare questa opzione per disattivare la replica in entrata come parte di una procedura di manutenzione o test. Lasciare deselezionato durante il normale funzionamento.
+
+Quando la replica in entrata è disattivata, gli oggetti possono essere recuperati dal nodo di storage per la copia in altre posizioni nel sistema StorageGRID, ma gli oggetti non possono essere copiati in questo nodo di storage da altre posizioni: Il servizio LDR è di sola lettura.
+
+
+
+ a| 
+Disattiva la replica in uscita
+ a| 
+DSOR
+ a| 
+Selezionare questa opzione per disattivare la replica in uscita (incluse le richieste di contenuto per i retrievals HTTP) come parte di una procedura di manutenzione o test. Lasciare deselezionato durante il normale funzionamento.
+
+Quando la replica in uscita è disattivata, gli oggetti possono essere copiati in questo nodo di storage, ma gli oggetti non possono essere recuperati dal nodo di storage per essere copiati in altre posizioni nel sistema StorageGRID. Il servizio LDR è di sola scrittura.
+
+|===

@@ -1,0 +1,84 @@
+---
+permalink: swift/account-operations.html 
+sidebar: sidebar 
+keywords: swift account operations 
+summary: Le seguenti operazioni API Swift vengono eseguite sugli account. 
+---
+= Operazioni dell'account
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le seguenti operazioni API Swift vengono eseguite sugli account.
+
+
+
+== OTTIENI un account
+
+Questa operazione recupera l'elenco di container associato alle statistiche di utilizzo dell'account e dell'account.
+
+È necessario il seguente parametro di richiesta:
+
+* `Account`
+
+
+È richiesta la seguente intestazione di richiesta:
+
+* `X-Auth-Token`
+
+
+I seguenti parametri di query di richiesta supportati sono facoltativi:
+
+* `Delimiter`
+* `End_marker`
+* `Format`
+* `Limit`
+* `Marker`
+* `Prefix`
+
+
+Un'esecuzione riuscita restituisce le seguenti intestazioni con una risposta "HTTP/1,1 204 Nessun contenuto" se l'account viene trovato e non ha contenitori o l'elenco contenitori è vuoto; o una risposta "HTTP/1,1 200 OK" se l'account viene trovato e l'elenco contenitori non è vuoto:
+
+* `Accept-Ranges`
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `X-Account-Bytes-Used`
+* `X-Account-Container-Count`
+* `X-Account-Object-Count`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+
+
+== Conto PRINCIPALE
+
+Questa operazione recupera le informazioni e le statistiche dell'account da un account Swift.
+
+È necessario il seguente parametro di richiesta:
+
+* `Account`
+
+
+È richiesta la seguente intestazione di richiesta:
+
+* `X-Auth-Token`
+
+
+Un'esecuzione riuscita restituisce le seguenti intestazioni con una risposta "HTTP/1.1 204 No Content":
+
+* `Accept-Ranges`
+* `Content-Length`
+* `Date`
+* `X-Account-Bytes-Used`
+* `X-Account-Container-Count`
+* `X-Account-Object-Count`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+.Informazioni correlate
+link:swift-operations-tracked-in-audit-logs.html["Operazioni rapide monitorate nei registri di audit"]

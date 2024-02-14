@@ -1,0 +1,37 @@
+---
+permalink: upgrade/changes-to-grid-management-api.html 
+sidebar: sidebar 
+keywords: grid management api, api, api version, swagger, rest api 
+summary: 'StorageGRID 11,8 utilizza la versione 4 dell"API di gestione delle griglie. La versione 4 depreca la versione 3; tuttavia, le versioni 1, 2 e 3 sono ancora supportate.' 
+---
+= Modifiche all'API Grid Management
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID 11,8 utilizza la versione 4 dell'API di gestione delle griglie. La versione 4 depreca la versione 3; tuttavia, le versioni 1, 2 e 3 sono ancora supportate.
+
+
+NOTE: È possibile continuare a utilizzare versioni obsolete dell'API di gestione con StorageGRID 11,8; tuttavia, il supporto per queste versioni dell'API verrà rimosso in una versione futura di StorageGRID. Dopo l'aggiornamento a StorageGRID 11,8, è possibile disattivare le API obsolete utilizzando `PUT /grid/config/management` API.
+
+Per ulteriori informazioni, visitare il sito Web all'indirizzo link:../admin/using-grid-management-api.html["Utilizzare l'API Grid Management"].
+
+
+
+== Modifiche per `ilm-policies` API v4
+
+A partire da StorageGRID 11,8, versione 4 di `ilm-policies` API contiene le seguenti differenze rispetto alla versione 3:
+
+* I criteri storici non vengono più restituiti. È stata aggiunta una nuova API separata per ottenere i dati dei criteri storici e dei tag in `/grid/ilm-history`.
+* Proprietà rimosse: `proposed`, `historical`, `historicalRules`, `activationTime`.
+* Proprietà aggiunte: `active` (booleano), `activatedBy` (Matrice di UUID tag a cui è assegnato il criterio).
+* Parametro di query di tipo opzionale per `GET ilm-policies` ora prende i valori `inactive` e. `active.` I valori precedenti erano `proposed`, `active`, e. `historical`.
+
+
+
+
+== Nuovi endpoint per la gestione dei dischi
+
+È possibile utilizzare gli endpoint dell'API */grid/drive-details/{NodeID}* per eseguire operazioni sulle unità in modelli specifici di nodi di storage dell'appliance.

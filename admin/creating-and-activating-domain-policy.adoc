@@ -1,0 +1,64 @@
+---
+permalink: admin/creating-and-activating-domain-policy.html 
+sidebar: sidebar 
+keywords: domain policy for tsm, tivoli storage manager policy 
+summary: È necessario creare un criterio di dominio e attivarlo per configurare il server TSM in modo da salvare i dati inviati dal nodo di archiviazione. 
+---
+= Creare e attivare i criteri di dominio
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario creare un criterio di dominio e attivarlo per configurare il server TSM in modo da salvare i dati inviati dal nodo di archiviazione.
+
+.Fasi
+. Creare un criterio di dominio.
++
+`copy domain standard tsm-domain`
+
+. Se non si utilizza una classe di gestione esistente, immettere una delle seguenti informazioni:
++
+`define policyset tsm-domain standard`
+
++
+`define mgmtclass tsm-domain standard _default_`
+
++
+`_default_` è la classe di gestione predefinita per l'implementazione.
+
+. Creare un gruppo di copygroup nel pool di storage appropriato. Immettere (su una riga):
++
+`define copygroup tsm-domain standard _default_ type=archive destination=SGWSDiskPool retinit=event retmin=0 retver=0`
+
++
+`_default_` È la classe di gestione predefinita per il nodo di archiviazione. I valori di `retinit`, `retmin`, e. `retver` Sono stati scelti per riflettere il comportamento di conservazione attualmente utilizzato dal nodo di archiviazione
+
++
+
+NOTE: Non impostare `retinit` a. `retinit=create`. Impostazione `retinit=create` Impedisce al nodo di archiviazione di eliminare il contenuto, poiché gli eventi di conservazione vengono utilizzati per rimuovere il contenuto dal server TSM.
+
+. Assegnare la classe di gestione come predefinita.
++
+`assign defmgmtclass _tsm-domain_ standard _default_`
+
+. Impostare il nuovo set di criteri come attivo.
++
+`activate policyset tsm-domain standard`
+
++
+Ignorare l'avviso "nessun gruppo di copie di backup" visualizzato quando si immette il comando di attivazione.
+
+. Registrare un nodo per utilizzare il nuovo set di criteri sul server TSM. Sul server TSM, immettere (su una riga):
++
+`register node arc-user arc-password passexp=0 domain=tsm-domain MAXNUMMP=number-of-sessions`
+
++
+Arc-user e Arc-password sono lo stesso nome e password del nodo client definiti nel nodo di archiviazione e il valore di MAXNUMMP è impostato sul numero di unità nastro riservate per le sessioni di archiviazione del nodo di archiviazione.
+
++
+
+NOTE: Per impostazione predefinita, la registrazione di un nodo crea un ID utente amministrativo con l'autorità del proprietario del client, con la password definita per il nodo.
+
+

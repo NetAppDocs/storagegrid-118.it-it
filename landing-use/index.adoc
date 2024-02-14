@@ -1,0 +1,13 @@
+---
+layout: landing-page 
+sidebar: sidebar 
+permalink: landing-use/index.html 
+summary: Una volta completata la configurazione iniziale, gli account tenant di StorageGRID possono creare bucket e utilizzare applicazioni client S3 per acquisire, recuperare ed eliminare gli oggetti. 
+---
+= Utilizzare tenant e client StorageGRID
+:hardbreaks:
+:allow-uri-read: 
+:linkattrs: 
+:imagesdir: ./media/
+
+

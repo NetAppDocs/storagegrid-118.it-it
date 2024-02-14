@@ -1,0 +1,16 @@
+---
+permalink: network/network-port-reference.html 
+sidebar: sidebar 
+keywords: network port reference 
+summary: 'È necessario garantire che l"infrastruttura di rete possa fornire comunicazioni interne ed esterne tra i nodi all"interno della griglia e a client e servizi esterni. Potrebbe essere necessario accedere a firewall interni ed esterni, sistemi di switching e sistemi di routing.' 
+---
+= Riferimento porta di rete
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario garantire che l'infrastruttura di rete possa fornire comunicazioni interne ed esterne tra i nodi all'interno della griglia e a client e servizi esterni. Potrebbe essere necessario accedere a firewall interni ed esterni, sistemi di switching e sistemi di routing.
+
+Utilizzare i dettagli forniti per link:internal-grid-node-communications.html["Comunicazioni interne al nodo di rete"] e. link:external-communications.html["Comunicazioni esterne"] per determinare come configurare ciascuna porta richiesta.

@@ -1,0 +1,78 @@
+---
+permalink: ilm/verifying-ilm-policy-with-object-metadata-lookup.html 
+sidebar: sidebar 
+keywords: verify ilm policy, object metadata lookup 
+summary: Dopo aver attivato un criterio ILM, è necessario acquisire oggetti di test rappresentativi nel sistema StorageGRID. Quindi, eseguire una ricerca dei metadati degli oggetti per confermare che le copie vengono eseguite come previsto e collocate nelle posizioni corrette. 
+---
+= Verificare un criterio ILM con la ricerca dei metadati degli oggetti
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dopo aver attivato un criterio ILM, è necessario acquisire oggetti di test rappresentativi nel sistema StorageGRID. Quindi, eseguire una ricerca dei metadati degli oggetti per confermare che le copie vengono eseguite come previsto e collocate nelle posizioni corrette.
+
+.Prima di iniziare
+* Si dispone di un identificatore di oggetto, che può essere uno dei seguenti:
++
+** *UUID*: Identificativo universalamente univoco dell'oggetto. Inserire l'UUID in tutte le lettere maiuscole.
+** *CBID*: Identificatore univoco dell'oggetto all'interno di StorageGRID. È possibile ottenere il CBID di un oggetto dal log di audit. Inserire il CBID in tutte le lettere maiuscole.
+** *S3 bucket e chiave oggetto*: Quando un oggetto viene acquisito tramite l'interfaccia S3, l'applicazione client utilizza una combinazione di bucket e chiave oggetto per memorizzare e identificare l'oggetto. Se il bucket S3 è dotato di versione e si desidera cercare una versione specifica di un oggetto S3 utilizzando il bucket e la chiave Object, si dispone dell' *version ID*.
+** *Swift container and object name*: Quando un oggetto viene acquisito tramite l'interfaccia Swift, l'applicazione client utilizza una combinazione di container e object name per memorizzare e identificare l'oggetto.
+
+
+
+
+.Fasi
+. Acquisire l'oggetto.
+. Selezionare *ILM* > *Object metadata lookup*.
+. Digitare l'identificativo dell'oggetto nel campo *Identifier*. È possibile immettere UUID, CBID, S3 bucket/object-key o Swift container/object-name.
+. Facoltativamente, inserire un ID versione per l'oggetto (solo S3).
+. Selezionare *Cerca*.
++
+Vengono visualizzati i risultati della ricerca dei metadati dell'oggetto. In questa pagina sono elencati i seguenti tipi di informazioni:
+
++
+** Metadati del sistema, tra cui:
++
+*** ID oggetto (UUID)
+*** nome oggetto
+*** nome del contenitore
+*** Tipo di risultato (oggetto, marker di eliminazione, bucket S3 o contenitore Swift)
+*** Nome o ID dell'account tenant
+*** dimensione logica dell'oggetto
+*** data e ora in cui l'oggetto è stato creato per la prima volta
+*** data e ora dell'ultima modifica dell'oggetto
+
+
+** Qualsiasi coppia di valori chiave metadati utente personalizzata associata all'oggetto.
+** Per gli oggetti S3, qualsiasi coppia chiave-valore tag oggetto associata all'oggetto.
+** Per le copie di oggetti replicate, la posizione di storage corrente di ciascuna copia.
+** Per le copie di oggetti con codifica erasure, la posizione di storage corrente di ciascun frammento.
+** Per le copie di oggetti in un Cloud Storage Pool, la posizione dell'oggetto, incluso il nome del bucket esterno e l'identificatore univoco dell'oggetto.
+** Per oggetti segmentati e multiparte, un elenco di segmenti di oggetti che include identificatori di segmenti e dimensioni dei dati. Per gli oggetti con più di 100 segmenti, vengono visualizzati solo i primi 100 segmenti.
+** Tutti i metadati degli oggetti nel formato di storage interno non elaborato. Questi metadati raw includono metadati interni del sistema che non sono garantiti per la persistenza dalla release alla release.
+
+
++
+Nell'esempio seguente vengono illustrati i risultati della ricerca dei metadati degli oggetti per un oggetto di test S3 memorizzato come due copie replicate.
+
++
+
+NOTE: La seguente schermata è un esempio. I risultati variano a seconda della versione di StorageGRID in uso.
+
++
+image::../media/object_lookup_results.png[Risultati della ricerca di oggetti]
+
+. Verificare che l'oggetto sia memorizzato nella posizione o nelle posizioni corrette e che si tratti del tipo di copia corretto.
++
+
+NOTE: Se l'opzione Audit è attivata, è anche possibile monitorare il registro di audit per il messaggio ORLM Object Rules Met. Il messaggio di audit ORLM può fornire ulteriori informazioni sullo stato del processo di valutazione ILM, ma non può fornire informazioni sulla correttezza del posizionamento dei dati dell'oggetto o sulla completezza della policy ILM. È necessario valutarlo da soli. Per ulteriori informazioni, vedere link:../audit/index.html["Esaminare i registri di audit"].
+
+
+
+.Informazioni correlate
+* link:../s3/index.html["UTILIZZARE L'API REST S3"]
+* link:../swift/index.html["Utilizzare l'API REST di Swift"]
+

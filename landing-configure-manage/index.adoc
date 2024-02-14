@@ -1,0 +1,13 @@
+---
+layout: landing-page 
+sidebar: sidebar 
+permalink: landing-configure-manage/index.html 
+summary: 'Le attività di configurazione da eseguire per un nuovo sistema StorageGRID dipendono dal modo in cui si utilizzerà il grid. Come minimo, è possibile configurare l"accesso al sistema, utilizzare le procedure guidate FabricPool e S3 e gestire varie impostazioni di storage e sicurezza.' 
+---
+= Configurare e gestire un sistema StorageGRID
+:hardbreaks:
+:allow-uri-read: 
+:linkattrs: 
+:imagesdir: ./media/
+
+

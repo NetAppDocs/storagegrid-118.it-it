@@ -1,0 +1,16 @@
+---
+permalink: maintain/recovering-from-gateway-node-failures.html 
+sidebar: sidebar 
+keywords: recover, gateway node failure, workflow 
+summary: 'È necessario completare una sequenza di attività nell"ordine esatto per eseguire il ripristino in caso di guasto di un nodo gateway.' 
+---
+= Recovery from Gateway Node Failures: Workflow
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario completare una sequenza di attività nell'ordine esatto per eseguire il ripristino in caso di guasto di un nodo gateway.
+
+image::../media/overview_api_gateway_node_recovery.png[Diagramma di flusso generale del ripristino del nodo gateway]

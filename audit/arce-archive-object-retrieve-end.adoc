@@ -1,0 +1,54 @@
+---
+permalink: audit/arce-archive-object-retrieve-end.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, ARCE, Archive Object Retrieve End 
+summary: 'Questo messaggio viene generato quando viene completato un tentativo da parte del nodo di archiviazione di recuperare i dati dell"oggetto da un sistema di storage di archiviazione esterno. Se l"esito è positivo, il messaggio indica che i dati dell"oggetto richiesti sono stati letti completamente dalla posizione di archiviazione ed è stato verificato correttamente. Una volta recuperati e verificati i dati dell"oggetto, questi vengono consegnati al servizio richiedente.' 
+---
+= ARCE: Fine recupero oggetto archivio
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Questo messaggio viene generato quando viene completato un tentativo da parte del nodo di archiviazione di recuperare i dati dell'oggetto da un sistema di storage di archiviazione esterno. Se l'esito è positivo, il messaggio indica che i dati dell'oggetto richiesti sono stati letti completamente dalla posizione di archiviazione ed è stato verificato correttamente. Una volta recuperati e verificati i dati dell'oggetto, questi vengono consegnati al servizio richiedente.
+
+[cols="1a,1a,4a"]
+|===
+| Codice | Campo | Descrizione 
+
+
+ a| 
+CBID
+ a| 
+ID blocco di contenuto
+ a| 
+Identificatore univoco del blocco di contenuto da recuperare dal sistema di storage di archiviazione esterno.
+
+
+
+ a| 
+VLID
+ a| 
+Identificatore del volume
+ a| 
+L'identificativo del volume su cui sono stati archiviati i dati. Se non viene trovata una posizione di archiviazione per il contenuto, viene restituito un ID volume pari a 0.
+
+
+
+ a| 
+RSLT
+ a| 
+Risultato del recupero
+ a| 
+Lo stato di completamento del processo di recupero dell'archivio:
+
+* SUC: Riuscito
+* VRFL: Non riuscito (errore di verifica dell'oggetto)
+* ARUN: Errore (sistema storage di archiviazione esterno non disponibile)
+* CANC: Non riuscito (operazione di recupero annullata)
+* GERR: Failed (errore generale)
+
+
+|===
+La corrispondenza di questo messaggio con il corrispondente messaggio ARCB può indicare il tempo necessario per eseguire il recupero dell'archivio. Questo messaggio indica se il recupero è riuscito e, in caso di errore, la causa del mancato recupero del blocco di contenuto.

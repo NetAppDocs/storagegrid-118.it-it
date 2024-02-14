@@ -1,0 +1,137 @@
+---
+permalink: swift/container-operations.html 
+sidebar: sidebar 
+keywords: swift container operations 
+summary: StorageGRID supporta un massimo di 1,000 container per account Swift. Le seguenti operazioni API Swift vengono eseguite sui container. 
+---
+= Operazioni container
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID supporta un massimo di 1,000 container per account Swift. Le seguenti operazioni API Swift vengono eseguite sui container.
+
+
+
+== ELIMINA contenitore
+
+Questa operazione rimuove un container vuoto da un account Swift in un sistema StorageGRID.
+
+Sono richiesti i seguenti parametri di richiesta:
+
+* `Account`
+* `Container`
+
+
+È richiesta la seguente intestazione di richiesta:
+
+* `X-Auth-Token`
+
+
+Un'esecuzione riuscita restituisce le seguenti intestazioni con una risposta "HTTP/1.1 204 No Content":
+
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `X-Trans-Id`
+
+
+
+
+== OTTIENI container
+
+Questa operazione recupera l'elenco di oggetti associato al contenitore, insieme alle statistiche e ai metadati del contenitore in un sistema StorageGRID.
+
+Sono richiesti i seguenti parametri di richiesta:
+
+* `Account`
+* `Container`
+
+
+È richiesta la seguente intestazione di richiesta:
+
+* `X-Auth-Token`
+
+
+I seguenti parametri di query di richiesta supportati sono facoltativi:
+
+* `Delimiter`
+* `End_marker`
+* `Format`
+* `Limit`
+* `Marker`
+* `Path`
+* `Prefix`
+
+
+Un'esecuzione riuscita restituisce le seguenti intestazioni con una risposta "HTTP/1.1 200 Success" o "HTTP/1.1 204 No Content":
+
+* `Accept-Ranges`
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `X-Container-Bytes-Used`
+* `X-Container-Object-Count`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+
+
+== CONTENITORE DI TESTA
+
+Questa operazione recupera le statistiche e i metadati dei container da un sistema StorageGRID.
+
+Sono richiesti i seguenti parametri di richiesta:
+
+* `Account`
+* `Container`
+
+
+È richiesta la seguente intestazione di richiesta:
+
+* `X-Auth-Token`
+
+
+Un'esecuzione riuscita restituisce le seguenti intestazioni con una risposta "HTTP/1.1 204 No Content":
+
+* `Accept-Ranges`
+* `Content-Length`
+* `Date`
+* `X-Container-Bytes-Used`
+* `X-Container-Object-Count`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+
+
+== METTI container
+
+Questa operazione crea un container per un account in un sistema StorageGRID.
+
+Sono richiesti i seguenti parametri di richiesta:
+
+* `Account`
+* `Container`
+
+
+È richiesta la seguente intestazione di richiesta:
+
+* `X-Auth-Token`
+
+
+Un'esecuzione riuscita restituisce le seguenti intestazioni con una risposta "HTTP/1.1 201 created" o "HTTP/1.1 202 accepted" (se il container esiste già in questo account):
+
+* `Content-Length`
+* `Date`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+Il nome di un container deve essere univoco nello spazio dei nomi StorageGRID. Se il container esiste in un altro account, viene restituita la seguente intestazione: "HTTP/1.1 409 Conflict".
+
+.Informazioni correlate
+link:monitoring-and-auditing-operations.html["Monitorare e controllare le operazioni"]

@@ -1,0 +1,13 @@
+---
+layout: landing-page 
+sidebar: sidebar 
+permalink: landing-install-upgrade/index.html 
+summary: 'Un sistema StorageGRID è costituito da singoli nodi basati su hardware e software. Installare innanzitutto l"hardware per ciascun nodo appliance e configurare ciascun host Linux o VMware. Quindi, installi il software StorageGRID su ogni appliance o host software e colleghi i nodi in un grid.' 
+---
+= Installazione, aggiornamento e correzione rapida StorageGRID
+:hardbreaks:
+:allow-uri-read: 
+:linkattrs: 
+:imagesdir: ./media/
+
+

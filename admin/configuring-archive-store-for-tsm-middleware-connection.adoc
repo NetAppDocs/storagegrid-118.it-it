@@ -1,0 +1,44 @@
+---
+permalink: admin/configuring-archive-store-for-tsm-middleware-connection.html 
+sidebar: sidebar 
+keywords: archive node, tsm server, tivoli storage manager, archive store 
+summary: 'Se il nodo di archiviazione si connette a un server middleware TSM, è possibile configurare lo stato dell"archivio di un nodo di archiviazione su Online o Offline. È inoltre possibile disattivare l"archivio al primo avvio del nodo di archiviazione o ripristinare il conteggio degli errori rilevati per l"allarme associato.' 
+---
+= Configurare lo stato di archiviazione e i contatori per TSM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se il nodo di archiviazione si connette a un server middleware TSM, è possibile configurare lo stato dell'archivio di un nodo di archiviazione su Online o Offline. È inoltre possibile disattivare l'archivio al primo avvio del nodo di archiviazione o ripristinare il conteggio degli errori rilevati per l'allarme associato.
+
+.Prima di iniziare
+* Hai effettuato l'accesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Lo hai fatto link:admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+
+
+.Fasi
+. Selezionare *SUPPORT* > *Tools* > *Grid topology*.
+. Selezionare *_Archive Node_* > *ARC* > *Store*.
+. Selezionare *Configurazione* > *principale*.
++
+image::../media/archive_store_tsm.gif[Configurare l'archivio per la connessione al middleware TSM]
+
+. Modificare le seguenti impostazioni, se necessario:
++
+** Store state (Stato di archiviazione): Impostare lo stato del componente su:
++
+*** Online: Il nodo di archiviazione è disponibile per elaborare i dati a oggetti per lo storage nel sistema di storage di archiviazione.
+*** Offline: Il nodo di archiviazione non è disponibile per elaborare i dati degli oggetti per lo storage nel sistema di storage di archiviazione.
+
+
+** Archivia archivio disattivata all'avvio: Se selezionato, il componente Archivia archivio rimane nello stato di sola lettura al riavvio. Utilizzato per disattivare in modo persistente lo storage nel sistema di storage di archiviazione di destinazione. Utile quando il sistema storage di archiviazione di destinazione non è in grado di accettare contenuti.
+** Reset Store Failure Count (Ripristina numero di guasti del punto vendita): Consente di reimpostare il contatore per gli errori Questa opzione può essere utilizzata per cancellare l'allarme ARVF (Memorizza guasto).
+
+
+. Selezionare *Applica modifiche*.
+
+
+.Informazioni correlate
+link:managing-archive-node-when-tsm-server-reaches-capacity.html["Gestire un nodo di archiviazione quando il server TSM raggiunge la capacità"]

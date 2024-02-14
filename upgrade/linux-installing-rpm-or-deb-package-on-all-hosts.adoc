@@ -1,0 +1,82 @@
+---
+permalink: upgrade/linux-installing-rpm-or-deb-package-on-all-hosts.html 
+sidebar: sidebar 
+keywords: upgrade, linux, rpm, deb, 
+summary: 'Se un qualsiasi nodo StorageGRID viene distribuito su host Linux, installare un pacchetto RPM o DEB aggiuntivo su ciascuno di questi host prima di avviare l"aggiornamento.' 
+---
+= Linux: Scaricare e installare il pacchetto RPM o DEB su tutti gli host
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se un qualsiasi nodo StorageGRID viene distribuito su host Linux, scaricare e installare un pacchetto RPM o DEB aggiuntivo su ciascuno di questi host prima di avviare l'aggiornamento.
+
+
+
+== Scarica i file di aggiornamento, Linux e hotfix
+
+Quando si esegue un aggiornamento StorageGRID da Grid Manager, viene richiesto di scaricare l'archivio di aggiornamento e le correzioni rapide necessarie come primo passaggio. Tuttavia, se è necessario scaricare i file per aggiornare gli host Linux, è possibile risparmiare tempo scaricando tutti i file richiesti in anticipo.
+
+.Fasi
+. Passare a. https://mysupport.netapp.com/site/products/all/details/storagegrid/downloads-tab["Download NetApp: StorageGRID"^].
+. Selezionare il pulsante per scaricare l'ultima versione oppure selezionare un'altra versione dal menu a discesa e selezionare *Go*.
++
+Le versioni del software StorageGRID hanno questo formato: 11._x.y_. Le hotfix StorageGRID hanno questo formato: 11._x.a. .z_.
+
+. Accedi con il nome utente e la password del tuo account NetApp.
+. Se viene visualizzato un avviso di attenzione/MustRead, annotare il numero della correzione rapida e selezionare la casella di controllo.
+. Leggere il Contratto di licenza con l'utente finale, selezionare la casella di controllo, quindi selezionare *Accept & Continue* (Accetta e continua).
++
+Viene visualizzata la pagina dei download per la versione selezionata. La pagina contiene tre colonne.
+
+. Dalla seconda colonna (*Upgrade StorageGRID*), scaricare due file:
++
+** L'archivio di aggiornamento per l'ultima release (questo è il file nella sezione denominata *VMware, SG1000 o SG100 Primary Admin Node*). Sebbene questo file non sia necessario fino a quando non si esegue l'aggiornamento, il download di questo file consente di risparmiare tempo.
+** Un archivio RPM o DEB in entrambi `.tgz` oppure `.zip` formato. Selezionare `.zip` File se si esegue Windows sul laptop di assistenza.
++
+*** Red Hat Enterprise Linux +
+`StorageGRID-Webscale-_version_-RPM-_uniqueID_.zip` +
+`StorageGRID-Webscale-_version_-RPM-_uniqueID_.tgz`
+*** Ubuntu o Debian +
+`StorageGRID-Webscale-_version_-DEB-_uniqueID_.zip` +
+`StorageGRID-Webscale-_version_-DEB-_uniqueID_.tgz`
+
+
+
+
+. Se è necessario accettare un avviso di attenzione/MustRead a causa di una correzione rapida richiesta, scaricare la correzione rapida:
++
+.. Tornare a. https://mysupport.netapp.com/site/products/all/details/storagegrid/downloads-tab["Download NetApp: StorageGRID"^].
+.. Selezionare il numero della correzione rapida dall'elenco a discesa.
+.. Accettare nuovamente l'avviso di attenzione e l'EULA.
+.. Scaricare e salvare la correzione rapida e il relativo README.
++
+Quando si avvia l'aggiornamento, viene richiesto di caricare il file hotfix nella pagina aggiornamento StorageGRID.
+
+
+
+
+
+
+
+== Installare l'archivio su tutti gli host Linux
+
+Eseguire questa procedura prima di aggiornare il software StorageGRID.
+
+.Fasi
+. Estrarre i pacchetti RPM o DEB dal file di installazione.
+. Installare i pacchetti RPM o DEB su tutti gli host Linux.
++
+Consultare la procedura per l'installazione dei servizi host StorageGRID nelle istruzioni di installazione:
+
++
+** link:../rhel/installing-storagegrid-webscale-host-service.html["Red Hat Enterprise Linux: Installazione dei servizi host StorageGRID"]
+** link:../ubuntu/installing-storagegrid-webscale-host-services.html["Ubuntu o Debian: Installare i servizi host di StorageGRID"]
+
+
++
+I nuovi pacchetti vengono installati come pacchetti aggiuntivi. Non rimuovere i pacchetti esistenti.
+
+

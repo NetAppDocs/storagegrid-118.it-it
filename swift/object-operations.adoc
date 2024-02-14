@@ -1,0 +1,211 @@
+---
+permalink: swift/object-operations.html 
+sidebar: sidebar 
+keywords: swift object operations 
+summary: Le seguenti operazioni API Swift vengono eseguite sugli oggetti. 
+---
+= Operazioni a oggetti
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Le seguenti operazioni API Swift vengono eseguite sugli oggetti. Queste operazioni possono essere monitorate in link:monitoring-and-auditing-operations.html["Registro di controllo di StorageGRID"].
+
+
+
+== ELIMINA oggetto
+
+Questa operazione elimina il contenuto e i metadati di un oggetto dal sistema StorageGRID.
+
+Sono richiesti i seguenti parametri di richiesta:
+
+* `Account`
+* `Container`
+* `Object`
+
+
+È richiesta la seguente intestazione di richiesta:
+
+* `X-Auth-Token`
+
+
+Un'esecuzione corretta restituisce le seguenti intestazioni di risposta con un `HTTP/1.1 204 No Content` risposta:
+
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `X-Trans-Id`
+
+
+Durante l'elaborazione di una richiesta DI ELIMINAZIONE degli oggetti, StorageGRID tenta di rimuovere immediatamente tutte le copie dell'oggetto da tutte le posizioni memorizzate. Se l'esito è positivo, StorageGRID restituisce immediatamente una risposta al client. Se non è possibile rimuovere tutte le copie entro 30 secondi (ad esempio, perché una posizione è temporaneamente non disponibile), StorageGRID mette in coda le copie per la rimozione e indica che il client è riuscito.
+
+Per ulteriori informazioni, vedere link:../ilm/how-objects-are-deleted.html["Modalità di eliminazione degli oggetti"].
+
+
+
+== OTTIENI oggetto
+
+Questa operazione recupera il contenuto dell'oggetto e recupera i metadati dell'oggetto da un sistema StorageGRID.
+
+Sono richiesti i seguenti parametri di richiesta:
+
+* `Account`
+* `Container`
+* `Object`
+
+
+È richiesta la seguente intestazione di richiesta:
+
+* `X-Auth-Token`
+
+
+Le seguenti intestazioni di richiesta sono opzionali:
+
+* `Accept-Encoding`
+* `If-Match`
+* `If-Modified-Since`
+* `If-None-Match`
+* `If-Unmodified-Since`
+* `Range`
+
+
+Un'esecuzione corretta restituisce le seguenti intestazioni con un `HTTP/1.1 200 OK` risposta:
+
+* `Accept-Ranges`
+*  `Content-Disposition`, restituito solo se `Content-Disposition` metadati impostati
+*  `Content-Encoding`, restituito solo se `Content-Encoding` metadati impostati
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `ETag`
+* `Last-Modified`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+
+
+== Oggetto TESTA
+
+Questa operazione recupera i metadati e le proprietà di un oggetto acquisito da un sistema StorageGRID.
+
+Sono richiesti i seguenti parametri di richiesta:
+
+* `Account`
+* `Container`
+* `Object`
+
+
+È richiesta la seguente intestazione di richiesta:
+
+* `X-Auth-Token`
+
+
+Un'esecuzione corretta restituisce le seguenti intestazioni con una risposta "HTTP/1.1 200 OK":
+
+* `Accept-Ranges`
+*  `Content-Disposition`, restituito solo se `Content-Disposition` metadati impostati
+*  `Content-Encoding`, restituito solo se `Content-Encoding` metadati impostati
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `ETag`
+* `Last-Modified`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+
+
+== METTI oggetto
+
+Questa operazione crea un nuovo oggetto con dati e metadati oppure sostituisce un oggetto esistente con dati e metadati in un sistema StorageGRID.
+
+StorageGRID supporta oggetti con dimensioni fino a 5 TIB (5,497,558,138,880 byte).
+
+
+NOTE: Le richieste dei client in conflitto, come due client che scrivono sulla stessa chiave, vengono risolte in base alle "ultime vincite". La tempistica per la valutazione degli "ultimi successi" si basa sul momento in cui il sistema StorageGRID completa una data richiesta e non sul momento in cui i client Swift iniziano un'operazione.
+
+Sono richiesti i seguenti parametri di richiesta:
+
+* `Account`
+* `Container`
+* `Object`
+
+
+È richiesta la seguente intestazione di richiesta:
+
+* `X-Auth-Token`
+
+
+Le seguenti intestazioni di richiesta sono opzionali:
+
+* `Content-Disposition`
+* `Content-Encoding`
++
+Non utilizzare chunked `Content-Encoding` Se la regola ILM applicata a un oggetto filtra gli oggetti in base alle dimensioni e utilizza il posizionamento sincrono all'acquisizione (le opzioni bilanciate o rigide per il comportamento di Ingest).
+
+* `Transfer-Encoding`
++
+Non utilizzare file compressi o a pezzi `Transfer-Encoding` Se la regola ILM applicata a un oggetto filtra gli oggetti in base alle dimensioni e utilizza il posizionamento sincrono all'acquisizione (le opzioni bilanciate o rigide per il comportamento di Ingest).
+
+* `Content-Length`
++
+Se una regola ILM filtra gli oggetti in base alle dimensioni e utilizza il posizionamento sincrono all'acquisizione, è necessario specificare `Content-Length`.
+
++
+
+NOTE: Se non si seguono queste linee guida per `Content-Encoding`, `Transfer-Encoding`, e. `Content-Length`, StorageGRID deve salvare l'oggetto prima di poter determinare la dimensione dell'oggetto e applicare la regola ILM. In altre parole, per impostazione predefinita, StorageGRID deve creare copie temporanee di un oggetto in fase di acquisizione. In altri termini, StorageGRID deve utilizzare l'opzione di doppio commit per il comportamento di Ingest.
+
++
+Per ulteriori informazioni sul posizionamento sincrono e sulle regole ILM, vedere link:../ilm/data-protection-options-for-ingest.html["Opzioni di protezione dei dati per l'acquisizione"].
+
+* `Content-Type`
+* `ETag`
+* `X-Object-Meta-<name\>` (metadati correlati agli oggetti)
++
+Se si desidera utilizzare l'opzione *tempo di creazione definito dall'utente* come tempo di riferimento per una regola ILM, è necessario memorizzare il valore in un'intestazione definita dall'utente denominata `X-Object-Meta-Creation-Time`. Ad esempio:
+
++
+[listing]
+----
+X-Object-Meta-Creation-Time: 1443399726
+----
++
+Questo campo viene valutato come secondi dal 1° gennaio 1970.
+
+* `X-Storage-Class: reduced_redundancy`
++
+Questa intestazione influisce sul numero di copie di oggetti create da StorageGRID se la regola ILM che corrisponde a un oggetto acquisito specifica un comportamento Ingest di doppio commit o bilanciato.
+
++
+** *Commit doppio*: Se la regola ILM specifica l'opzione commit doppio per il comportamento di Ingest, StorageGRID crea una singola copia provvisoria quando l'oggetto viene acquisito (commit singolo).
+** *Balanced*: Se la regola ILM specifica l'opzione Balanced, StorageGRID crea una singola copia provvisoria solo se il sistema non è in grado di eseguire immediatamente tutte le copie specificate nella regola. Se StorageGRID è in grado di eseguire il posizionamento sincrono, questa intestazione non ha alcun effetto.
++
+Il `reduced_redundancy` L'intestazione viene utilizzata al meglio quando la regola ILM corrispondente all'oggetto crea una singola copia replicata. In questo caso, utilizzando `reduced_redundancy` elimina la creazione e l'eliminazione non necessarie di una copia di un oggetto extra per ogni operazione di acquisizione.
+
++
+Utilizzando il `reduced_redundancy` l'intestazione non è consigliata in altre circostanze perché aumenta il rischio di perdita dei dati dell'oggetto durante l'acquisizione. Ad esempio, è possibile che si verifichino perdite di dati se la singola copia viene inizialmente memorizzata su un nodo di storage che non riesce prima che si verifichi la valutazione ILM.
+
++
+
+CAUTION: Avere una sola copia replicata per qualsiasi periodo di tempo mette i dati a rischio di perdita permanente. Se esiste una sola copia replicata di un oggetto, quest'ultimo viene perso in caso di errore o errore significativo di un nodo di storage. Inoltre, durante le procedure di manutenzione, ad esempio gli aggiornamenti, si perde temporaneamente l'accesso all'oggetto.
+
+
+
++
+Si noti che specificando `reduced_redundancy` influisce solo sul numero di copie create quando un oggetto viene acquisito per la prima volta. Non influisce sul numero di copie dell'oggetto create quando l'oggetto viene valutato dalle policy ILM attive e non comporta l'archiviazione dei dati a livelli inferiori di ridondanza nel sistema StorageGRID.
+
+
+
+Un'esecuzione corretta restituisce le seguenti intestazioni con una risposta "HTTP/1.1 201 created":
+
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `ETag`
+* `Last-Modified`
+* `X-Trans-Id`
+

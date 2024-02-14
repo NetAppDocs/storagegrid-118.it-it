@@ -1,0 +1,35 @@
+---
+permalink: upgrade/impact-of-upgrade-on-groups-and-user-accounts.html 
+sidebar: sidebar 
+keywords: upgrade, permissions 
+summary: 'Potrebbe essere necessario aggiornare correttamente i gruppi e gli account utente al termine dell"aggiornamento.' 
+---
+= Impatto di un aggiornamento su gruppi e account utente
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Potrebbe essere necessario aggiornare correttamente i gruppi e gli account utente al termine dell'aggiornamento.
+
+
+
+== Modifiche alle autorizzazioni e alle opzioni del gruppo
+
+Dopo l'aggiornamento a StorageGRID 11,8, assegnare facoltativamente le seguenti nuove autorizzazioni ai gruppi di utenti tenant.
+
+[cols="1a,2a,2a"]
+|===
+| Permesso | Descrizione | Dettagli 
+
+
+ a| 
+Visualizza tutti i bucket
+ a| 
+Consente agli utenti di visualizzare tutte le configurazioni di bucket e bucket.
+ a| 
+L'autorizzazione Gestisci tutti i bucket sostituisce l'autorizzazione Visualizza tutti i bucket.
+
+|===
+Vedere link:../tenant/tenant-management-permissions.html["Permessi di gestione del tenant"].

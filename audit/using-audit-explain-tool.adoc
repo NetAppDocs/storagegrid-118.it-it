@@ -1,0 +1,98 @@
+---
+permalink: audit/using-audit-explain-tool.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, tool, audit-explain, audit explain, translate audit messages, translate messages, translate audit message, translate message 
+summary: 'È possibile utilizzare lo strumento di spiegazione dell"audit per tradurre i messaggi di audit nel log di audit in in un formato di facile lettura.' 
+---
+= Utilizzare lo strumento di verifica e spiegazione
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile utilizzare `audit-explain` strumento per convertire i messaggi di audit nel log di audit in un formato di facile lettura.
+
+.Prima di iniziare
+* Lo hai fatto link:../admin/admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+* È necessario disporre di `Passwords.txt` file.
+* È necessario conoscere l'indirizzo IP del nodo di amministrazione primario.
+
+
+.A proposito di questa attività
+Il `audit-explain` Tool, disponibile nel nodo di amministrazione principale, fornisce riepiloghi semplificati dei messaggi di audit in un registro di audit.
+
+
+NOTE: Il `audit-explain` lo strumento è destinato principalmente all'utilizzo da parte del supporto tecnico durante le operazioni di troubleshooting. Elaborazione in corso `audit-explain` Le query possono consumare una grande quantità di potenza della CPU, con un conseguente impatto sulle operazioni StorageGRID.
+
+Questo esempio mostra l'output tipico di `audit-explain` tool. Questi quattro link:sput-s3-put.html["SPUT"] I messaggi di audit sono stati generati quando il tenant S3 con ID account 92484777680322627870 utilizzava S3 PUT Requests per creare un bucket denominato "bucket1" e aggiungere tre oggetti a quel bucket.
+
+[listing]
+----
+SPUT S3 PUT bucket bucket1 account:92484777680322627870 usec:124673
+SPUT S3 PUT object bucket1/part1.txt tenant:92484777680322627870  cbid:9DCB157394F99FE5 usec:101485
+SPUT S3 PUT object bucket1/part2.txt tenant:92484777680322627870  cbid:3CFBB07AB3D32CA9 usec:102804
+SPUT S3 PUT object bucket1/part3.txt tenant:92484777680322627870  cbid:5373D73831ECC743 usec:93874
+----
+Il `audit-explain` lo strumento può eseguire le seguenti operazioni:
+
+* Elaborazione di registri di audit semplici o compressi. Ad esempio:
++
+`audit-explain audit.log`
+
++
+`audit-explain 2019-08-12.txt.gz`
+
+* Elaborazione simultanea di più file. Ad esempio:
++
+`audit-explain audit.log 2019-08-12.txt.gz 2019-08-13.txt.gz`
+
++
+`audit-explain /var/local/log/*`
+
+* Accettare l'input da una pipe, che consente di filtrare e pre-elaborare l'input utilizzando `grep` comando o altro mezzo. Ad esempio:
++
+`grep SPUT audit.log | audit-explain`
+
++
+`grep bucket-name audit.log | audit-explain`
+
+
+
+Poiché i log di audit possono essere molto grandi e lenti da analizzare, è possibile risparmiare tempo filtrando le parti che si desidera esaminare ed eseguire `audit-explain` sulle parti, invece dell'intero file.
+
+[NOTE]
+====
+Il `audit-explain` lo strumento non accetta i file compressi come input di tipo pipped. Per elaborare i file compressi, specificare i nomi dei file come argomenti della riga di comando oppure utilizzare `zcat` per decomprimere prima i file. Ad esempio:
+
+`zcat audit.log.gz | audit-explain`
+
+====
+Utilizzare `help (-h)` per visualizzare le opzioni disponibili. Ad esempio:
+
+`$ audit-explain -h`
+
+.Fasi
+. Accedere al nodo di amministrazione principale:
++
+.. Immettere il seguente comando: `ssh admin@_primary_Admin_Node_IP_`
+.. Immettere la password elencata in `Passwords.txt` file.
+.. Immettere il seguente comando per passare a root: `su -`
+.. Immettere la password elencata in `Passwords.txt` file.
++
+Una volta effettuato l'accesso come root, il prompt cambia da `$` a. `#`.
+
+
+
+. Immettere il seguente comando, dove `/var/local/log/audit.log` rappresenta il nome e la posizione del file o dei file che si desidera analizzare:
++
+`$ audit-explain /var/local/log/audit.log`
+
++
+Il `audit-explain` consente di stampare interpretazioni leggibili di tutti i messaggi contenuti nel file o nei file specificati.
+
++
+
+NOTE: Per ridurre le lunghezze delle linee e agevolare la leggibilità, i timestamp non vengono visualizzati per impostazione predefinita. Se si desidera visualizzare gli indicatori di data e ora, utilizzare l'indicatore di data e ora (`-t`).
+
+

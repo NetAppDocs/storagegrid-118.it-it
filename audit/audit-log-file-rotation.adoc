@@ -1,0 +1,30 @@
+---
+permalink: audit/audit-log-file-rotation.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, log file, audit.log, audit.log file, rotation, save, autosave, auto save, auto-save 
+summary: I file dei registri di controllo vengono salvati nella directory /var/local/log di un nodo amministrativo. I file di log di audit attivi sono denominati audit.log. 
+---
+= Controllo della rotazione del file di log
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I file di log di audit vengono salvati in un nodo di amministrazione `/var/local/log` directory. I file di log di audit attivi sono denominati `audit.log`.
+
+
+NOTE: In alternativa, è possibile modificare la destinazione dei registri di controllo e inviare le informazioni di controllo a un server syslog esterno. I registri locali dei record di controllo continuano a essere generati e memorizzati quando viene configurato un server syslog esterno. Vedere link:../monitor/configure-audit-messages.html["Configurare i messaggi di audit e le destinazioni dei log"].
+
+Una volta al giorno, il attivo `audit.log` il file viene salvato e viene visualizzato un nuovo `audit.log` il file viene avviato. Il nome del file salvato indica quando è stato salvato, nel formato `_yyyy-mm-dd.txt_`. Se in un singolo giorno vengono creati più log di audit, i nomi dei file utilizzano la data in cui il file è stato salvato, aggiunto da un numero, nel formato `_yyyy-mm-dd.txt.n_`. Ad esempio, `2018-04-15.txt` e. `2018-04-15.txt.1` Sono il primo e il secondo file di log creati e salvati il 15 aprile 2018.
+
+Dopo un giorno, il file salvato viene compresso e rinominato, nel formato `_yyyy-mm-dd.txt.gz_`, che conserva la data originale. Con il passare del tempo, ciò comporta un consumo di storage allocato per i registri di controllo sul nodo di amministrazione. Uno script monitora il consumo di spazio nel registro di controllo ed elimina i file di registro in base alle necessità per liberare spazio in `/var/local/log` directory. I registri di audit vengono cancellati in base alla data di creazione, con la data in cui sono stati cancellati per prima. È possibile monitorare le azioni dello script nel seguente file: `/var/local/log/manage-audit.log`.
+
+In questo esempio viene visualizzato il valore attivo `audit.log` file del giorno precedente (`2018-04-15.txt`) e il file compresso per il giorno precedente (`2018-04-14.txt.gz`).
+
+[listing]
+----
+audit.log
+2018-04-15.txt
+2018-04-14.txt.gz
+----

@@ -1,0 +1,157 @@
+---
+permalink: s3/get-object.html 
+sidebar: sidebar 
+keywords: get object 
+summary: È possibile utilizzare la richiesta di oggetti GET S3 per recuperare un oggetto da un bucket S3. 
+---
+= GetObject
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile utilizzare la richiesta GetObject S3 per recuperare un oggetto da un bucket S3.
+
+
+
+== Oggetti GetObject e multiparte
+
+È possibile utilizzare `partNumber` parametro di richiesta per recuperare una parte specifica di un oggetto multiparte o segmentato.  Il `x-amz-mp-parts-count` l'elemento response indica il numero di parti dell'oggetto.
+
+È possibile impostare `partNumber` a 1 per oggetti segmentati/multiparte e oggetti non segmentati/non multiparte; tuttavia, `x-amz-mp-parts-count` l'elemento di risposta viene restituito solo per gli oggetti segmentati o multiparte.
+
+
+
+== UTF-8 caratteri nei metadati dell'utente
+
+StorageGRID non analizza o interpreta i caratteri UTF-8 escapati nei metadati definiti dall'utente. LE richieste GET per un oggetto con caratteri UTF-8 escapiti nei metadati definiti dall'utente non restituiscono `x-amz-missing-meta` intestazione se il nome o il valore della chiave include caratteri non stampabili.
+
+
+
+== Intestazione della richiesta non supportata
+
+La seguente intestazione di richiesta non è supportata e restituisce `XNotImplemented`:
+
+* `x-amz-website-redirect-location`
+
+
+
+
+== Versione
+
+Se si seleziona `versionId` la sottorisorsa non viene specificata, l'operazione recupera la versione più recente dell'oggetto in un bucket con versione. Se la versione corrente dell'oggetto è un marcatore di eliminazione, viene restituito lo stato "non trovato" con `x-amz-delete-marker` intestazione risposta impostata su `true`.
+
+
+
+== Intestazioni delle richieste per la crittografia lato server con chiavi di crittografia fornite dal cliente (SSE-C)
+
+Utilizzare tutte e tre le intestazioni se l'oggetto è crittografato con una chiave univoca fornita dall'utente.
+
+* `x-amz-server-side-encryption-customer-algorithm`: Specificare `AES256`.
+* `x-amz-server-side-encryption-customer-key`: Specificare la chiave di crittografia per l'oggetto.
+* `x-amz-server-side-encryption-customer-key-MD5`: Specificare il digest MD5 della chiave di crittografia dell'oggetto.
+
+
+
+CAUTION: Le chiavi di crittografia fornite non vengono mai memorizzate. Se si perde una chiave di crittografia, si perde l'oggetto corrispondente. Prima di utilizzare le chiavi fornite dal cliente per proteggere i dati degli oggetti, esaminare le considerazioni in link:using-server-side-encryption.html["Utilizzare la crittografia lato server"].
+
+
+
+== Comportamento degli oggetti GetObject per Cloud Storage Pool
+
+Se un oggetto è stato memorizzato in link:../ilm/what-cloud-storage-pool-is.html["Pool di cloud storage"], Il comportamento di una richiesta GetObject dipende dallo stato dell'oggetto. Vedere link:head-object.html["HeadObject (oggetto intestazione)"] per ulteriori dettagli.
+
+
+NOTE: Se un oggetto viene memorizzato in un Cloud Storage Pool e sulla griglia esistono anche una o più copie dell'oggetto, le richieste GetObject tenteranno di recuperare i dati dalla griglia, prima di recuperarli da Cloud Storage Pool.
+
+[cols="1a,1a"]
+|===
+| Stato dell'oggetto | Comportamento di GetObject 
+
+
+ a| 
+Oggetto acquisito in StorageGRID ma non ancora valutato da ILM, o oggetto memorizzato in un pool di storage tradizionale o mediante erasure coding
+ a| 
+`200 OK`
+
+Viene recuperata una copia dell'oggetto.
+
+
+
+ a| 
+Oggetto nel Cloud Storage Pool ma non ancora passato a uno stato non recuperabile
+ a| 
+`200 OK`
+
+Viene recuperata una copia dell'oggetto.
+
+
+
+ a| 
+Oggetto sottoposto a transizione in uno stato non recuperabile
+ a| 
+`403 Forbidden`, `InvalidObjectState`
+
+Utilizzare un link:post-object-restore.html["RestoreObject"] richiesta di ripristino dell'oggetto in uno stato recuperabile.
+
+
+
+ a| 
+Oggetto in fase di ripristino da uno stato non recuperabile
+ a| 
+`403 Forbidden`, `InvalidObjectState`
+
+Attendere il completamento della richiesta RestoreObject.
+
+
+
+ a| 
+Oggetto completamente ripristinato nel Cloud Storage Pool
+ a| 
+`200 OK`
+
+Viene recuperata una copia dell'oggetto.
+
+|===
+
+
+=== Oggetti multiparte o segmentati in un pool di storage cloud
+
+Se hai caricato un oggetto multiparte o se StorageGRID divide un oggetto di grandi dimensioni in segmenti, StorageGRID determina se l'oggetto è disponibile nel pool di storage cloud campionando un sottoinsieme delle parti o dei segmenti dell'oggetto. In alcuni casi, una richiesta GetObject potrebbe non essere restituita correttamente `200 OK` quando alcune parti dell'oggetto sono già state trasferite in uno stato non recuperabile o quando alcune parti dell'oggetto non sono ancora state ripristinate.
+
+In questi casi:
+
+* La richiesta GetObject potrebbe restituire alcuni dati ma interrompersi a metà del trasferimento.
+* Potrebbe essere restituita una richiesta GetObject successiva `403 Forbidden`.
+
+
+
+
+== Replica GetObject e cross-grid
+
+Se si utilizza link:../admin/grid-federation-overview.html["federazione di grid"] e. link:../tenant/grid-federation-manage-cross-grid-replication.html["replica cross-grid"] È abilitato per un bucket, il client S3 può verificare lo stato di replica di un oggetto inviando una richiesta GetObject. La risposta include lo specifico StorageGRID `x-ntap-sg-cgr-replication-status` intestazione della risposta, che avrà uno dei seguenti valori:
+
+[cols="1a,2a"]
+|===
+| Griglia | Stato della replica 
+
+
+ a| 
+Origine
+ a| 
+* *SUCCESSO*: La replica è riuscita.
+* *PENDING*: L'oggetto non è stato ancora replicato.
+* *ERRORE*: La replica non è riuscita con un errore permanente. Un utente deve risolvere l'errore.
+
+
+
+
+ a| 
+Destinazione
+ a| 
+*REPLICA*: L'oggetto è stato replicato dalla griglia di origine.
+
+|===
+
+NOTE: StorageGRID non supporta `x-amz-replication-status` intestazione.

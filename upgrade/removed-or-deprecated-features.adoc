@@ -1,0 +1,105 @@
+---
+permalink: upgrade/removed-or-deprecated-features.html 
+sidebar: sidebar 
+keywords:  
+summary: 'Alcune funzioni e funzionalità sono state rimosse o obsolete in questa release. Esaminare questi elementi per capire se è necessario aggiornare le applicazioni client o modificare la configurazione prima di eseguire l"aggiornamento.' 
+---
+= Funzioni e funzionalità rimosse o obsolete
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Alcune funzioni e funzionalità sono state rimosse o obsolete in questa release. Esaminare questi elementi per capire se è necessario aggiornare le applicazioni client o modificare la configurazione prima di eseguire l'aggiornamento.
+
+
+
+== Definizioni
+
+Obsoleto:: La funzione *non deve* essere utilizzata in nuovi ambienti di produzione. Gli ambienti di produzione esistenti possono continuare a utilizzare questa funzione.
+Fine del ciclo di vita:: Ultima versione fornita che contiene la funzione. Nessuna versione futura supporterà la funzione.
+Rimosso:: Prima versione che *non* contiene la funzione.
+
+
+
+
+== Fine del supporto delle funzionalità di StorageGRID 11,8
+
+Le funzioni obsolete verranno rimosse nelle versioni principali N+2. Ad esempio, se una funzione è deprecata nella versione N (ad esempio, 6,3), l'ultima versione in cui la funzione esisterà è N+1 (ad esempio, 6,4). La versione N+2 (ad esempio, 6,5) è la prima versione quando la funzione non esiste nel prodotto.
+
+Vedere https://mysupport.netapp.com/site/info/version-support["Pagina supporto versione software"^] per ulteriori informazioni.
+
+
+NOTE: In alcune situazioni, NetApp potrebbe interrompere il supporto per determinate funzioni prima di quanto indicato.
+
+[cols="3a,1a,1a,1a"]
+|===
+| Funzione | Obsoleto | Fine del ciclo di vita | Rimosso 
+
+
+ a| 
+Supporto nodo di archivio
+ a| 
+11,7
+ a| 
+11,8
+ a| 
+11,9
+
+
+
+ a| 
+Esportazione di audit tramite CIFS/Samba
+ a| 
+11,1
+ a| 
+11,6
+ a| 
+11,7
+
+
+
+ a| 
+Servizio CLB
+ a| 
+11,4
+ a| 
+11,6
+ a| 
+11,7
+
+
+
+ a| 
+Runtime dei container Docker
+ a| 
+11,8
+ a| 
+11,9
+ a| 
+12,0
+
+
+
+ a| 
+Esportazione con audit NFS
+ a| 
+11,8
+ a| 
+11,9
+ a| 
+12,0
+
+
+
+ a| 
+Supporto API Swift
+ a| 
+11,7
+ a| 
+11,9
+ a| 
+12,0
+
+|===

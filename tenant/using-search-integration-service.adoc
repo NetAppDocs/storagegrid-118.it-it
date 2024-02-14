@@ -1,0 +1,37 @@
+---
+permalink: tenant/using-search-integration-service.html 
+sidebar: sidebar 
+keywords: how to use search integration service 
+summary: Il servizio di integrazione della ricerca è uno dei tre servizi della piattaforma StorageGRID. È possibile consentire a questo servizio di inviare metadati di oggetti a un indice di ricerca della destinazione ogni volta che un oggetto viene creato, cancellato o i relativi metadati o tag vengono aggiornati. 
+---
+= Utilizza il servizio di integrazione della ricerca
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il servizio di integrazione della ricerca è uno dei tre servizi della piattaforma StorageGRID. È possibile consentire a questo servizio di inviare metadati di oggetti a un indice di ricerca della destinazione ogni volta che un oggetto viene creato, cancellato o i relativi metadati o tag vengono aggiornati.
+
+È possibile configurare l'integrazione della ricerca utilizzando Gestione tenant per applicare XML di configurazione StorageGRID personalizzato a un bucket.
+
+
+NOTE: Poiché il servizio di integrazione della ricerca fa sì che i metadati degli oggetti vengano inviati a una destinazione, il relativo XML di configurazione viene definito _metadata notification Configuration XML_. Questo XML di configurazione è diverso dal _XML di configurazione delle notifiche_ utilizzato per attivare le notifiche degli eventi.
+
+Vedere link:../s3/index.html["Istruzioni per l'implementazione delle applicazioni client S3"] Per informazioni dettagliate sulle seguenti operazioni REST API personalizzate di StorageGRID S3:
+
+* ELIMINA la configurazione di notifica dei metadati del bucket
+* OTTIENI la configurazione della notifica dei metadati del bucket
+* INSERIRE la configurazione della notifica dei metadati del bucket
+
+
+.Informazioni correlate
+link:configuration-xml-for-search-configuration.html["XML di configurazione per l'integrazione della ricerca"]
+
+link:object-metadata-included-in-metadata-notifications.html["Metadati degli oggetti inclusi nelle notifiche dei metadati"]
+
+link:json-generated-by-search-integration-service.html["JSON generato dal servizio di integrazione della ricerca"]
+
+link:configuring-search-integration-service.html["Configurare il servizio di integrazione della ricerca"]
+
+link:../s3/index.html["UTILIZZARE L'API REST S3"]

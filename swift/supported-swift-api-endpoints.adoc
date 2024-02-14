@@ -1,0 +1,107 @@
+---
+permalink: swift/supported-swift-api-endpoints.html 
+sidebar: sidebar 
+keywords: swift api endpoint support 
+summary: 'StorageGRID supporta i seguenti endpoint API Swift: URL info, URL auth e URL storage.' 
+---
+= Endpoint API Swift supportati
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID supporta i seguenti endpoint API Swift: URL info, URL auth e URL storage.
+
+
+
+== URL info
+
+È possibile determinare le funzionalità e i limiti dell'implementazione di Swift di StorageGRID inviando una richiesta GET all'URL di base di Swift con il percorso /info.
+
+`https://_FQDN_ | _Node IP:Swift Port_/info/`
+
+Nella richiesta:
+
+* `_FQDN_` è il nome di dominio completo.
+* `_Node IP_` È l'indirizzo IP del nodo di storage o del nodo gateway sulla rete StorageGRID.
+* `_Swift Port_` È il numero di porta utilizzato per le connessioni API Swift sul nodo di storage o sul nodo gateway.
+
+
+Ad esempio, il seguente URL info richiede informazioni a un nodo di storage con l'indirizzo IP 10.99.106.103 e utilizzando la porta 18083.
+
+`\https://10.99.106.103:18083/info/`
+
+La risposta include le funzionalità dell'implementazione di Swift come dizionario JSON. Uno strumento client può analizzare la risposta JSON per determinare le funzionalità dell'implementazione e utilizzarle come vincoli per le successive operazioni di storage.
+
+L'implementazione StorageGRID di Swift consente l'accesso non autenticato all'URL delle informazioni.
+
+
+
+== URL di autenticazione
+
+Un client può utilizzare l'URL auth di Swift per l'autenticazione come utente di un account tenant.
+
+`https://_FQDN_ | _Node IP:Swift Port_/auth/v1.0/`
+
+Specificare l'ID account tenant, il nome utente e la password come parametri in `X-Auth-User` e. `X-Auth-Key` intestazioni delle richieste, come segue:
+
+`X-Auth-User: _Tenant_Account_ID:Username_`
+
+`X-Auth-Key: _Password_`
+
+Nelle intestazioni della richiesta:
+
+* `_Tenant_Account_ID_` È l'ID account assegnato da StorageGRID al momento della creazione del tenant Swift. Si tratta dello stesso ID account tenant utilizzato nella pagina di accesso di Tenant Manager.
+* `_Username_` È il nome di un utente tenant creato in Tenant Manager. Questo utente deve appartenere a un gruppo che dispone dell'autorizzazione di amministratore Swift. L'utente root del tenant non può essere configurato per utilizzare l'API REST Swift.
++
+Se Identity Federation è abilitato per l'account tenant, fornire il nome utente e la password dell'utente federated dal server LDAP. In alternativa, fornire il nome di dominio dell'utente LDAP. Ad esempio:
+
++
+`X-Auth-User: _Tenant_Account_ID:Username@Domain_Name_`
+
+* `_Password_` è la password per l'utente tenant. Le password utente vengono create e gestite in Tenant Manager.
+
+
+La risposta a una richiesta di autenticazione riuscita restituisce un URL di storage e un token di autenticazione, come segue:
+
+`X-Storage-Url: https://_FQDN_ | _Node_IP:Swift_Port_/v1/_Tenant_Account_ID_`
+
+`X-Auth-Token: _token_`
+
+`X-Storage-Token: _token_`
+
+Per impostazione predefinita, il token è valido per 24 ore dal momento della generazione.
+
+I token vengono generati per un account tenant specifico. Un token valido per un account non autorizza un utente ad accedere a un altro account.
+
+
+
+== URL dello storage
+
+Un'applicazione client può eseguire chiamate API SWIFT REST per eseguire operazioni di account, container e oggetti supportate su un nodo gateway o un nodo di storage. Le richieste di storage vengono indirizzate all'URL dello storage restituito nella risposta di autenticazione. La richiesta deve includere anche l'intestazione X-Auth-Token e il valore restituito dalla richiesta auth.
+
+`\https://FQDN | _IP:Swift_Port_/v1/_Tenant_Account_ID_`
+
+`[_/container_][_/object_]`
+
+`X-Auth-Token: _token_`
+
+Alcune intestazioni di risposta dello storage che contengono statistiche di utilizzo potrebbero non riflettere numeri precisi per gli oggetti modificati di recente. Potrebbero essere necessari alcuni minuti per visualizzare numeri precisi in queste intestazioni.
+
+Le seguenti intestazioni di risposta per le operazioni di account e container sono esempi di quelle che contengono statistiche di utilizzo:
+
+* `X-Account-Bytes-Used`
+* `X-Account-Object-Count`
+* `X-Container-Bytes-Used`
+* `X-Container-Object-Count`
+
+
+.Informazioni correlate
+link:configuring-tenant-accounts-and-connections.html["Configurare gli account e le connessioni del tenant"]
+
+link:account-operations.html["Operazioni dell'account"]
+
+link:container-operations.html["Operazioni container"]
+
+link:object-operations.html["Operazioni a oggetti"]

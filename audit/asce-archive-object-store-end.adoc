@@ -1,0 +1,76 @@
+---
+permalink: audit/asce-archive-object-store-end.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, ASCE, Archive Object Store End 
+summary: Questo messaggio indica che la scrittura di un blocco di contenuto in un sistema di storage di archiviazione esterno è terminata. 
+---
+= ASCE: Fine archivio oggetti
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Questo messaggio indica che la scrittura di un blocco di contenuto in un sistema di storage di archiviazione esterno è terminata.
+
+[cols="1a,1a,4a"]
+|===
+| Codice | Campo | Descrizione 
+
+
+ a| 
+CBID
+ a| 
+Identificatore del blocco di contenuto
+ a| 
+L'identificatore del blocco di contenuto memorizzato nel sistema di storage di archiviazione esterno.
+
+
+
+ a| 
+VLID
+ a| 
+Identificatore del volume
+ a| 
+L'identificatore univoco del volume di archivio in cui vengono scritti i dati dell'oggetto.
+
+
+
+ a| 
+VREN
+ a| 
+Verifica abilitata
+ a| 
+Indica se viene eseguita la verifica per i blocchi di contenuto. I valori attualmente definiti sono:
+
+* VENA: La verifica è attivata
+* VDSA: Verifica disattivata
+
+
+
+
+ a| 
+MCLS
+ a| 
+Classe di gestione
+ a| 
+Stringa che identifica la classe di gestione TSM a cui viene assegnato il blocco di contenuto, se applicabile.
+
+
+
+ a| 
+RSLT
+ a| 
+Risultato
+ a| 
+Indica il risultato del processo di archiviazione. I valori attualmente definiti sono:
+
+* SUC: Riuscito (processo di archiviazione riuscito)
+* OFFL: Non riuscito (archiviazione offline)
+* VRFL: Non riuscito (verifica oggetto non riuscita)
+* ARUN: Errore (sistema storage di archiviazione esterno non disponibile)
+* GERR: Failed (errore generale)
+
+
+|===
+Questo messaggio di audit indica che il blocco di contenuto specificato è stato scritto nel sistema di storage di archiviazione esterno. Se la scrittura non riesce, il risultato fornisce informazioni di base sulla risoluzione dei problemi relativi alla posizione in cui si è verificato l'errore. Informazioni più dettagliate sugli errori di archiviazione sono disponibili esaminando gli attributi del nodo di archiviazione nel sistema StorageGRID.

@@ -1,0 +1,40 @@
+---
+permalink: admin/modifying-connection-settings-for-s3-api.html 
+sidebar: sidebar 
+keywords: archive node, cloud tiering 
+summary: 'Una volta configurato il nodo di archiviazione per la connessione a un sistema di archiviazione esterno tramite l"API S3, è possibile modificare alcune impostazioni in caso di modifica della connessione.' 
+---
+= Modificare le impostazioni di connessione per l'API S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Una volta configurato il nodo di archiviazione per la connessione a un sistema di archiviazione esterno tramite l'API S3, è possibile modificare alcune impostazioni in caso di modifica della connessione.
+
+.Prima di iniziare
+* Hai effettuato l'accesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Lo hai fatto link:admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+
+
+.A proposito di questa attività
+Se si modifica l'account Cloud Tiering (S3), è necessario assicurarsi che le credenziali di accesso dell'utente abbiano accesso in lettura/scrittura al bucket, inclusi tutti gli oggetti precedentemente acquisiti dal nodo di archiviazione nel bucket.
+
+.Fasi
+. Selezionare *SUPPORT* > *Tools* > *Grid topology*.
+. Selezionare *_Archive Node_* > *ARC* > *Target*.
+. Selezionare *Configurazione* > *principale*.
++
+image::../media/archive_node_s3_middleware.gif[Modificare la pagina di configurazione di un nodo di archiviazione]
+
+. Modificare le informazioni dell'account, se necessario.
++
+Se si modifica la classe di storage, i nuovi dati dell'oggetto vengono memorizzati con la nuova classe di storage. L'oggetto esistente continua ad essere memorizzato nella classe di storage impostata al momento dell'acquisizione.
+
++
+
+NOTE: Nome bucket, regione ed endpoint, utilizza i valori AWS e non può essere modificato.
+
+. Selezionare *Applica modifiche*.
+

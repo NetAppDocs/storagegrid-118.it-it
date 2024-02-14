@@ -1,0 +1,48 @@
+---
+permalink: swift/swift-operations-tracked-in-audit-logs.html 
+sidebar: sidebar 
+keywords: swift options request 
+summary: Tutte le operazioni riuscite DI ELIMINAZIONE, GET, HEAD, POST e PUT dello storage vengono monitorate nel registro di controllo di StorageGRID. Errori e richieste di informazioni, autenticazione o OPZIONI non vengono registrati. 
+---
+= Operazioni rapide monitorate nei registri di audit
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Tutte le operazioni riuscite DI ELIMINAZIONE, GET, HEAD, POST e PUT dello storage vengono monitorate nel registro di controllo di StorageGRID. Errori e richieste di informazioni, autenticazione o OPZIONI non vengono registrati.
+
+
+
+== Operazioni dell'account
+
+* link:account-operations.html["OTTIENI un account"]
+* link:account-operations.html["Conto PRINCIPALE"]
+
+
+
+
+== Operazioni container
+
+* link:container-operations.html["ELIMINA contenitore"]
+* link:container-operations.html["OTTIENI container"]
+* link:container-operations.html["CONTENITORE DI TESTA"]
+* link:container-operations.html["METTI container"]
+
+
+
+
+== Operazioni a oggetti
+
+* link:object-operations.html["ELIMINA oggetto"]
+* link:object-operations.html["OTTIENI oggetto"]
+* link:object-operations.html["Oggetto TESTA"]
+* link:object-operations.html["METTI oggetto"]
+
+
+.Informazioni correlate
+* link:../audit/accessing-audit-log-file.html["Accedere al file di log di audit"]
+* link:../audit/client-write-audit-messages.html["Messaggi di audit di scrittura del client"]
+* link:../audit/client-read-audit-messages.html["Messaggi di audit in lettura del client"]
+

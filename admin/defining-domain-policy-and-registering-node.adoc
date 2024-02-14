@@ -1,0 +1,26 @@
+---
+permalink: admin/defining-domain-policy-and-registering-node.html 
+sidebar: sidebar 
+keywords: domain policy, tsm, tivoli storage manager 
+summary: È necessario definire un criterio di dominio che utilizzi la classe di gestione TSM per i dati salvati dal nodo di archiviazione, quindi registrare un nodo per utilizzare questo criterio di dominio. 
+---
+= Definire un criterio di dominio e registrare un nodo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario definire un criterio di dominio che utilizzi la classe di gestione TSM per i dati salvati dal nodo di archiviazione, quindi registrare un nodo per utilizzare questo criterio di dominio.
+
+
+NOTE: I processi del nodo di archiviazione possono perdere memoria se la password del client per il nodo di archiviazione in Tivoli Storage Manager (TSM) scade. Assicurarsi che il server TSM sia configurato in modo che il nome utente/la password del client per il nodo di archiviazione non scada mai.
+
+Quando si registra un nodo sul server TSM per l'utilizzo del nodo di archiviazione (o per l'aggiornamento di un nodo esistente), è necessario specificare il numero di punti di montaggio che il nodo può utilizzare per le operazioni di scrittura specificando il parametro MAXNUMMP nel comando DEL NODO DI REGISTRO. Il numero di punti di montaggio equivale in genere al numero di testine del disco a nastro allocate al nodo di archiviazione. Il numero specificato per MAXNUMMP sul server TSM deve essere grande almeno quanto il valore impostato per *ARC* > *Target* > *Configurazione* > *principale* > *numero massimo di sessioni di archiviazione* per il nodo di archiviazione, Che è impostato su un valore pari a 0 o 1, in quanto le sessioni dello store simultanee non sono supportate dal nodo di archiviazione.
+
+Il valore di MAXSESSIONS impostato per il server TSM controlla il numero massimo di sessioni che possono essere aperte al server TSM da tutte le applicazioni client. Il valore di MAXSESSIONS specificato nel TSM deve essere almeno grande quanto il valore specificato per *ARC* > *Target* > *Configurazione* > *principale* > *numero di sessioni* nel Grid Manager per il nodo di archiviazione. Il nodo di archiviazione crea contemporaneamente al massimo una sessione per punto di montaggio più un piccolo numero (< 5) di sessioni aggiuntive.
+
+Il nodo TSM assegnato al nodo di archiviazione utilizza una policy di dominio personalizzata `tsm-domain`. Il `tsm-domain` Il criterio di dominio è una versione modificata del criterio di dominio "standard", configurata per la scrittura su nastro e con la destinazione di archivio impostata come pool di archiviazione del sistema StorageGRID (`_SGWSDiskPool_`).
+
+
+NOTE: È necessario accedere al server TSM con privilegi amministrativi e utilizzare lo strumento dsmacmc per creare e attivare i criteri di dominio.

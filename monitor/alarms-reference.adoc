@@ -1,0 +1,1511 @@
+---
+permalink: monitor/alarms-reference.html 
+sidebar: sidebar 
+keywords: alarms, alarms reference 
+summary: La tabella seguente elenca tutti gli allarmi predefiniti legacy. Se viene attivato un allarme, è possibile cercare il codice di allarme in questa tabella per individuare le azioni consigliate. 
+---
+= Riferimento allarmi (sistema legacy)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La tabella seguente elenca tutti gli allarmi predefiniti legacy. Se viene attivato un allarme, è possibile cercare il codice di allarme in questa tabella per individuare le azioni consigliate.
+
+
+NOTE: Mentre il sistema di allarme legacy continua a essere supportato, il sistema di allarme offre vantaggi significativi ed è più facile da utilizzare.
+
+[cols="1a,1a,1a,3a"]
+|===
+| Codice | Nome | Servizio | Azione consigliata 
+
+
+ a| 
+ABRL
+ a| 
+Relè attributi disponibili
+ a| 
+BADC, BAMS, BARC, BCLB, BCMN, BLDR, BNMS, BSSM, BDDS
+ a| 
+Ripristinare la connettività a un servizio (un servizio ADC) che esegue un Attribute Relay Service il prima possibile. Se non sono presenti relay di attributi connessi, il nodo della griglia non può riportare i valori di attributo al servizio NMS. Pertanto, il servizio NMS non può più monitorare lo stato del servizio o aggiornare gli attributi del servizio.
+
+Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+ACMS
+ a| 
+Servizi metadati disponibili
+ a| 
+BARC, BLDR, BCMN
+ a| 
+Viene attivato un allarme quando un servizio LDR o ARC perde la connessione a un servizio DDS. In questo caso, le transazioni di acquisizione o recupero non possono essere elaborate. Se l'indisponibilità dei servizi DDS è solo un breve problema transitorio, le transazioni possono essere ritardate.
+
+Controllare e ripristinare le connessioni a un servizio DDS per annullare questo allarme e ripristinare il servizio alla funzionalità completa.
+
+
+
+ a| 
+ATTI
+ a| 
+Stato del servizio di tiering cloud
+ a| 
+ARCO
+ a| 
+Disponibile solo per i nodi di archiviazione con un tipo di destinazione di Cloud Tiering - Simple Storage Service (S3).
+
+Se l'attributo ACTS per il nodo di archiviazione è impostato su sola lettura abilitata o lettura/scrittura disabilitata, è necessario impostare l'attributo su lettura/scrittura abilitata.
+
+Se viene attivato un allarme grave a causa di un errore di autenticazione, verificare le credenziali associate al bucket di destinazione e aggiornare i valori, se necessario.
+
+Se viene attivato un allarme grave per qualsiasi altro motivo, contattare il supporto tecnico.
+
+
+
+ a| 
+ADCA
+ a| 
+Stato ADC
+ a| 
+ADC
+ a| 
+Se viene attivato un allarme, selezionare *SUPPORT* > *Tools* > *Grid topology*. Quindi selezionare *_Site_* > *_Grid node_* > *ADC* > *Overview* > *Main* e *ADC* > *Alarms* > *Main* per determinare la causa dell'allarme.
+
+Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+ADCE
+ a| 
+Stato ADC
+ a| 
+ADC
+ a| 
+Se il valore di ADC state (Stato ADC) è Standby, continuare il monitoraggio del servizio e, se il problema persiste, contattare il supporto tecnico.
+
+Se il valore di Stato ADC è offline, riavviare il servizio. Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+AITE
+ a| 
+Recupera stato
+ a| 
+BARC
+ a| 
+Disponibile solo per i nodi di archiviazione con un tipo di destinazione di Tivoli Storage Manager (TSM).
+
+Se il valore Retrieve state (Stato recupero) è Waiting for Target (in attesa di destinazione), controllare il server middleware TSM e assicurarsi che funzioni correttamente. Se il nodo di archiviazione è stato appena aggiunto al sistema StorageGRID, assicurarsi che la connessione del nodo di archiviazione al sistema di archiviazione esterno di destinazione sia configurata correttamente.
+
+Se il valore di Archive Retrieve state (Stato recupero archivio) è Offline (non in linea), provare ad aggiornare lo stato in Online. Selezionare *SUPPORT* > *Tools* > *Grid topology*. Quindi selezionare *_Site_* > *_Grid node_* > *ARC* > *Recupera* > *Configurazione* > *principale*, selezionare *Archive Retrieve state* > *Online* e fare clic su *Apply Changes*.
+
+Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+AITU
+ a| 
+Recupera stato
+ a| 
+BARC
+ a| 
+Se il valore di Recupera stato è Target Error (errore di destinazione), verificare la presenza di errori nel sistema di storage di archiviazione esterno di destinazione.
+
+Se il valore di Archive Retrieve Status (Stato recupero archivio) è Session Lost (sessione persa), controllare il sistema di storage di archiviazione esterno di destinazione per assicurarsi che sia online e funzioni correttamente. Verificare la connessione di rete con la destinazione.
+
+Se il valore di Archive Retrieve Status (Stato recupero archivio) è Unknown Error (errore sconosciuto), contattare il supporto tecnico.
+
+
+
+ a| 
+ALIS
+ a| 
+Sessioni di attributi inbound
+ a| 
+ADC
+ a| 
+Se il numero di sessioni di attributi in entrata su un relay di attributi aumenta troppo, può essere un'indicazione che il sistema StorageGRID è diventato sbilanciato. In condizioni normali, le sessioni degli attributi devono essere distribuite uniformemente tra i servizi ADC. Uno squilibrio può causare problemi di performance.
+
+Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+ALOS
+ a| 
+Sessioni di attributi in uscita
+ a| 
+ADC
+ a| 
+Il servizio ADC ha un numero elevato di sessioni di attributi e sta diventando sovraccarico. Se questo allarme viene attivato, contattare il supporto tecnico.
+
+
+
+ a| 
+ALUR
+ a| 
+Repository di attributi non raggiungibili
+ a| 
+ADC
+ a| 
+Verificare la connettività di rete con il servizio NMS per assicurarsi che il servizio possa contattare il repository degli attributi.
+
+Se questo allarme viene attivato e la connettività di rete è buona, contattare il supporto tecnico.
+
+
+
+ a| 
+AMQS
+ a| 
+Messaggi di controllo in coda
+ a| 
+BADC, BAMS, BARC, BCLB, BCMN, BLDR, BNMS, BDDS
+ a| 
+Se i messaggi di audit non possono essere inoltrati immediatamente a un relay di audit o a un repository, i messaggi vengono memorizzati in una coda di dischi. Se la coda dei dischi si esaurisce, possono verificarsi interruzioni.
+
+Per consentire di rispondere in tempo per evitare un'interruzione, gli allarmi AMQS vengono attivati quando il numero di messaggi nella coda del disco raggiunge le seguenti soglie:
+
+* Avviso: Più di 100,000 messaggi
+* Minore: Almeno 500,000 messaggi
+* Maggiore: Almeno 2,000,000 messaggi
+* Critico: Almeno 5,000,000 messaggi
+
+
+Se viene attivato un allarme AMQS, controllare il carico sul sistema. Se si è verificato un numero significativo di transazioni, l'allarme dovrebbe risolversi automaticamente nel tempo. In questo caso, è possibile ignorare l'allarme.
+
+Se l'allarme persiste e aumenta di severità, visualizzare un grafico delle dimensioni della coda. Se il numero aumenta costantemente nel corso di ore o giorni, il carico di audit ha probabilmente superato la capacità di audit del sistema. Ridurre la velocità operativa del client o diminuire il numero di messaggi di audit registrati cambiando il livello di audit in Error (errore) o Off (Disattivato). Vedere link:../monitor/configure-audit-messages.html["Configurare i messaggi di audit e le destinazioni dei log"].
+
+
+
+ a| 
+AOTE
+ a| 
+Store state (Stato archiviazione)
+ a| 
+BARC
+ a| 
+Disponibile solo per i nodi di archiviazione con un tipo di destinazione di Tivoli Storage Manager (TSM).
+
+Se il valore di Store state è in attesa di Target, controllare il sistema di storage di archiviazione esterno e assicurarsi che funzioni correttamente. Se il nodo di archiviazione è stato appena aggiunto al sistema StorageGRID, assicurarsi che la connessione del nodo di archiviazione al sistema di archiviazione esterno di destinazione sia configurata correttamente.
+
+Se il valore di Store state è offline, controlla il valore di Store Status. Correggere eventuali problemi prima di riportare lo stato dello store in linea.
+
+
+
+ a| 
+AOTU
+ a| 
+Stato del negozio
+ a| 
+BARC
+ a| 
+Se il valore di Store Status (Stato negozio) è Session Lost (sessione persa), verificare che il sistema di storage di archiviazione esterno sia connesso e online.
+
+Se il valore di Target Error (errore di destinazione), verificare la presenza di errori nel sistema di storage di archiviazione esterno.
+
+Se il valore di Stato negozio è Unknown Error, contattare il supporto tecnico.
+
+
+
+ a| 
+APM
+ a| 
+Connettività storage multipath
+ a| 
+SSM
+ a| 
+Se l'allarme di stato multipercorso viene visualizzato come "danneggiato" (selezionare *SUPPORTO* > *Strumenti* > *topologia griglia*, quindi selezionare *_sito_* > *_nodo griglia_* > *SSM* > *Eventi*), procedere come segue:
+
+. Collegare o sostituire il cavo che non visualizza spie luminose.
+. Attendere da uno a cinque minuti.
++
+Non scollegare l'altro cavo fino a cinque minuti dopo aver collegato il primo cavo. Se si scollega troppo presto, il volume root può diventare di sola lettura, il che richiede il riavvio dell'hardware.
+
+. Tornare alla pagina *SSM* > *risorse* e verificare che lo stato del multipath "degradato" sia stato modificato in "nominale" nella sezione hardware di archiviazione.
+
+
+
+
+ a| 
+ARCE
+ a| 
+ARC state (Stato ARCO)
+ a| 
+ARCO
+ a| 
+Il servizio ARC ha uno stato di standby fino all'avvio di tutti i componenti ARC (Replication, Store, Retrieve, Target). Passa quindi a Online.
+
+Se il valore dello stato ARC non passa da Standby a Online, controllare lo stato dei componenti ARC.
+
+Se il valore di ARC state (Stato arco) è Offline (non in linea), riavviare il servizio. Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+AROQ
+ a| 
+Oggetti in coda
+ a| 
+ARCO
+ a| 
+Questo allarme può essere attivato se il dispositivo di storage rimovibile è lento a causa di problemi con il sistema di storage di archiviazione esterno di destinazione o se si verificano errori di lettura multipli. Verificare la presenza di errori nel sistema di storage di archiviazione esterno e assicurarsi che funzioni correttamente.
+
+In alcuni casi, questo errore può verificarsi a causa di un elevato numero di richieste di dati. Monitorare il numero di oggetti accodati quando l'attività di sistema diminuisce.
+
+
+
+ a| 
+ARRF
+ a| 
+Errori della richiesta
+ a| 
+ARCO
+ a| 
+Se un recupero dal sistema di storage di archiviazione esterno di destinazione non riesce, il nodo di archiviazione tenta di nuovo il recupero in quanto l'errore può essere dovuto a un problema transitorio. Tuttavia, se i dati dell'oggetto sono corrotti o sono stati contrassegnati come indisponibili in modo permanente, il recupero non avrà esito negativo. Invece, il nodo di archiviazione tenta continuamente il recupero e il valore di Request Failures continua ad aumentare.
+
+Questo allarme può indicare che il supporto di memorizzazione contenente i dati richiesti è corrotto. Controllare il sistema di storage di archiviazione esterno per diagnosticare ulteriormente il problema.
+
+Se si determina che i dati dell'oggetto non sono più presenti nell'archivio, l'oggetto dovrà essere rimosso dal sistema StorageGRID. Per ulteriori informazioni, contatta il supporto tecnico.
+
+Una volta risolto il problema che ha attivato questo allarme, ripristinare il conteggio degli errori. Selezionare *SUPPORT* > *Tools* > *Grid topology*. Quindi selezionare *_Site_* > *_Grid node_* > *ARC* > *Recupera* > *Configurazione* > *principale*, selezionare *Reset Request Failure Count* e fare clic su *Apply Changes*.
+
+
+
+ a| 
+ARRV
+ a| 
+Errori di verifica
+ a| 
+ARCO
+ a| 
+Per diagnosticare e correggere questo problema, contattare il supporto tecnico.
+
+Dopo aver risolto il problema che ha generato questo allarme, azzerare il conteggio dei guasti. Selezionare *SUPPORT* > *Tools* > *Grid topology*. Quindi selezionare *_site_* > *_grid node_* > *ARC* > *Recupera* > *Configurazione* > *principale*, selezionare *Reset Verification Failure Count* e fare clic su *Apply Changes*.
+
+
+
+ a| 
+ARVF
+ a| 
+Guasti del negozio
+ a| 
+ARCO
+ a| 
+Questo allarme può verificarsi in seguito a errori del sistema di storage di archiviazione esterno di destinazione. Verificare la presenza di errori nel sistema di storage di archiviazione esterno e assicurarsi che funzioni correttamente.
+
+Una volta risolto il problema che ha attivato questo allarme, ripristinare il conteggio degli errori. Selezionare *SUPPORT* > *Tools* > *Grid topology*. Quindi selezionare *_site_* > *_grid node_* > *ARC* > *Recupera* > *Configurazione* > *principale*, selezionare *Reset Store Failure Count* e fare clic su *Apply Changes*.
+
+
+
+ a| 
+ASXP
+ a| 
+Controlla le condivisioni
+ a| 
+AMS
+ a| 
+Viene attivato un allarme se il valore di Audit shares è Unknown (Sconosciuto). Questo allarme può indicare un problema con l'installazione o la configurazione del nodo di amministrazione.
+
+Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+AUMA
+ a| 
+Stato AMS
+ a| 
+AMS
+ a| 
+Se il valore di AMS Status (Stato AMS) è DB Connectivity Error (errore di connettività DB), riavviare il nodo Grid.
+
+Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+AUME
+ a| 
+Stato AMS
+ a| 
+AMS
+ a| 
+Se il valore di AMS state (Stato AMS) è Standby, continuare il monitoraggio del sistema StorageGRID. Se il problema persiste, contattare il supporto tecnico.
+
+Se il valore di AMS state è Offline, riavviare il servizio. Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+AUXS
+ a| 
+Audit Export Status (Stato esportazione audit)
+ a| 
+AMS
+ a| 
+Se viene attivato un allarme, correggere il problema sottostante, quindi riavviare il servizio AMS.
+
+Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+BADD
+ a| 
+Storage Controller Failed Drive Count (Conteggio dischi guasto
+ a| 
+SSM
+ a| 
+Questo allarme viene attivato quando uno o più dischi di un'appliance StorageGRID si sono guastati o non sono ottimali. Sostituire le unità secondo necessità.
+
+
+
+ a| 
+BASE
+ a| 
+Identificatori di oggetti disponibili
+ a| 
+CMN
+ a| 
+Quando viene eseguito il provisioning di un sistema StorageGRID, al servizio CMN viene assegnato un numero fisso di identificatori di oggetti. Questo allarme viene attivato quando il sistema StorageGRID inizia a esaurire la fornitura di identificatori di oggetti.
+
+Per assegnare altri identificatori, contattare il supporto tecnico.
+
+
+
+ a| 
+BASSI
+ a| 
+Stato allocazione blocco identificatore
+ a| 
+CMN
+ a| 
+Per impostazione predefinita, viene attivato un allarme quando non è possibile allocare gli identificatori degli oggetti perché non è possibile raggiungere il quorum ADC.
+
+L'allocazione del blocco di identificatori sul servizio CMN richiede che un quorum (50% + 1) dei servizi ADC sia online e connesso. Se il quorum non è disponibile, il servizio CMN non è in grado di allocare nuovi blocchi identificatori fino a quando non viene ristabilita il quorum ADC. In caso di perdita del quorum ADC, in genere non vi è alcun impatto immediato sul sistema StorageGRID (i client possono ancora acquisire e recuperare il contenuto), in quanto circa un mese di fornitura di identificatori viene memorizzato nella cache altrove nella griglia; Tuttavia, se la condizione persiste, il sistema StorageGRID perderà la capacità di acquisire nuovi contenuti.
+
+Se viene attivato un allarme, esaminare il motivo della perdita del quorum ADC (ad esempio, potrebbe trattarsi di un guasto di rete o del nodo di storage) e intraprendere un'azione correttiva.
+
+Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+BRDT
+ a| 
+Temperatura dello chassis del controller di calcolo
+ a| 
+SSM
+ a| 
+Viene attivato un allarme se la temperatura del controller di calcolo in un'appliance StorageGRID supera una soglia nominale.
+
+Controllare i componenti hardware e i problemi ambientali per verificare la presenza di condizioni di surriscaldamento. Se necessario, sostituire il componente.
+
+
+
+ a| 
+BTOF
+ a| 
+Offset
+ a| 
+BADC, BLDR, BNMS, BAMS, BCLB, BCMN, BARC
+ a| 
+Viene attivato un allarme se il tempo di servizio (secondi) differisce significativamente dall'ora del sistema operativo. In condizioni normali, il servizio dovrebbe risincronizzarsi. Se il tempo di servizio è troppo lontano dall'ora del sistema operativo, le operazioni del sistema potrebbero risentirne. Verificare che l'origine dell'ora del sistema StorageGRID sia corretta.
+
+Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+BTSE
+ a| 
+Stato del clock
+ a| 
+BADC, BLDR, BNMS, BAMS, BCLB, BCMN, BARC
+ a| 
+Viene attivato un allarme se l'ora del servizio non è sincronizzata con l'ora tracciata dal sistema operativo. In condizioni normali, il servizio dovrebbe risincronizzarsi. Se il tempo si disasse troppo dall'ora del sistema operativo, le operazioni del sistema potrebbero risentirne. Verificare che l'origine dell'ora del sistema StorageGRID sia corretta.
+
+Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+CAHP
+ a| 
+Percentuale di utilizzo di Java Heap
+ a| 
+DDS
+ a| 
+Viene attivato un allarme se Java non è in grado di eseguire la garbage collection a una velocità tale da consentire al sistema di funzionare correttamente. Un allarme potrebbe indicare un carico di lavoro dell'utente che supera le risorse disponibili nel sistema per l'archivio di metadati DDS. Controllare l'attività ILM nella dashboard oppure selezionare *SUPPORT* > *Tools* > *Grid topology*, quindi selezionare *_site_* > *_grid node_* > *DDS* > *Resources* > *Overview* > *Main*.
+
+Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+CASA
+ a| 
+Data Store Status (Stato archivio dati)
+ a| 
+DDS
+ a| 
+Viene generato un allarme se l'archivio di metadati Cassandra non è più disponibile.
+
+Controllare lo stato di Cassandra:
+
+. Nel nodo di storage, accedere come admin e. `su` Per eseguire l'root utilizzando la password elencata nel file Passwords.txt.
+. Inserire: `service cassandra status`
+. Se Cassandra non è in esecuzione, riavviarlo: `service cassandra restart`
+
+
+Questo allarme potrebbe anche indicare che l'archivio di metadati (database Cassandra) per un nodo di storage deve essere ricostruito.
+
+Consultare le informazioni relative alla risoluzione dei problemi relativi all'allarme Services: Status - Cassandra (SVST) in link:../troubleshoot/troubleshooting-metadata-issues.html["Risolvere i problemi relativi ai metadati"].
+
+Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+CASO
+ a| 
+Data Store state (Stato archivio dati)
+ a| 
+DDS
+ a| 
+Questo allarme viene attivato durante l'installazione o l'espansione per indicare che un nuovo archivio di dati si sta unendo alla griglia.
+
+
+
+ a| 
+CCNA
+ a| 
+Hardware di calcolo
+ a| 
+SSM
+ a| 
+Questo allarme viene attivato se lo stato dell'hardware del controller di calcolo in un'appliance StorageGRID richiede attenzione.
+
+
+
+ a| 
+CDLP
+ a| 
+Spazio utilizzato metadati (percentuale)
+ a| 
+DDS
+ a| 
+Questo allarme viene attivato quando lo spazio effettivo dei metadati (CEMS) raggiunge il 70% di pieno (allarme minore), il 90% di pieno (allarme maggiore) e il 100% di pieno (allarme critico).
+
+Se questo allarme raggiunge la soglia del 90%, viene visualizzato un avviso sul dashboard in Grid Manager. È necessario eseguire una procedura di espansione per aggiungere nuovi nodi di storage il prima possibile. Vedere link:../expand/index.html["Espandere una griglia"].
+
+Se questo allarme raggiunge la soglia del 100%, è necessario interrompere l'acquisizione di oggetti e aggiungere nodi di storage immediatamente. Cassandra richiede una certa quantità di spazio per eseguire operazioni essenziali come la compattazione e la riparazione. Queste operazioni saranno influenzate se i metadati dell'oggetto utilizzano più del 100% dello spazio consentito. Possono verificarsi risultati indesiderati.
+
+*Nota*: Se non si riesce ad aggiungere nodi di storage, contattare il supporto tecnico.
+
+Una volta aggiunti nuovi nodi di storage, il sistema ribilancia automaticamente i metadati degli oggetti in tutti i nodi di storage e l'allarme viene cancellato.
+
+Inoltre, consultare le informazioni sulla risoluzione dei problemi relativi all'avviso di storage con metadati bassi in link:../troubleshoot/troubleshooting-metadata-issues.html["Risolvere i problemi relativi ai metadati"].
+
+Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+CMNA
+ a| 
+Stato CMN
+ a| 
+CMN
+ a| 
+Se il valore di CMN Status (Stato CMN) è Error (errore), selezionare *SUPPORT* > *Tools* > *Grid topology*, quindi selezionare *_Site_* > *_Grid node_* > *CMN* > *Overview* > *Main* e *CMN* > *Alarms* > *Main* per determinare la causa dell'errore e risolvere il problema.
+
+Viene attivato un allarme e il valore di CMN Status (Stato CMN) è No Online CMN (Nessuna CMN online) durante un aggiornamento hardware del nodo di amministrazione primario quando vengono commutate le CMN (il valore del vecchio stato CMN è Standby e il nuovo è Online).
+
+Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+CPRC
+ a| 
+Capacità rimanente
+ a| 
+NMS
+ a| 
+Viene attivato un allarme se la capacità rimanente (numero di connessioni disponibili che è possibile aprire nel database NMS) scende al di sotto della gravità dell'allarme configurata.
+
+Se viene attivato un allarme, contattare il supporto tecnico.
+
+
+
+ a| 
+CPSA
+ a| 
+Alimentatore a del controller di calcolo
+ a| 
+SSM
+ a| 
+Viene attivato un allarme in caso di problemi con l'alimentazione A nel controller di calcolo di un'appliance StorageGRID.
+
+Se necessario, sostituire il componente.
+
+
+
+ a| 
+CPSB
+ a| 
+Alimentatore del controller di calcolo B
+ a| 
+SSM
+ a| 
+Viene attivato un allarme in caso di problemi con l'alimentazione B nel controller di calcolo di un'appliance StorageGRID.
+
+Se necessario, sostituire il componente.
+
+
+
+ a| 
+CPUT
+ a| 
+Temperatura CPU del controller di calcolo
+ a| 
+SSM
+ a| 
+Viene attivato un allarme se la temperatura della CPU nel controller di calcolo di un'appliance StorageGRID supera una soglia nominale.
+
+Se il nodo di storage è un'appliance StorageGRID, il sistema StorageGRID indica che il controller richiede attenzione.
+
+Controllare i componenti hardware e i problemi ambientali per verificare la presenza di condizioni di surriscaldamento. Se necessario, sostituire il componente.
+
+
+
+ a| 
+DNST
+ a| 
+DNS Status (Stato DNS)
+ a| 
+SSM
+ a| 
+Al termine dell'installazione, viene attivato un allarme DNST nel servizio SSM. Una volta configurato il DNS e le nuove informazioni sul server raggiungono tutti i nodi della griglia, l'allarme viene annullato.
+
+
+
+ a| 
+ECCD
+ a| 
+Rilevati frammenti corrotti
+ a| 
+LDR
+ a| 
+Un allarme viene attivato quando il processo di verifica in background rileva un frammento danneggiato sottoposto a erasure coding. Se viene rilevato un frammento corrotto, si tenta di ricostruire il frammento. Ripristinare i frammenti danneggiati rilevati e copiare gli attributi Lost su zero e monitorarli per verificare se i conteggi si rialzano. Se il numero aumenta, potrebbe esserci un problema con lo storage sottostante del nodo di storage. Una copia dei dati oggetto sottoposti a erasure coding non viene considerata mancante fino a quando il numero di frammenti persi o corrotti non viola la tolleranza di errore del codice di cancellazione; pertanto, è possibile avere un frammento corrotto e poter recuperare l'oggetto.
+
+Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+ECST
+ a| 
+Stato di verifica
+ a| 
+LDR
+ a| 
+Questo allarme indica lo stato corrente del processo di verifica in background per i dati oggetto con erasure coding su questo nodo di storage.
+
+In caso di errore nel processo di verifica in background, viene attivato un allarme grave.
+
+
+
+ a| 
+FOPN
+ a| 
+Aprire file Descriptor
+ a| 
+BADC, BAMS, BARC, BCLB, BCMN, BLDR, BNMS, BSSM, BDDS
+ a| 
+Il FOPN può diventare grande durante le attività di picco. Se non diminuisce durante i periodi di attività lenta, contattare il supporto tecnico.
+
+
+
+ a| 
+HSTE
+ a| 
+HTTP state (Stato HTTP)
+ a| 
+BLDR
+ a| 
+Consultare le azioni consigliate per HSTU.
+
+
+
+ a| 
+HSTU
+ a| 
+HTTP Status (Stato HTTP)
+ a| 
+BLDR
+ a| 
+HSTE e HSTU sono correlati a HTTP per tutto il traffico LDR, inclusi S3, Swift e altro traffico StorageGRID interno. Un allarme indica che si è verificata una delle seguenti situazioni:
+
+* HTTP è stato portato offline manualmente.
+* L'attributo HTTP Auto-Start è stato disattivato.
+* Chiusura del servizio LDR in corso.
+
+
+L'attributo HTTP Auto-Start è attivato per impostazione predefinita. Se questa impostazione viene modificata, HTTP potrebbe rimanere offline dopo un riavvio.
+
+Se necessario, attendere il riavvio del servizio LDR.
+
+Selezionare *SUPPORT* > *Tools* > *Grid topology*. Quindi selezionare *_Storage Node_* > *LDR* > *Configuration*. Se HTTP non è in linea, metterlo in linea. Verificare che l'attributo Avvio automatico HTTP sia attivato.
+
+Se HTTP rimane offline, contattare il supporto tecnico.
+
+
+
+ a| 
+HTA
+ a| 
+Avvio automatico HTTP
+ a| 
+LDR
+ a| 
+Specifica se avviare automaticamente i servizi HTTP all'avvio. Questa è un'opzione di configurazione specificata dall'utente.
+
+
+
+ a| 
+IRSU
+ a| 
+Stato della replica in entrata
+ a| 
+BLDR, BARC
+ a| 
+Un allarme indica che la replica in entrata è stata disattivata. Confermare le impostazioni di configurazione: Selezionare *SUPPORT* > *Tools* > *Grid topology*. Quindi selezionare *_site_* > *_grid node_* > *LDR* > *Replication* > *Configuration* > *Main*.
+
+
+
+ a| 
+LATA
+ a| 
+Latenza media
+ a| 
+NMS
+ a| 
+Verificare la presenza di problemi di connettività.
+
+Controllare l'attività del sistema per verificare che l'attività del sistema aumenti. Un aumento dell'attività di sistema determinerà un aumento dell'attributo dell'attività dei dati. L'aumento dell'attività comporterà un ritardo nell'elaborazione dei dati degli attributi. Si tratta di un'attività normale del sistema che verrà a trovarsi in una posizione secondaria.
+
+Verificare la presenza di più allarmi. Un aumento dei tempi di latenza medi può essere indicato da un numero eccessivo di allarmi attivati.
+
+Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+DRE
+ a| 
+Stato LDR
+ a| 
+LDR
+ a| 
+Se il valore dello stato LDR è Standby, continuare a monitorare la situazione e, se il problema persiste, contattare il supporto tecnico.
+
+Se il valore di stato LDR è Offline, riavviare il servizio. Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+PERSO
+ a| 
+Oggetti persi
+ a| 
+DDS, LDR
+ a| 
+Viene attivato quando il sistema StorageGRID non riesce a recuperare una copia dell'oggetto richiesto da qualsiasi punto del sistema. Prima che venga attivato un allarme LOST (Lost Objects), il sistema tenta di recuperare e sostituire un oggetto mancante da un'altra parte del sistema.
+
+Gli oggetti persi rappresentano una perdita di dati. L'attributo Lost Objects viene incrementato ogni volta che il numero di posizioni di un oggetto scende a zero senza che il servizio DDS purifichi intenzionalmente il contenuto per soddisfare la policy ILM.
+
+Esaminare immediatamente gli allarmi PERSI (oggetti SMARRITI). Se il problema persiste, contattare il supporto tecnico.
+
+link:../troubleshoot/troubleshooting-lost-and-missing-object-data.html["Risolvere i problemi relativi ai dati degli oggetti persi e mancanti"]
+
+
+
+ a| 
+MCEP
+ a| 
+Scadenza del certificato dell'interfaccia di gestione
+ a| 
+CMN
+ a| 
+Viene attivato quando il certificato utilizzato per accedere all'interfaccia di gestione sta per scadere.
+
+. Da Grid Manager, selezionare *CONFIGURATION* > *Security* > *Certificates*.
+. Nella scheda *Global*, selezionare *Management interface certificate*.
+. link:../admin/configuring-custom-server-certificate-for-grid-manager-tenant-manager.html#add-a-custom-management-interface-certificate["Caricare un nuovo certificato dell'interfaccia di gestione."]
+
+
+
+
+ a| 
+MINQ
+ a| 
+Notifiche e-mail in coda
+ a| 
+NMS
+ a| 
+Controllare le connessioni di rete dei server che ospitano il servizio NMS e il server di posta esterno. Verificare inoltre che la configurazione del server di posta elettronica sia corretta.
+
+link:managing-alarms.html["Configurare le impostazioni del server di posta elettronica per gli allarmi (sistema legacy)"]
+
+
+
+ a| 
+MIN
+ a| 
+Email Notifications Status (Stato notifiche e-mail)
+ a| 
+BNMS
+ a| 
+Se il servizio NMS non riesce a connettersi al server di posta, viene attivato un allarme minore. Controllare le connessioni di rete dei server che ospitano il servizio NMS e il server di posta esterno. Verificare inoltre che la configurazione del server di posta elettronica sia corretta.
+
+link:managing-alarms.html["Configurare le impostazioni del server di posta elettronica per gli allarmi (sistema legacy)"]
+
+
+
+ a| 
+SIG.NA
+ a| 
+Stato del motore di interfaccia NMS
+ a| 
+BNMS
+ a| 
+Viene attivato un allarme se il motore di interfaccia NMS sul nodo di amministrazione che raccoglie e genera il contenuto dell'interfaccia viene disconnesso dal sistema. Controllare Server Manager per determinare se la singola applicazione del server non è disponibile.
+
+
+
+ a| 
+NANG
+ a| 
+Network Auto Negotiate (negoziazione automatica di rete
+ a| 
+SSM
+ a| 
+Controllare la configurazione della scheda di rete. L'impostazione deve corrispondere alle preferenze dei router e degli switch di rete.
+
+Un'impostazione errata può avere un impatto grave sulle prestazioni del sistema.
+
+
+
+ a| 
+NUP
+ a| 
+Impostazione fronte/retro di rete
+ a| 
+SSM
+ a| 
+Controllare la configurazione della scheda di rete. L'impostazione deve corrispondere alle preferenze dei router e degli switch di rete.
+
+Un'impostazione errata può avere un impatto grave sulle prestazioni del sistema.
+
+
+
+ a| 
+NLNK
+ a| 
+Network link Detect (rilevamento collegamento di rete
+ a| 
+SSM
+ a| 
+Controllare i collegamenti dei cavi di rete sulla porta e sullo switch.
+
+Controllare le configurazioni di router, switch e adattatori di rete.
+
+Riavviare il server.
+
+Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+NRER
+ a| 
+Errori di ricezione
+ a| 
+SSM
+ a| 
+Di seguito sono riportate le cause degli allarmi NRER:
+
+* Mancata corrispondenza FEC (Forward Error Correction)
+* Mancata corrispondenza tra porta dello switch e MTU della scheda NIC
+* Elevati tassi di errore di collegamento
+* Buffer di anello NIC scaduto
+
+
+Consultare le informazioni relative alla risoluzione dei problemi relativi all'allarme NRER (Network Receive Error) in link:../troubleshoot/troubleshooting-network-hardware-and-platform-issues.html["Risolvere i problemi di rete, hardware e piattaforma"].
+
+
+
+ a| 
+NRLY
+ a| 
+Relè di audit disponibili
+ a| 
+BADC, BARC, BCLB, BCMN, BLDR, BNMS, BDDS
+ a| 
+Se i relè di audit non sono connessi ai servizi ADC, non è possibile segnalare gli eventi di audit. Vengono messi in coda e non disponibili per gli utenti fino al ripristino della connessione.
+
+Ripristinare la connettività a un servizio ADC il prima possibile.
+
+Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+NSCA
+ a| 
+Stato NMS
+ a| 
+NMS
+ a| 
+Se il valore di NMS Status (Stato NMS) è DB Connectivity Error (errore di connettività DB), riavviare il servizio. Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+NSCE
+ a| 
+Stato NMS
+ a| 
+NMS
+ a| 
+Se il valore di NMS state (Stato NMS) è Standby, continuare il monitoraggio e, se il problema persiste, contattare il supporto tecnico.
+
+Se il valore di NMS state (Stato NMS) è Offline, riavviare il servizio. Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+NSPD
+ a| 
+Velocità
+ a| 
+SSM
+ a| 
+Ciò può essere causato da problemi di connettività di rete o di compatibilità dei driver. Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+NTBR
+ a| 
+Spazio tabella libero
+ a| 
+NMS
+ a| 
+Se viene attivato un allarme, verificare la velocità di modifica dell'utilizzo del database. Un calo improvviso (invece di un cambiamento graduale nel tempo) indica una condizione di errore. Se il problema persiste, contattare il supporto tecnico.
+
+La regolazione della soglia di allarme consente di gestire in modo proattivo quando è necessario allocare ulteriore storage.
+
+Se lo spazio disponibile raggiunge una soglia bassa (vedere soglia di allarme), contattare il supporto tecnico per modificare l'allocazione del database.
+
+
+
+ a| 
+NTER.A.
+ a| 
+Errori di trasmissione
+ a| 
+SSM
+ a| 
+Questi errori possono essere azzerati senza essere reimpostati manualmente. In caso contrario, controllare l'hardware di rete. Verificare che l'hardware e il driver della scheda siano installati e configurati correttamente per funzionare con i router e gli switch di rete.
+
+Una volta risolto il problema sottostante, azzerare il contatore. Selezionare *SUPPORT* > *Tools* > *Grid topology*. Quindi selezionare *_site_* > *_grid node_* > *SSM* > *Resources* > *Configuration* > *Main*, selezionare *Reset Transmit Error Count* e fare clic su *Apply Changes*.
+
+
+
+ a| 
+NTFQ
+ a| 
+Offset frequenza NTP
+ a| 
+SSM
+ a| 
+Se l'offset di frequenza supera la soglia configurata, è probabile che si sia verificato un problema hardware con l'orologio locale. Se il problema persiste, contattare il supporto tecnico per richiedere la sostituzione.
+
+
+
+ a| 
+NTLK
+ a| 
+Blocco NTP
+ a| 
+SSM
+ a| 
+Se il daemon NTP non è bloccato su una fonte di tempo esterna, controllare la connettività di rete alle fonti di tempo esterne designate, la loro disponibilità e la loro stabilità.
+
+
+
+ a| 
+NTOF
+ a| 
+Offset ora NTP
+ a| 
+SSM
+ a| 
+Se l'offset temporale supera la soglia configurata, è probabile che si sia verificato un problema hardware con l'oscillatore del clock locale. Se il problema persiste, contattare il supporto tecnico per richiedere la sostituzione.
+
+
+
+ a| 
+NTSJ
+ a| 
+Jitter di origine temporale selezionato
+ a| 
+SSM
+ a| 
+Questo valore indica l'affidabilità e la stabilità dell'origine temporale utilizzata da NTP sul server locale come riferimento.
+
+Se viene attivato un allarme, può essere un'indicazione che l'oscillatore dell'origine del tempo è difettoso o che si è verificato un problema con il collegamento WAN all'origine del tempo.
+
+
+
+ a| 
+NTSU
+ a| 
+NTP Status (Stato NTP)
+ a| 
+SSM
+ a| 
+Se il valore NTP Status (Stato NTP) non è in esecuzione, contattare il supporto tecnico.
+
+
+
+ a| 
+OPST
+ a| 
+Stato generale dell'alimentazione
+ a| 
+SSM
+ a| 
+Viene attivato un allarme se l'alimentazione di un apparecchio StorageGRID non rientra nella tensione di esercizio consigliata.
+
+Controllare lo stato dell'alimentatore A o B per determinare quale alimentatore funziona in modo anomalo.
+
+Se necessario, sostituire l'alimentatore.
+
+
+
+ a| 
+OQRT
+ a| 
+Oggetti in quarantena
+ a| 
+LDR
+ a| 
+Dopo il ripristino automatico degli oggetti da parte del sistema StorageGRID, è possibile rimuovere gli oggetti in quarantena dalla directory di quarantena.
+
+. Selezionare *SUPPORT* > *Tools* > *Grid topology*.
+. Selezionare *sito* > *nodo di storage* > *LDR* > *verifica* > *Configurazione* > *principale*.
+. Selezionare *Delete Quarantined Objects* (Elimina oggetti in quarantena).
+. Fare clic su *Applica modifiche*.
+
+
+Gli oggetti in quarantena vengono rimossi e il conteggio viene azzerato.
+
+
+
+ a| 
+ORSU
+ a| 
+Stato della replica in uscita
+ a| 
+BLDR, BARC
+ a| 
+Un allarme indica che la replica in uscita non è possibile: Lo storage si trova in uno stato in cui gli oggetti non possono essere recuperati. Viene attivato un allarme se la replica in uscita viene disattivata manualmente. Selezionare *SUPPORT* > *Tools* > *Grid topology*. Quindi selezionare *_site_* > *_grid node_* > *LDR* > *Replication* > *Configuration*.
+
+Viene attivato un allarme se il servizio LDR non è disponibile per la replica. Selezionare *SUPPORT* > *Tools* > *Grid topology*. Quindi selezionare *_site_* > *_grid node_* > *LDR* > *Storage*.
+
+
+
+ a| 
+OSLF
+ a| 
+Stato dello shelf
+ a| 
+SSM
+ a| 
+Viene attivato un allarme se lo stato di uno dei componenti dello shelf di storage di un'appliance di storage è degradato. I componenti dello shelf di storage includono gli IOM, le ventole, gli alimentatori e i cassetti delle unità. Se viene attivato questo allarme, consultare le istruzioni di manutenzione dell'apparecchio.
+
+
+
+ a| 
+PMEM
+ a| 
+Utilizzo della memoria di servizio (percentuale)
+ a| 
+BADC, BAMS, BARC, BCLB, BCMN, BLDR, BNMS, BSSM, BDDS
+ a| 
+Può avere un valore superiore a Y% di RAM, dove Y rappresenta la percentuale di memoria utilizzata dal server.
+
+I valori inferiori al 80% sono normali. Oltre il 90% è considerato un problema.
+
+Se l'utilizzo della memoria è elevato per un singolo servizio, monitorare la situazione e analizzare.
+
+Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+PSA
+ a| 
+Power Supply A Status (Stato alimentatore A)
+ a| 
+SSM
+ a| 
+Viene attivato un allarme se l'alimentazione A di un apparecchio StorageGRID non rientra nella tensione di esercizio consigliata.
+
+Se necessario, sostituire l'alimentatore A.
+
+
+
+ a| 
+PSB
+ a| 
+Stato dell'alimentatore B.
+ a| 
+SSM
+ a| 
+Viene attivato un allarme se l'alimentazione B di un apparecchio StorageGRID si discosta dalla tensione di esercizio consigliata.
+
+Se necessario, sostituire l'alimentatore B.
+
+
+
+ a| 
+RDTE
+ a| 
+Stato di Tivoli Storage Manager
+ a| 
+BARC
+ a| 
+Disponibile solo per i nodi di archiviazione con un tipo di destinazione di Tivoli Storage Manager (TSM).
+
+Se il valore di Tivoli Storage Manager state (Stato di Tivoli Storage Manager) è offline, controllare lo stato di Tivoli Storage Manager e risolvere eventuali problemi.
+
+Riportare il componente online. Selezionare *SUPPORT* > *Tools* > *Grid topology*. Quindi selezionare *_site_* > *_grid node_* > *ARC* > *Target* > *Configuration* > *Main*, selezionare *Tivoli Storage Manager state* > *Online* e fare clic su *Apply Changes*.
+
+
+
+ a| 
+RDTU
+ a| 
+Stato di Tivoli Storage Manager
+ a| 
+BARC
+ a| 
+Disponibile solo per i nodi di archiviazione con un tipo di destinazione di Tivoli Storage Manager (TSM).
+
+Se il valore dello stato di Tivoli Storage Manager è errore di configurazione e il nodo di archiviazione è stato appena aggiunto al sistema StorageGRID, assicurarsi che il server middleware TSM sia configurato correttamente.
+
+Se il valore di Stato di Tivoli Storage Manager è errore di connessione o errore di connessione, Riprova, controllare la configurazione di rete sul server middleware TSM e la connessione di rete tra il server middleware TSM e il sistema StorageGRID.
+
+Se il valore di Stato di Tivoli Storage Manager è errore di autenticazione o errore di autenticazione, riconnessione, il sistema StorageGRID può connettersi al server middleware TSM, ma non può autenticare la connessione. Verificare che il server middleware TSM sia configurato con l'utente, la password e le autorizzazioni corretti, quindi riavviare il servizio.
+
+Se il valore di Tivoli Storage Manager Status (Stato di Tivoli Storage Manager) è Session Failure (errore di sessione), una sessione stabilita è stata persa inaspettatamente. Verificare la connessione di rete tra il server middleware TSM e il sistema StorageGRID. Verificare la presenza di errori nel server middleware.
+
+Se il valore di Tivoli Storage Manager Status (Stato di Tivoli Storage Manager) è Unknown Error (errore sconosciuto), contattare il supporto tecnico.
+
+
+
+ a| 
+RRF
+ a| 
+Repliche in entrata -- non riuscite
+ a| 
+BLDR, BARC
+ a| 
+Un allarme Inbound Replications -- Failed (repliche in entrata) può verificarsi in periodi di carico elevato o interruzioni temporanee della rete. Una volta ridotta l'attività del sistema, questo allarme dovrebbe essere disattivato. Se il numero di repliche non riuscite continua ad aumentare, cercare i problemi di rete e verificare che i servizi LDR e ARC di origine e destinazione siano online e disponibili.
+
+Per azzerare il conteggio, selezionare *SUPPORT* > *Tools* > *Grid topology*, quindi selezionare *_Site_* > *_grid node_* > *LDR* > *Replication* > *Configuration* > *Main*. Selezionare *Reset Inbound Replication Failure Count*, quindi fare clic su *Apply Changes* (Applica modifiche).
+
+
+
+ a| 
+RIRQ
+ a| 
+Repliche inbound -- in coda
+ a| 
+BLDR, BARC
+ a| 
+Gli allarmi possono verificarsi in periodi di carico elevato o interruzione temporanea della rete. Una volta ridotta l'attività del sistema, questo allarme dovrebbe essere disattivato. Se il numero di repliche in coda continua ad aumentare, cercare i problemi di rete e verificare che i servizi LDR e ARC di origine e destinazione siano online e disponibili.
+
+
+
+ a| 
+RORQ
+ a| 
+Repliche in uscita -- in coda
+ a| 
+BLDR, BARC
+ a| 
+La coda di replica in uscita contiene i dati oggetto copiati per soddisfare le regole ILM e gli oggetti richiesti dai client.
+
+Un allarme può verificarsi in seguito a un sovraccarico del sistema. Attendere per verificare se l'allarme viene cancellato quando l'attività del sistema diminuisce. Se l'allarme si ripete, aggiungere capacità aggiungendo nodi di storage.
+
+
+
+ a| 
+SAVP
+ a| 
+Spazio totale utilizzabile (percentuale)
+ a| 
+LDR
+ a| 
+Se lo spazio utilizzabile raggiunge una soglia bassa, le opzioni includono l'espansione del sistema StorageGRID o lo spostamento dei dati dell'oggetto nell'archivio attraverso un nodo di archiviazione.
+
+
+
+ a| 
+SCA
+ a| 
+Stato
+ a| 
+CMN
+ a| 
+Se il valore di Status (Stato) per l'attività della griglia attiva è Error (errore), cercare il messaggio Grid task (attività griglia). Selezionare *SUPPORT* > *Tools* > *Grid topology*. Quindi selezionare *_Site_* > *_Grid node_* > *CMN* > *Grid Tasks* > *Overview* > *Main*. Il messaggio dell'attività griglia visualizza informazioni sull'errore (ad esempio, "controllo non riuscito sul nodo 12130011").
+
+Dopo aver esaminato e corretto il problema, riavviare l'attività Grid. Selezionare *SUPPORT* > *Tools* > *Grid topology*. Quindi selezionare *_site_* > *_grid node_* > *CMN* > *Grid Tasks* > *Configuration* > *Main* e selezionare *Actions* > *Run*.
+
+Se il valore Stato per un'attività di griglia interrotta è Error, riprovare a terminare l'attività di griglia.
+
+Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+SCEP
+ a| 
+Scadenza del certificato per gli endpoint del servizio API di storage
+ a| 
+CMN
+ a| 
+Viene attivato quando il certificato utilizzato per l'accesso agli endpoint API dello storage sta per scadere.
+
+. Selezionare *CONFIGURAZIONE* > *sicurezza* > *certificati*.
+. Nella scheda *Global*, selezionare *S3 and Swift API certificate*.
+. link:../admin/configuring-custom-server-certificate-for-storage-node.html#add-a-custom-s3-and-swift-api-certificate["Caricare un nuovo certificato API S3 e Swift."]
+
+
+
+
+ a| 
+SCHR
+ a| 
+Stato
+ a| 
+CMN
+ a| 
+Se il valore di Status (Stato) per l'attività della griglia storica viene interrotto, esaminare il motivo ed eseguire nuovamente l'attività, se necessario.
+
+Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+SCSA
+ a| 
+Controller dello storage A
+ a| 
+SSM
+ a| 
+Viene attivato un allarme in caso di problemi con lo storage controller A in un'appliance StorageGRID.
+
+Se necessario, sostituire il componente.
+
+
+
+ a| 
+SCSB
+ a| 
+Controller dello storage B
+ a| 
+SSM
+ a| 
+Viene attivato un allarme in caso di problemi con lo storage controller B in un'appliance StorageGRID.
+
+Se necessario, sostituire il componente.
+
+Alcuni modelli di appliance non dispongono di un controller di storage B.
+
+
+
+ a| 
+SHLH
+ a| 
+Salute
+ a| 
+LDR
+ a| 
+Se il valore di Health per un archivio di oggetti è Error (errore), controllare e correggere:
+
+* problemi con il volume montato
+* errori del file system
+
+
+
+
+ a| 
+SLSA
+ a| 
+Media carico CPU
+ a| 
+SSM
+ a| 
+Maggiore è il valore, maggiore è il numero di componenti del sistema.
+
+Se la media del carico della CPU persiste a un valore elevato, è necessario esaminare il numero di transazioni nel sistema per determinare se ciò sia dovuto a un carico pesante in quel momento. Visualizza un grafico della media di carico della CPU: Selezionare *SUPPORT* > *Tools* > *Grid topology*. Quindi selezionare *_site_* > *_grid node_* > *SSM* > *Resources* > *Reports* > *Charts*.
+
+Se il carico sul sistema non è elevato e il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+SMST
+ a| 
+Log Monitor state (Stato monitor registro)
+ a| 
+SSM
+ a| 
+Se il valore Log Monitor state (Stato monitoraggio registro) non è connesso per un periodo di tempo persistente, contattare il supporto tecnico.
+
+
+
+ a| 
+SMTT
+ a| 
+Eventi totali
+ a| 
+SSM
+ a| 
+Se il valore di Total Events (Eventi totali) è maggiore di zero, controllare se la causa può essere la presenza di eventi noti (come gli errori di rete). A meno che questi errori non siano stati cancellati (ovvero, il conteggio è stato reimpostato su 0), possono essere attivati gli allarmi Total Events (Eventi totali).
+
+Una volta risolto il problema, azzerare il contatore per eliminare l'allarme. Selezionare *NODI* > *_sito_* > *_nodo griglia_* > *Eventi* > *Ripristina conteggi eventi*.
+
+
+NOTE: Per reimpostare i conteggi degli eventi, è necessario disporre dell'autorizzazione di configurazione della pagina topologia griglia.
+
+Se il valore di Total Events (Eventi totali) è zero o il numero aumenta e il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+SNST
+ a| 
+Stato
+ a| 
+CMN
+ a| 
+Un allarme indica che si è verificato un problema nella memorizzazione dei bundle di attività della griglia. Se il valore Stato è errore del punto di controllo o quorum non raggiunto, verificare che la maggior parte dei servizi ADC sia connessa al sistema StorageGRID (50% più uno), quindi attendere alcuni minuti.
+
+Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+SOSS
+ a| 
+Stato del sistema operativo per lo storage
+ a| 
+SSM
+ a| 
+Un allarme viene attivato se SANtricity OS indica che un componente di un'apparecchiatura StorageGRID presenta un problema di "intervento richiesto".
+
+Selezionare *NODI*. Quindi selezionare *Appliance Storage Node* > *hardware*. Scorrere verso il basso per visualizzare lo stato di ciascun componente. In SANtricity OS, controllare gli altri componenti dell'appliance per isolare il problema.
+
+
+
+ a| 
+SSMA
+ a| 
+Stato SSM
+ a| 
+SSM
+ a| 
+Se il valore di SSM Status (Stato SSM) è Error (errore), selezionare *SUPPORT* > *Tools* > *Grid topology*, quindi selezionare *_Site_* > *_Grid node_* > *SSM* > *Overview* > *Main* e *SSM* > *Overview* > *Alarms* per determinare la causa dell'allarme.
+
+Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+SSME
+ a| 
+Stato SSM
+ a| 
+SSM
+ a| 
+Se il valore di SSM state (Stato SSM) è Standby, continuare il monitoraggio e, se il problema persiste, contattare il supporto tecnico.
+
+Se il valore di SSM state (Stato SSM) è Offline (non in linea), riavviare il servizio. Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+SST
+ a| 
+Stato dello storage
+ a| 
+BLDR
+ a| 
+Se il valore di Storage Status (Stato storage) è Insufficient usable Space (spazio utilizzabile insufficiente), lo storage disponibile sul nodo di storage non è più disponibile e i dati acquisiti vengono reindirizzati ad altri nodi di storage disponibili. Le richieste di recupero possono continuare ad essere inviate da questo nodo della griglia.
+
+È necessario aggiungere ulteriore storage. Non influisce sulla funzionalità dell'utente finale, ma l'allarme persiste fino a quando non viene aggiunto ulteriore storage.
+
+Se il valore di Storage Status (Stato storage) è Volume(i) Unavailable (volumi non disponibili), una parte dello storage non è disponibile. Lo storage e il recupero da questi volumi non sono possibili. Per ulteriori informazioni, controllare lo stato di salute del volume: Selezionare *SUPPORT* > *Tools* > *Grid topology*. Quindi selezionare *_site_* > *_grid node_* > *LDR* > *Storage* > *Overview* > *Main*. Lo stato di salute del volume è elencato in archivi di oggetti.
+
+Se il valore dello stato dello storage è Error (errore), contattare il supporto tecnico.
+
+link:../troubleshoot/troubleshooting-storage-status-alarm.html["Risolvere i problemi relativi all'allarme Storage Status (SST)"]
+
+
+
+ a| 
+SVST
+ a| 
+Stato
+ a| 
+SSM
+ a| 
+Questo allarme viene cancellato quando vengono risolti altri allarmi relativi a un servizio non in esecuzione. Tenere traccia degli allarmi di manutenzione della sorgente per ripristinare il funzionamento.
+
+Selezionare *SUPPORT* > *Tools* > *Grid topology*. Quindi selezionare *_site_* > *_grid node_* > *SSM* > *servizi* > *Panoramica* > *principale*. Quando lo stato di un servizio viene visualizzato come non in esecuzione, il suo stato è amministrativamente inattivo. Lo stato del servizio può essere indicato come non in esecuzione per i seguenti motivi:
+
+* Il servizio è stato arrestato manualmente (`/etc/init.d/<service\> stop`).
+* Si è verificato un problema con il database MySQL e Server Manager arresta IL servizio MI.
+* È stato aggiunto un nodo Grid, ma non è stato avviato.
+* Durante l'installazione, un nodo Grid non è ancora connesso al nodo Admin.
+
+
+Se un servizio viene visualizzato come non in esecuzione, riavviarlo (`/etc/init.d/<service\> restart`).
+
+Questo allarme potrebbe anche indicare che l'archivio di metadati (database Cassandra) per un nodo di storage deve essere ricostruito.
+
+Se il problema persiste, contattare il supporto tecnico.
+
+link:../troubleshoot/troubleshooting-metadata-issues.html["Risolvere i problemi relativi all'allarme Services: Status - Cassandra (SVST)"]
+
+
+
+ a| 
+TMEM
+ a| 
+Memoria installata
+ a| 
+SSM
+ a| 
+I nodi in esecuzione con meno di 24 GB di memoria installata possono causare problemi di performance e instabilità del sistema. La quantità di memoria installata nel sistema deve essere aumentata ad almeno 24 GiB.
+
+
+
+ a| 
+TPOP
+ a| 
+Operazioni in sospeso
+ a| 
+ADC
+ a| 
+Una coda di messaggi può indicare che il servizio ADC è sovraccarico. È possibile collegare al sistema StorageGRID un numero troppo basso di servizi ADC. In un'implementazione di grandi dimensioni, il servizio ADC può richiedere l'aggiunta di risorse di calcolo oppure il sistema può richiedere servizi ADC aggiuntivi.
+
+
+
+ a| 
+UMEM
+ a| 
+Memoria disponibile
+ a| 
+SSM
+ a| 
+Se la RAM disponibile si sta esaurendo, determinare se si tratta di un problema hardware o software. Se non si tratta di un problema hardware o se la memoria disponibile scende al di sotto di 50 MB (soglia di allarme predefinita), contattare il supporto tecnico.
+
+
+
+ a| 
+VMFI
+ a| 
+Voci disponibili
+ a| 
+SSM
+ a| 
+Ciò indica che è necessario uno storage aggiuntivo. Contattare il supporto tecnico.
+
+
+
+ a| 
+VMFR
+ a| 
+Spazio disponibile
+ a| 
+SSM
+ a| 
+Se il valore di spazio disponibile diventa troppo basso (vedi soglie di allarme), occorre verificare se ci sono file di log che crescono fuori proporzione o oggetti che occupano troppo spazio su disco (vedi soglie di allarme) che devono essere ridotti o cancellati.
+
+Se il problema persiste, contattare il supporto tecnico.
+
+
+
+ a| 
+VMST
+ a| 
+Stato
+ a| 
+SSM
+ a| 
+Viene attivato un allarme se il valore di Status (Stato) per il volume montato è Unknown (Sconosciuto). Il valore Unknown (Sconosciuto) o Offline (non in linea) indica che non è possibile montare o accedere al volume a causa di un problema con il dispositivo di storage sottostante.
+
+
+
+ a| 
+VPRI
+ a| 
+Priorità di verifica
+ a| 
+BLDR, BARC
+ a| 
+Per impostazione predefinita, il valore della priorità di verifica è Adaptive. Se la priorità di verifica è impostata su alta, viene attivato un allarme perché la verifica dello storage può rallentare le normali operazioni del servizio.
+
+
+
+ a| 
+VSTU
+ a| 
+Stato di verifica dell'oggetto
+ a| 
+BLDR
+ a| 
+Selezionare *SUPPORT* > *Tools* > *Grid topology*. Quindi selezionare *_site_* > *_grid node_* > *LDR* > *Storage* > *Overview* > *Main*.
+
+Controllare il sistema operativo per verificare la presenza di eventuali errori relativi a dispositivi a blocchi o file system.
+
+Se il valore di Stato verifica oggetto è Unknown Error (errore sconosciuto), di solito indica un problema di file system o hardware di basso livello (errore i/o) che impedisce all'attività di verifica dello storage di accedere al contenuto memorizzato. Contattare il supporto tecnico.
+
+
+
+ a| 
+XAMS
+ a| 
+Repository di audit non raggiungibili
+ a| 
+BADC, BARC, BCLB, BCMN, BLDR, BNMS
+ a| 
+Verificare la connettività di rete al server che ospita il nodo di amministrazione.
+
+Se il problema persiste, contattare il supporto tecnico.
+
+|===

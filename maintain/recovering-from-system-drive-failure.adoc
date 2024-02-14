@@ -1,0 +1,21 @@
+---
+permalink: maintain/recovering-from-system-drive-failure.html 
+sidebar: sidebar 
+keywords: recover, system drive failure, workflow 
+summary: Se il disco di sistema su un nodo di storage basato su software si è guastato, il nodo di storage non è disponibile per il sistema StorageGRID. È necessario completare una serie specifica di attività per eseguire il ripristino da un guasto al disco di sistema. 
+---
+= Recovery from system drive failure: Workflow
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se il disco di sistema su un nodo di storage basato su software si è guastato, il nodo di storage non è disponibile per il sistema StorageGRID. È necessario completare una serie specifica di attività per eseguire il ripristino da un guasto al disco di sistema.
+
+Utilizzare questa procedura per eseguire il ripristino da un guasto del disco di sistema su un nodo di storage basato su software. Questa procedura include i passaggi da seguire se anche i volumi di storage non sono riusciti o non possono essere rimontati.
+
+
+NOTE: Questa procedura si applica solo ai nodi di storage basati su software. Seguire una procedura diversa da link:recovering-storagegrid-appliance-storage-node.html["Ripristinare un nodo di storage dell'appliance"].
+
+image::../media/storage_node_recovery_system_drive.gif[Procedure di ripristino per il disco di sistema guasto su un nodo di storage basato su software]

@@ -1,0 +1,28 @@
+---
+permalink: maintain/recovering-from-archive-node-failures.html 
+sidebar: sidebar 
+keywords: recover, archive node failure, workflow 
+summary: 'È necessario completare una sequenza di attività nell"ordine esatto per eseguire il ripristino in caso di guasto di un nodo di archiviazione.' 
+---
+= Recovery from Archive Node Failures: Workflow
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario completare una sequenza di attività nell'ordine esatto per eseguire il ripristino in caso di guasto di un nodo di archiviazione.
+
+image::../media/overview_archive_node_recovery.gif[Diagramma di flusso generale del ripristino del nodo di archiviazione]
+
+Il ripristino del nodo di archiviazione è interessato dai seguenti problemi:
+
+* Se il criterio ILM è configurato per replicare una singola copia.
++
+In un sistema StorageGRID configurato per eseguire una singola copia di oggetti, un guasto al nodo di archiviazione potrebbe causare una perdita di dati irreversibile. In caso di errore, tutti questi oggetti vengono persi; tuttavia, è necessario eseguire le procedure di ripristino per "ripulire" il sistema StorageGRID ed eliminare le informazioni sugli oggetti persi dal database.
+
+* Se si verifica un errore del nodo di archiviazione durante il ripristino del nodo di storage.
++
+Se il nodo di archiviazione non riesce durante l'elaborazione di recuperi in blocco come parte di un ripristino del nodo di storage, È necessario ripetere la procedura per ripristinare le copie dei dati dell'oggetto nel nodo di storage dall'inizio per garantire che tutti i dati dell'oggetto recuperati dal nodo di archiviazione vengano ripristinati nel nodo di storage.
+
+

@@ -1,0 +1,193 @@
+---
+permalink: tenant/configuration-xml-for-search-configuration.html 
+sidebar: sidebar 
+keywords: search integration, configuration xml, metadata notification, container tag, urn 
+summary: Il servizio di integrazione della ricerca viene configurato utilizzando una serie di regole contenute nei tag <MetadataNotificationConfiguration\> e </MetadataNotificationConfiguration\>. Ogni regola specifica gli oggetti a cui si applica la regola e la destinazione in cui StorageGRID deve inviare i metadati di tali oggetti. 
+---
+= XML di configurazione per l'integrazione della ricerca
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il servizio di integrazione della ricerca viene configurato utilizzando una serie di regole contenute in `<MetadataNotificationConfiguration>` e. `</MetadataNotificationConfiguration>` tag. Ogni regola specifica gli oggetti a cui si applica la regola e la destinazione in cui StorageGRID deve inviare i metadati di tali oggetti.
+
+Gli oggetti possono essere filtrati in base al prefisso del nome dell'oggetto. Ad esempio, è possibile inviare metadati per oggetti con il prefisso `images` a una destinazione e metadati per gli oggetti con il prefisso `videos` a un altro. Le configurazioni con prefissi sovrapposti non sono valide e vengono rifiutate al momento dell'invio. Ad esempio, una configurazione che include una regola per gli oggetti con il prefisso `test` e una seconda regola per gli oggetti con il prefisso `test2` non consentito.
+
+Le destinazioni devono essere specificate utilizzando l'URN di un endpoint StorageGRID creato per il servizio di integrazione della ricerca. Questi endpoint si riferiscono a un indice e a un tipo definiti in un cluster Elasticsearch.
+
+[listing]
+----
+<MetadataNotificationConfiguration>
+    <Rule>
+        <ID>Rule-1</ID>
+        <Status>rule-status</Status>
+        <Prefix>key-prefix</Prefix>
+        <Destination>
+           <Urn>arn:aws:es:region:account-ID:domain/mydomain/myindex/mytype</Urn>
+        </Destination>
+    </Rule>
+    <Rule>
+        <ID>Rule-2</ID>
+         ...
+    </Rule>
+     ...
+</MetadataNotificationConfiguration>
+----
+La tabella descrive gli elementi contenuti nel file XML di configurazione per la notifica dei metadati.
+
+[cols="2a,3a,1a"]
+|===
+| Nome | Descrizione | Obbligatorio 
+
+
+ a| 
+MetadataNotificationConfiguration
+ a| 
+Tag container per le regole utilizzate per specificare gli oggetti e la destinazione per le notifiche dei metadati.
+
+Contiene uno o più elementi della regola.
+ a| 
+Sì
+
+
+
+ a| 
+Regola
+ a| 
+Tag container per una regola che identifica gli oggetti i cui metadati devono essere aggiunti a un indice specificato.
+
+Le regole con prefissi sovrapposti vengono rifiutate.
+
+Incluso nell'elemento MetadataNotificationConfiguration.
+ a| 
+Sì
+
+
+
+ a| 
+ID
+ a| 
+Identificatore univoco della regola.
+
+Incluso nell'elemento Rule.
+ a| 
+No
+
+
+
+ a| 
+Stato
+ a| 
+Lo stato può essere "abilitato" o "Disabilitato". Non viene intrapresa alcuna azione per le regole disattivate.
+
+Incluso nell'elemento Rule.
+ a| 
+Sì
+
+
+
+ a| 
+Prefisso
+ a| 
+Gli oggetti che corrispondono al prefisso vengono influenzati dalla regola e i relativi metadati vengono inviati alla destinazione specificata.
+
+Per far corrispondere tutti gli oggetti, specificare un prefisso vuoto.
+
+Incluso nell'elemento Rule.
+ a| 
+Sì
+
+
+
+ a| 
+Destinazione
+ a| 
+Tag container per la destinazione di una regola.
+
+Incluso nell'elemento Rule.
+ a| 
+Sì
+
+
+
+ a| 
+Urna
+ a| 
+URNA della destinazione in cui vengono inviati i metadati dell'oggetto. Deve essere l'URN di un endpoint StorageGRID con le seguenti proprietà:
+
+* `es` deve essere il terzo elemento.
+* L'URN deve terminare con l'indice e il tipo in cui sono memorizzati i metadati, nel form `domain-name/myindex/mytype`.
+
+
+Gli endpoint vengono configurati utilizzando l'API tenant Manager o tenant Management. Hanno la seguente forma:
+
+* `arn:aws:es:region:account-ID:domain/mydomain/myindex/mytype`
+* `urn:mysite:es:::mydomain/myindex/mytype`
+
+
+L'endpoint deve essere configurato prima dell'invio dell'XML di configurazione, altrimenti la configurazione non riesce e viene visualizzato un errore 404.
+
+L'URN è incluso nell'elemento Destination.
+ a| 
+Sì
+
+|===
+Utilizza l'XML di configurazione delle notifiche dei metadati di esempio per scoprire come creare il tuo XML.
+
+
+
+== Configurazione della notifica dei metadati applicabile a tutti gli oggetti
+
+In questo esempio, i metadati degli oggetti per tutti gli oggetti vengono inviati alla stessa destinazione.
+
+[listing]
+----
+<MetadataNotificationConfiguration>
+    <Rule>
+        <ID>Rule-1</ID>
+        <Status>Enabled</Status>
+        <Prefix></Prefix>
+        <Destination>
+           <Urn>urn:myes:es:::sgws-notifications/test1/all</Urn>
+        </Destination>
+    </Rule>
+</MetadataNotificationConfiguration>
+----
+
+
+== Configurazione della notifica dei metadati con due regole
+
+In questo esempio, i metadati degli oggetti per gli oggetti che corrispondono al prefisso `/images` viene inviato a una destinazione, mentre i metadati degli oggetti per gli oggetti che corrispondono al prefisso `/videos` viene inviato a una seconda destinazione.
+
+[listing]
+----
+
+<MetadataNotificationConfiguration>
+    <Rule>
+        <ID>Images-rule</ID>
+        <Status>Enabled</Status>
+        <Prefix>/images</Prefix>
+        <Destination>
+           <Urn>arn:aws:es:us-east-1:3333333:domain/es-domain/graphics/imagetype</Urn>
+        </Destination>
+    </Rule>
+    <Rule>
+        <ID>Videos-rule</ID>
+        <Status>Enabled</Status>
+        <Prefix>/videos</Prefix>
+        <Destination>
+           <Urn>arn:aws:es:us-west-1:22222222:domain/es-domain/graphics/videotype</Urn>
+        </Destination>
+    </Rule>
+</MetadataNotificationConfiguration>
+----
+.Informazioni correlate
+link:../s3/index.html["UTILIZZARE L'API REST S3"]
+
+link:object-metadata-included-in-metadata-notifications.html["Metadati degli oggetti inclusi nelle notifiche dei metadati"]
+
+link:json-generated-by-search-integration-service.html["JSON generato dal servizio di integrazione della ricerca"]
+
+link:configuring-search-integration-service.html["Configurare il servizio di integrazione della ricerca"]

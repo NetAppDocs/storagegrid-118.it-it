@@ -1,0 +1,44 @@
+---
+permalink: ubuntu/navigating-to-grid-manager.html 
+sidebar: sidebar 
+keywords: how to navigate to Grid Manager 
+summary: Il Gestore griglia consente di definire tutte le informazioni necessarie per configurare il sistema StorageGRID. 
+---
+= Accedere a Grid Manager
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il Gestore griglia consente di definire tutte le informazioni necessarie per configurare il sistema StorageGRID.
+
+.Prima di iniziare
+Il nodo di amministrazione primario deve essere implementato e aver completato la sequenza di avvio iniziale.
+
+.Fasi
+. Aprire il browser Web e accedere a uno dei seguenti indirizzi:
++
+`https://_primary_admin_node_ip_`
+
++
+`_client_network_ip_`
+
++
+In alternativa, è possibile accedere a Grid Manager dalla porta 8443:
+
++
+`https://_primary_admin_node_ip_:8443`
+
++
+
+NOTE: È possibile utilizzare l'indirizzo IP per l'indirizzo IP del nodo di amministrazione primario sulla rete griglia o sulla rete di amministrazione, a seconda della configurazione di rete.
+
+. Selezionare *Installa un sistema StorageGRID*.
++
+Viene visualizzata la pagina utilizzata per configurare un sistema StorageGRID.
+
++
+image::../media/gmi_installer_first_screen.gif[Questa immagine viene spiegata dal testo circostante.]
+
+

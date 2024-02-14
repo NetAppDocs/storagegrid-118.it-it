@@ -1,0 +1,156 @@
+---
+permalink: maintain/powering-off-and-on-all-nodes-in-grid.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, power nodes, power on nodes, power off nodes, power down nodes 
+summary: 'Potrebbe essere necessario spegnere l"intero sistema StorageGRID, ad esempio, se si sta spostando un data center. Questi passaggi forniscono una panoramica di alto livello della sequenza consigliata per l"esecuzione di uno shutdown e di un startup controllati.' 
+---
+= Spegnere e riaccendere tutti i nodi della rete
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Potrebbe essere necessario spegnere l'intero sistema StorageGRID, ad esempio, se si sta spostando un data center. Questi passaggi forniscono una panoramica di alto livello della sequenza consigliata per l'esecuzione di uno shutdown e di un startup controllati.
+
+Quando si spengono tutti i nodi di un sito o di una griglia, non sarà possibile accedere agli oggetti acquisiti mentre i nodi di storage sono offline.
+
+
+
+== Arrestare i servizi e chiudere i nodi di rete
+
+Prima di spegnere un sistema StorageGRID, è necessario arrestare tutti i servizi in esecuzione su ciascun nodo di rete e quindi arrestare tutte le macchine virtuali VMware, i motori di container e le appliance StorageGRID.
+
+.A proposito di questa attività
+Arrestare prima i servizi sui nodi Admin e Gateway, quindi arrestare i servizi sui nodi Storage.
+
+Questo approccio consente di utilizzare l'Admin Node primario per monitorare lo stato degli altri nodi della griglia il più a lungo possibile.
+
+
+NOTE: Se un singolo host include più di un nodo di griglia, non spegnere l'host fino a quando non sono stati arrestati tutti i nodi su tale host. Se l'host include il nodo di amministrazione primario, arrestare l'host per ultimo.
+
+
+NOTE: Se necessario, è possibile link:linux-migrating-grid-node-to-new-host.html["Migrare i nodi da un host Linux a un altro"] per eseguire la manutenzione degli host senza influire sulle funzionalità o sulla disponibilità del grid.
+
+.Fasi
+. Impedire a tutte le applicazioni client di accedere alla griglia.
+. [[log_in_to_gn]]Accedi a ciascun nodo gateway:
++
+.. Immettere il seguente comando: `ssh admin@_grid_node_IP_`
+.. Immettere la password elencata in `Passwords.txt` file.
+.. Immettere il seguente comando per passare a root: `su -`
+.. Immettere la password elencata in `Passwords.txt` file.
+
+
++
+Una volta effettuato l'accesso come root, il prompt cambia da `$` a. `#`.
+
+. [[stop_all_Services]]Arresta tutti i servizi in esecuzione sul nodo: `service servermanager stop`
++
+L'arresto dei servizi può richiedere fino a 15 minuti e potrebbe essere necessario accedere al sistema in remoto per monitorare il processo di arresto.
+
+. Ripetere i due passaggi precedenti per arrestare i servizi su tutti i nodi di storage, i nodi di archivio e i nodi di amministrazione non primari.
++
+È possibile interrompere i servizi su questi nodi in qualsiasi ordine.
+
++
+
+NOTE: Se si esegue il `service servermanager stop` Per arrestare i servizi su un nodo di storage dell'appliance, è necessario spegnere e riaccendere l'appliance per riavviare il nodo.
+
+. Per il nodo di amministrazione principale, ripetere i passaggi per <<log_in_to_gn,accesso al nodo>> e. <<stop_all_services,interruzione di tutti i servizi sul nodo>>.
+. Per i nodi in esecuzione su host Linux:
++
+.. Accedere al sistema operativo host.
+.. Arrestare il nodo: `storagegrid node stop`
+.. Arrestare il sistema operativo host.
+
+
+. Per i nodi in esecuzione sulle macchine virtuali VMware e per i nodi di storage dell'appliance, eseguire il comando shutdown: `shutdown -h now`
++
+Eseguire questa operazione indipendentemente dal risultato dell' `service servermanager stop` comando.
+
++
+Per l'appliance, questo comando arresta il controller di calcolo, ma l'appliance è ancora accesa. Completare la fase successiva.
+
+. Se si dispone di nodi appliance, seguire la procedura relativa all'appliance.
++
+[role="tabbed-block"]
+====
+.SG100 o SG1000
+--
+.. Spegnere l'apparecchio.
+.. Attendere che il LED di alimentazione blu si spenga.
+
+
+--
+.SGF6112
+--
+.. Spegnere l'apparecchio.
+.. Attendere che il LED di alimentazione blu si spenga.
+
+
+--
+.SG6000
+--
+.. Attendere che il LED verde cache Active (cache attiva) sul retro dei controller dello storage si spenga.
++
+Questo LED si accende quando i dati memorizzati nella cache devono essere scritti sui dischi. Prima di spegnere il prodotto, attendere che il LED si spenga.
+
+.. Spegnere l'apparecchio e attendere che il LED di alimentazione blu si spenga.
+
+
+--
+.SG5700
+--
+.. Attendere che il LED verde cache Active (cache attiva) sul retro del controller dello storage si spenga.
++
+Questo LED si accende quando i dati memorizzati nella cache devono essere scritti sui dischi. Prima di spegnere il prodotto, attendere che il LED si spenga.
+
+.. Spegnere l'apparecchio e attendere che il LED e il display a sette segmenti si interrompano.
+
+
+--
+====
+. Se necessario, disconnettersi dalla shell dei comandi: `exit`
++
+La griglia StorageGRID è stata chiusa.
+
+
+
+
+
+== Avviare i nodi della griglia
+
+
+CAUTION: Se l'intero grid è stato spento per più di 15 giorni, è necessario contattare il supporto tecnico prima di avviare qualsiasi grid node. Non tentare di eseguire le procedure di ripristino che ricostruiscono i dati Cassandra. Ciò potrebbe causare la perdita di dati.
+
+Se possibile, accendere i nodi della rete in questo ordine:
+
+* Prima di tutto, alimentare i nodi di amministrazione.
+* Alimentare per ultimo i nodi gateway.
+
+
+
+NOTE: Se un host include più nodi di rete, i nodi torneranno automaticamente in linea all'accensione dell'host.
+
+.Fasi
+. Accendere gli host per il nodo di amministrazione primario e tutti i nodi di amministrazione non primari.
++
+
+NOTE: Non sarà possibile accedere ai nodi di amministrazione fino a quando i nodi di storage non saranno stati riavviati.
+
+. Accendere gli host per tutti i nodi di archiviazione e i nodi di storage.
++
+È possibile accendere questi nodi in qualsiasi ordine.
+
+. Accendere gli host per tutti i nodi gateway.
+. Accedi a Grid Manager.
+. Selezionare *NODI* e monitorare lo stato dei nodi della griglia. Verificare che non siano presenti icone di avviso accanto ai nomi dei nodi.
+
+
+.Informazioni correlate
+* https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["SGF6112 appliance di storage"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/sg100-1000/index.html["Appliance di servizi SG100 e SG1000"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/index.html["Appliance di storage SG6000"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/sg5700/index.html["SG5700 appliance di storage"^]
+

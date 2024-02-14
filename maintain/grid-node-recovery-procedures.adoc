@@ -1,0 +1,23 @@
+---
+permalink: maintain/grid-node-recovery-procedures.html 
+sidebar: sidebar 
+keywords: storagegrid, recovery 
+summary: In caso di guasto di un nodo Grid, è possibile ripristinarlo sostituendo il server fisico o virtuale guasto, reinstallando il software StorageGRID e ripristinando i dati ripristinabili. 
+---
+= Procedure di ripristino del nodo Grid: Panoramica
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+In caso di guasto di un nodo Grid, è possibile ripristinarlo sostituendo il server fisico o virtuale guasto, reinstallando il software StorageGRID e ripristinando i dati ripristinabili.
+
+I nodi Grid possono non funzionare se un guasto hardware, virtualizzazione, sistema operativo o software rende il nodo inutilizzabile o inaffidabile. Esistono diversi tipi di errore che possono attivare la necessità di ripristinare un nodo di rete.
+
+I passaggi per il ripristino di un nodo di rete variano a seconda della piattaforma in cui è ospitato il nodo di rete e del tipo di nodo di rete. Ogni tipo di nodo della griglia dispone di una procedura di ripristino specifica, che è necessario seguire con precisione.
+
+In genere, se possibile, si tenta di conservare i dati dal nodo della griglia guasto, riparare o sostituire il nodo guasto, utilizzare Grid Manager per configurare il nodo sostitutivo e ripristinare i dati del nodo.
+
+
+NOTE: In caso di guasto di un intero sito StorageGRID, contattare il supporto tecnico. Il supporto tecnico collaborerà con te per sviluppare ed eseguire un piano di ripristino del sito che massimizzi la quantità di dati recuperati e soddisfi i tuoi obiettivi di business. Vedere link:how-site-recovery-is-performed-by-technical-support.html["Come il supporto tecnico recupera un sito"].

@@ -1,0 +1,42 @@
+---
+permalink: maintain/replacing-archive-node.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, archive node 
+summary: Per ripristinare un nodo di archiviazione, è necessario sostituirlo. 
+---
+= Sostituisci nodo archivio
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Per ripristinare un nodo di archiviazione, è necessario sostituirlo.
+
+Selezionare la procedura di sostituzione del nodo per la piattaforma. I passaggi per sostituire un nodo sono gli stessi per tutti i tipi di nodi griglia.
+
+[cols="1a,2a"]
+|===
+| Piattaforma | Procedura 
+
+
+ a| 
+VMware
+ a| 
+link:all-node-types-replacing-vmware-node.html["Sostituire un nodo VMware"]
+
+
+
+ a| 
+Linux
+ a| 
+link:all-node-types-replacing-linux-node.html["Sostituire un nodo Linux"]
+
+
+
+ a| 
+OpenStack
+ a| 
+I file e gli script dei dischi delle macchine virtuali forniti da NetApp per OpenStack non sono più supportati per le operazioni di recovery. Se è necessario ripristinare un nodo in esecuzione in un'implementazione OpenStack, scaricare i file per il sistema operativo Linux in uso. Quindi, seguire la procedura per link:all-node-types-replacing-linux-node.html["Sostituzione di un nodo Linux"].
+
+|===

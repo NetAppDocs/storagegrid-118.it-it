@@ -1,0 +1,74 @@
+---
+permalink: admin/configuring-connection-settings-for-s3-api.html 
+sidebar: sidebar 
+keywords: archive node connection to s3, arc service 
+summary: 'Se si sta effettuando la connessione a un nodo di archiviazione utilizzando l"interfaccia S3, è necessario configurare le impostazioni di connessione per l"API S3. Fino a quando queste impostazioni non vengono configurate, il servizio ARC rimane in uno stato di allarme principale in quanto non è in grado di comunicare con il sistema di storage di archiviazione esterno.' 
+---
+= Configurare le impostazioni di connessione per l'API S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se si sta effettuando la connessione a un nodo di archiviazione utilizzando l'interfaccia S3, è necessario configurare le impostazioni di connessione per l'API S3. Fino a quando queste impostazioni non vengono configurate, il servizio ARC rimane in uno stato di allarme principale in quanto non è in grado di comunicare con il sistema di storage di archiviazione esterno.
+
+[CAUTION]
+====
+Il supporto per i nodi di archiviazione è obsoleto e verrà rimosso in una release futura. Lo spostamento di oggetti da un nodo di archiviazione a un sistema storage di archiviazione esterno tramite l'API S3 è stato sostituito da pool di storage cloud ILM, che offrono maggiori funzionalità.
+
+Anche l'opzione Cloud Tiering - Simple Storage Service (S3) è obsoleta. Se si utilizza attualmente un nodo di archiviazione con questa opzione, link:../admin/migrating-objects-from-cloud-tiering-s3-to-cloud-storage-pool.html["Migrare gli oggetti in un pool di storage cloud"] invece.
+
+Inoltre, è necessario rimuovere i nodi di archiviazione dal criterio ILM attivo in StorageGRID 11,7 o versioni precedenti. La rimozione dei dati degli oggetti memorizzati nei nodi di archiviazione semplificherà gli aggiornamenti futuri. Vedere link:../ilm/working-with-ilm-rules-and-ilm-policies.html["Utilizzo delle regole ILM e delle policy ILM"].
+
+====
+.Prima di iniziare
+* Hai effettuato l'accesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Lo hai fatto link:admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+* Hai creato un bucket sul sistema storage di archiviazione di destinazione:
++
+** Il bucket è dedicato a un singolo nodo di archiviazione. Non può essere utilizzato da altri nodi di archiviazione o altre applicazioni.
+** Nel bucket è stata selezionata la regione appropriata per la propria posizione.
+** Il bucket deve essere configurato con la versione sospesa.
+
+
+* La segmentazione degli oggetti è attivata e la dimensione massima dei segmenti è inferiore o uguale a 4.5 GiB (4,831,838,208 byte). Le richieste API S3 che superano questo valore non avranno esito positivo se S3 viene utilizzato come sistema di storage di archiviazione esterno.
+
+
+.Fasi
+. Selezionare *SUPPORT* > *Tools* > *Grid topology*.
+. Selezionare *Archive Node* > *ARC* > *Target*.
+. Selezionare *Configurazione* > *principale*.
++
+image::../media/archive_node_s3_middleware.gif[Pagina di configurazione per un nodo di archivio]
+
+. Selezionare *Cloud Tiering - Simple Storage Service (S3)* dall'elenco a discesa Target Type (tipo di destinazione).
++
+
+NOTE: Le impostazioni di configurazione non sono disponibili fino a quando non si seleziona un tipo di destinazione.
+
+. Configurare l'account di cloud tiering (S3) attraverso il quale il nodo di archiviazione si connetterà al sistema di archiviazione esterno di destinazione in grado di supportare S3.
++
+La maggior parte dei campi di questa pagina sono esplicativi. Di seguito vengono descritti i campi per i quali potrebbe essere necessario fornire assistenza.
+
++
+** *Regione*: Disponibile solo se è selezionato *Usa AWS*. La regione selezionata deve corrispondere a quella del bucket.
+** *Endpoint* e *Use AWS*: Per Amazon Web Services (AWS), selezionare *Use AWS*. *Endpoint* viene quindi compilato automaticamente con un URL dell'endpoint in base agli attributi Bucket Name e Region. Ad esempio:
++
+`\https://bucket.region.amazonaws.com`
+
++
+Per una destinazione non AWS, inserire l'URL del sistema che ospita il bucket, incluso il numero di porta. Ad esempio:
+
++
+`\https://system.com:1080`
+
+** *End Point Authentication*: Attivato per impostazione predefinita. Se la rete verso il sistema di storage di archiviazione esterno è attendibile, deselezionare la casella di controllo per disattivare la verifica del certificato SSL dell'endpoint e del nome host per il sistema di storage di archiviazione esterno di destinazione. Se un'altra istanza di un sistema StorageGRID è il dispositivo di archiviazione di destinazione e il sistema è configurato con certificati firmati pubblicamente, è possibile mantenere la casella di controllo selezionata.
+** *Storage Class* (Classe di storage): Selezionare *Standard (predefinito)* per lo storage normale. Selezionare *Redundancy ridotta* solo per gli oggetti che possono essere ricreati facilmente. *Redundancy ridotta* offre storage a costi inferiori con minore affidabilità. Se il sistema storage di archiviazione di destinazione è un'altra istanza del sistema StorageGRID, *Classe storage* controlla quante copie intermedie dell'oggetto vengono eseguite al momento dell'acquisizione nel sistema di destinazione, se viene utilizzato il doppio commit quando vengono acquisiti oggetti.
+
+
+. Selezionare *Applica modifiche*.
++
+Le impostazioni di configurazione specificate vengono validate e applicate al sistema StorageGRID. Una volta applicate le impostazioni, il target non può essere modificato.
+
+

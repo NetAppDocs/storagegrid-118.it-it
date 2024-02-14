@@ -1,0 +1,35 @@
+---
+permalink: troubleshoot/troubleshooting-delivery-platform-services-messages.html 
+sidebar: sidebar 
+keywords: how to troubleshoot delivery of platform services message, how to troubleshoot smtt alarm 
+summary: 'L"allarme Total Events (SMTT) viene attivato in Grid Manager se un messaggio di servizio della piattaforma viene inviato a una destinazione che non può accettare i dati.' 
+---
+= Risoluzione dei problemi relativi all'erogazione dei messaggi dei servizi della piattaforma (allarme SMTT)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'allarme SMTT (Total Events) viene attivato in Grid Manager se un messaggio di servizio della piattaforma viene inviato a una destinazione che non può accettare i dati.
+
+.A proposito di questa attività
+Ad esempio, il caricamento di un S3 multipart può avere successo anche se la replica o il messaggio di notifica associati non possono essere inviati all'endpoint configurato. In alternativa, un messaggio per la replica di CloudMirror potrebbe non essere recapitato se i metadati sono troppo lunghi.
+
+L'allarme SMTT contiene un messaggio Last Event (ultimo evento) che indica: `Failed to publish notifications for _bucket-name object key_` per l'ultimo oggetto la cui notifica non è riuscita.
+
+I messaggi degli eventi sono elencati anche in `/var/local/log/bycast-err.log` file di log. Vedere link:../monitor/logs-files-reference.html["Riferimenti ai file di log"].
+
+Per ulteriori informazioni, consultare link:../admin/troubleshooting-platform-services.html["Risolvere i problemi relativi ai servizi della piattaforma"]. Potrebbe essere necessario link:../tenant/signing-in-to-tenant-manager.html["Accedere al tenant dal tenant manager"] per eseguire il debug di un errore del servizio della piattaforma.
+
+.Fasi
+. Per visualizzare l'allarme, selezionare *NODES* > *_Site_* > *_Grid Node_* > *Events*.
+. Visualizza ultimo evento nella parte superiore della tabella.
++
+I messaggi degli eventi sono elencati anche nella `/var/local/log/bycast-err.log`.
+
+. Seguire le indicazioni fornite nel contenuto degli allarmi SMTT per correggere il problema.
+. Selezionare *Reset event count* (Ripristina conteggi eventi).
+. Notificare al tenant gli oggetti i cui messaggi dei servizi della piattaforma non sono stati recapitati.
+. Chiedere al tenant di attivare la replica o la notifica non riuscita aggiornando i metadati o i tag dell'oggetto.
+

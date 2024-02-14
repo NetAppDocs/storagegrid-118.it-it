@@ -1,0 +1,135 @@
+---
+permalink: admin/defining-tsm-tape-and-disk-storage-pools.html 
+sidebar: sidebar 
+keywords: archive node, tsm, tape storage pool, tivoli storage manager 
+summary: Il nodo di archiviazione scrive in un pool di dischi di storage. Per archiviare il contenuto su nastro, è necessario configurare il pool di storage su disco per spostare il contenuto in un pool di storage su nastro. 
+---
+= Definire i pool di storage su disco e nastro TSM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il nodo di archiviazione scrive in un pool di dischi di storage. Per archiviare il contenuto su nastro, è necessario configurare il pool di storage su disco per spostare il contenuto in un pool di storage su nastro.
+
+.A proposito di questa attività
+Per un server TSM, è necessario definire un pool di storage su nastro e un pool di storage su disco in Tivoli Storage Manager. Una volta definito il pool di dischi, creare un volume di dischi e assegnarlo al pool di dischi. Non è necessario un pool di nastri se il server TSM utilizza lo storage solo‐disco.
+
+Prima di creare un pool di storage su nastro, è necessario completare diversi passaggi sul server TSM. Creare una libreria di nastri e almeno un'unità nella libreria di nastri. Definire un percorso dal server alla libreria e dal server ai dischi, quindi definire una classe di dispositivi per i dischi. I dettagli di questi passaggi possono variare a seconda della configurazione hardware e dei requisiti di storage del sito. Per ulteriori informazioni, consultare la documentazione del TSM.
+
+Il seguente set di istruzioni illustra il processo. Tenere presente che i requisiti del sito potrebbero essere diversi a seconda dei requisiti dell'implementazione. Per informazioni dettagliate sulla configurazione e istruzioni, consultare la documentazione del TSM.
+
+
+NOTE: È necessario accedere al server con privilegi amministrativi e utilizzare lo strumento dsmadmc per eseguire i seguenti comandi.
+
+.Fasi
+. Creare una libreria di nastri.
++
+`define library _tapelibrary_ libtype=_scsi_`
+
++
+Dove `_tapelibrary_` è un nome arbitrario scelto per la libreria di nastri e il valore di `libtype` può variare a seconda del tipo di libreria di nastri.
+
+. Definire un percorso dal server alla libreria di nastri.
++
+`define path _servername tapelibrary_ srctype=server desttype=library device=_lib-devicename_`
+
++
+** `_servername_` È il nome del server TSM
+** `_tapelibrary_` è il nome della libreria di nastri definito
+** `_lib-devicename_` è il nome del dispositivo per la libreria di nastri
+
+
+. Definire un disco per la libreria.
++
+`define drive _tapelibrary_ _drivename_`
+
++
+** `_drivename_` è il nome che si desidera specificare per l'unità
+** `_tapelibrary_` è il nome della libreria di nastri definito
++
+A seconda della configurazione dell'hardware, potrebbe essere necessario configurare uno o più dischi aggiuntivi. Ad esempio, se il server TSM è collegato a uno switch Fibre Channel con due ingressi da una libreria di nastri, è possibile definire un'unità per ciascun ingresso.
+
+
+
+. Definire un percorso dal server all'unità definita.
++
+`define path _servername_ drivename srctype=server desttype=drive library=_tapelibrary_ device=_drive-dname_`
+
++
+** `_drive-dname_` è il nome del dispositivo per il disco
+** `_tapelibrary_` è il nome della libreria di nastri definito
++
+Ripetere l'operazione per ogni disco definito per la libreria di nastri, utilizzando un disco separato `_drivename_` e. `_drive-dname_` per ciascun disco.
+
+
+
+. Definire una classe di dispositivi per i dischi.
++
+`define devclass _DeviceClassName_ devtype=_lto_ library=_tapelibrary_ format=_tapetype_`
+
++
+** `_DeviceClassName_` è il nome della classe device
+** `_lto_` è il tipo di disco collegato al server
+** `_tapelibrary_` è il nome della libreria di nastri definito
+** `_tapetype_` è il tipo di nastro, ad esempio ultrium3
+
+
+. Aggiungere volumi su nastro all'inventario per la libreria.
++
+`checkin libvolume _tapelibrary_`
+
++
+`_tapelibrary_` è il nome della libreria di nastri definito.
+
+. Creare il pool di storage su nastro primario.
++
+`define stgpool _SGWSTapePool_ _DeviceClassName_ description=_description_ _collocate=filespace_ maxscratch=_XX_`
+
++
+** `_SGWSTapePool_` È il nome del pool di storage su nastro del nodo di archiviazione. È possibile selezionare qualsiasi nome per il pool di storage su nastro (purché il nome utilizzi le convenzioni di sintassi previste dal server TSM).
+** `_DeviceClassName_` è il nome della classe di dispositivi per la libreria di nastri.
+** `_description_` È una descrizione del pool di storage che può essere visualizzato sul server TSM utilizzando `query stgpool` comando. Ad esempio: "Pool di archiviazione su nastro per il nodo di archiviazione".
+** `_collocate=filespace_` Specifica che il server TSM deve scrivere oggetti dallo stesso spazio di file in un singolo nastro.
+** `XX` è uno dei seguenti:
++
+*** Il numero di nastri vuoti nella libreria di nastri (nel caso in cui il nodo di archiviazione sia l'unica applicazione che utilizza la libreria).
+*** Il numero di nastri allocati per l'utilizzo da parte del sistema StorageGRID (nei casi in cui la libreria di nastri è condivisa).
+
+
+
+
+. Su un server TSM, creare un pool di storage su disco. Nella console di amministrazione del server TSM, immettere
++
+`define stgpool _SGWSDiskPool_ disk description=_description_ maxsize=_maximum_file_size nextstgpool=SGWSTapePool_ highmig=_percent_high_ lowmig=_percent_low_`
+
++
+** `_SGWSDiskPool_` È il nome del pool di dischi del nodo di archiviazione. È possibile selezionare qualsiasi nome per il pool di storage su disco (purché il nome utilizzi le convenzioni di sintassi previste dal TSM).
+** `_description_` È una descrizione del pool di storage che può essere visualizzato sul server TSM utilizzando `query stgpool` comando. Ad esempio, "Pool di archiviazione su disco per il nodo di archiviazione".
+**  `_maximum_file_size_` forza la scrittura diretta su nastro di oggetti di dimensioni superiori a tali, anziché la memorizzazione nella cache del pool di dischi. Si consiglia di impostare `_maximum_file_size_` A 10 GB.
+** `_nextstgpool=SGWSTapePool_` Fa riferimento al pool di storage su disco al pool di storage su nastro definito per il nodo di archiviazione.
+**  `_percent_high_` imposta il valore in corrispondenza del quale il pool di dischi inizia la migrazione del contenuto nel pool di nastri. Si consiglia di impostare `_percent_high_` a 0 in modo che la migrazione dei dati inizi immediatamente
+**  `_percent_low_` imposta il valore in corrispondenza del quale la migrazione al pool di nastri viene interrotta. Si consiglia di impostare `_percent_low_` a 0 per eliminare il pool di dischi.
+
+
+. Su un server TSM, creare uno o più volumi di dischi e assegnarli al pool di dischi.
++
+`define volume _SGWSDiskPool_ _volume_name_ formatsize=_size_`
+
++
+** `_SGWSDiskPool_` è il nome del pool di dischi.
+** `_volume_name_` è il percorso completo verso la posizione del volume (ad esempio, `/var/local/arc/stage6.dsm`) Sul server TSM in cui scrive il contenuto del pool di dischi in preparazione del trasferimento su nastro.
+** `_size_` È la dimensione, in MB, del volume del disco.
++
+Ad esempio, per creare un singolo volume di disco in modo che il contenuto di un pool di dischi occupi un singolo nastro, impostare il valore di size su 200000 quando il volume del nastro ha una capacità di 200 GB.
+
++
+Tuttavia, potrebbe essere consigliabile creare più volumi di dischi di dimensioni inferiori, in quanto il server TSM può scrivere su ciascun volume del pool di dischi. Ad esempio, se la dimensione del nastro è di 250 GB, creare 25 volumi di dischi con una dimensione di 10 GB (10000) ciascuno.
+
++
+Il server TSM preassegna lo spazio nella directory per il volume del disco. Il completamento di questa operazione può richiedere più di tre ore per un volume di disco da 200 GB.
+
+
+
+

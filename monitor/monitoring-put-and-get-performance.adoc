@@ -1,0 +1,34 @@
+---
+permalink: monitor/monitoring-put-and-get-performance.html 
+sidebar: sidebar 
+keywords: put, get, performance 
+summary: 'È possibile monitorare le performance di alcune operazioni, come ad esempio l"archiviazione e il recupero di oggetti, per identificare le modifiche che potrebbero richiedere ulteriori analisi.' 
+---
+= Monitorare L'EFFICIENZA e OTTENERE le performance
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile monitorare le performance di alcune operazioni, come ad esempio l'archiviazione e il recupero di oggetti, per identificare le modifiche che potrebbero richiedere ulteriori analisi.
+
+.A proposito di questa attività
+Per monitorare LE performance, puoi eseguire i comandi S3 e Swift direttamente da una workstation o utilizzando l'applicazione open-source S3tester. L'utilizzo di questi metodi consente di valutare le performance indipendentemente da fattori esterni a StorageGRID, come problemi con un'applicazione client o problemi con una rete esterna.
+
+Quando si eseguono i test delle operazioni PUT e GET, attenersi alle seguenti linee guida:
+
+* Utilizzare dimensioni degli oggetti paragonabili agli oggetti che di solito si acquisiscono nella griglia.
+* Eseguire operazioni su siti locali e remoti.
+
+
+Messaggi in link:../audit/index.html["log di audit"] indicare il tempo totale necessario per eseguire determinate operazioni. Ad esempio, per determinare il tempo di elaborazione totale per una richiesta S3 GET, è possibile esaminare il valore dell'attributo TIME nel messaggio di audit SGET. È inoltre possibile trovare l'attributo TIME nei messaggi di audit per le seguenti operazioni:
+
+* *S3*: DELETE, GET, HEAD, Metadata Updated, POST, IN PRIMO PIANO
+* *SWIFT*: ELIMINA, OTTIENI, TESTA, METTI
+
+
+Durante l'analisi dei risultati, esaminare il tempo medio richiesto per soddisfare una richiesta e il throughput complessivo che è possibile ottenere. Ripetere regolarmente gli stessi test e registrare i risultati, in modo da poter identificare i trend che potrebbero richiedere un'indagine.
+
+* È possibile https://github.com/s3tester["Scarica S3tester da github"^].
+

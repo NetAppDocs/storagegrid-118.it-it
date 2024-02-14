@@ -1,0 +1,59 @@
+---
+permalink: admin/managing-archive-node-when-tsm-server-reaches-capacity.html 
+sidebar: sidebar 
+keywords: archive node, tsm server, full capacity, node is full 
+summary: Il server TSM non ha modo di notificare al nodo di archiviazione quando il database TSM o lo storage dei supporti di archiviazione gestito dal server TSM si avvicina alla capacità. Questa situazione può essere evitata attraverso il monitoraggio proattivo del server TSM. 
+---
+= Gestire un nodo di archiviazione quando il server TSM raggiunge la capacità
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il server TSM non ha modo di notificare al nodo di archiviazione quando il database TSM o lo storage dei supporti di archiviazione gestito dal server TSM si avvicina alla capacità. Questa situazione può essere evitata attraverso il monitoraggio proattivo del server TSM.
+
+.Prima di iniziare
+* Hai effettuato l'accesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Lo hai fatto link:admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+
+
+.A proposito di questa attività
+Il nodo di archiviazione continua ad accettare i dati dell'oggetto per il trasferimento al server TSM dopo che il server TSM ha interrotto l'accettazione del nuovo contenuto. Questo contenuto non può essere scritto su supporti gestiti dal server TSM. In questo caso, viene attivato un allarme.
+
+
+
+== Impedire al servizio ARC di inviare contenuto al server TSM
+
+Per impedire al servizio ARC di inviare ulteriore contenuto al server TSM, è possibile disattivare il nodo di archiviazione portando il componente *ARC* > *Store* offline. Questa procedura può essere utile anche per prevenire gli allarmi quando il server TSM non è disponibile per la manutenzione.
+
+.Fasi
+. Selezionare *SUPPORT* > *Tools* > *Grid topology*.
+. Selezionare *_Archive Node_* > *ARC* > *Store*.
+. Selezionare *Configurazione* > *principale*.
++
+image::../media/tsm_offline.gif[Pagina di configurazione per un nodo di archivio]
+
+. Modificare *Store state* in `Offline`.
+. Selezionare *Archivia archivio disabilitata all'avvio*.
+. Selezionare *Applica modifiche*.
+
+
+
+
+== Impostare Archive Node su Read-only se il middleware TSM raggiunge la capacità
+
+Se il server middleware TSM di destinazione raggiunge la capacità, il nodo di archiviazione può essere ottimizzato per eseguire solo i recuperi.
+
+.Fasi
+. Selezionare *SUPPORT* > *Tools* > *Grid topology*.
+. Selezionare *_Archive Node_* > *ARC* > *Target*.
+. Selezionare *Configurazione* > *principale*.
+. Impostare il numero massimo di sessioni di recupero in modo che sia uguale al numero di sessioni simultanee elencate in numero di sessioni.
+. Impostare il numero massimo di sessioni di memorizzazione su 0.
++
+
+NOTE: Se il nodo di archiviazione è di sola lettura, non è necessario modificare il numero massimo di sessioni di archiviazione su 0. Le sessioni del negozio non verranno create.
+
+. Selezionare *Applica modifiche*.
+

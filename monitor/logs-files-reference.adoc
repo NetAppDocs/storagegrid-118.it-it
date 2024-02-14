@@ -1,0 +1,188 @@
+---
+permalink: monitor/logs-files-reference.html 
+sidebar: sidebar 
+keywords: log, logs, log files 
+summary: StorageGRID fornisce registri utilizzati per acquisire eventi, messaggi di diagnostica e condizioni di errore. Potrebbe essere richiesto di raccogliere i file di log e inoltrarli al supporto tecnico per agevolare la risoluzione dei problemi. 
+---
+= Riferimento ai file di log: Panoramica
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID fornisce registri utilizzati per acquisire eventi, messaggi di diagnostica e condizioni di errore. Potrebbe essere richiesto di raccogliere i file di log e inoltrarli al supporto tecnico per agevolare la risoluzione dei problemi.
+
+I log sono classificati come segue:
+
+* link:storagegrid-software-logs.html["Log del software StorageGRID"]
+* link:deployment-and-maintenance-logs.html["Log di implementazione e manutenzione"]
+* link:logs-for-third-party-software.html["Registri per software di terze parti"]
+* link:about-bycast-log.html["A proposito di bycast.log"]
+
+
+
+NOTE: I dettagli forniti per ciascun tipo di registro sono solo a scopo di riferimento. I registri sono destinati al troubleshooting avanzato da parte del supporto tecnico. Le tecniche avanzate che implicano la ricostruzione della cronologia dei problemi utilizzando i registri di controllo e i file di log dell'applicazione esulano dall'ambito di queste istruzioni.
+
+
+
+== Accedere ai registri
+
+Per accedere ai registri, è possibile link:collecting-log-files-and-system-data.html["raccogliere i file di log e i dati di sistema"] da uno o più nodi come singolo archivio di file di log. In alternativa, se il nodo di amministrazione primario non è disponibile o non è in grado di raggiungere un nodo specifico, è possibile accedere ai singoli file di registro per ciascun nodo della griglia come segue:
+
+. Immettere il seguente comando: `ssh admin@grid_node_IP`
+. Immettere la password elencata in `Passwords.txt` file.
+. Immettere il seguente comando per passare a root: `su -`
+. Immettere la password elencata in `Passwords.txt` file.
+
+
+
+
+== Categorie di file di log
+
+L'archivio del file di log di StorageGRID contiene i log descritti per ciascuna categoria e i file aggiuntivi che contengono metriche e output dei comandi di debug.
+
+[cols="1a,3a"]
+|===
+| Percorso di archiviazione | Descrizione 
+
+
+| audit  a| 
+Messaggi di audit generati durante il normale funzionamento del sistema.
+
+
+
+| log-sistema-di-base  a| 
+Informazioni di base sul sistema operativo, incluse le versioni delle immagini StorageGRID.
+
+
+
+| bundle  a| 
+Informazioni sulla configurazione globale (bundle).
+
+
+
+| cassandra  a| 
+Informazioni sul database Cassandra e registri di riparazione Reaper.
+
+
+
+| ce  a| 
+Informazioni sui VCSs relative al nodo corrente e informazioni sul gruppo EC in base all'ID del profilo.
+
+
+
+| griglia  a| 
+Log di griglia generali, incluso il debug (`bycast.log`) e. `servermanager` registri.
+
+
+
+| grid.xml  a| 
+File di configurazione della griglia condiviso tra tutti i nodi.
+
+
+
+| hagroup  a| 
+Metriche e registri dei gruppi ad alta disponibilità.
+
+
+
+| installare  a| 
+`Gdu-server` e installare i log.
+
+
+
+| lumberjack.log  a| 
+Messaggi di debug relativi alla raccolta dei log.
+
+
+
+| Arbitro lambda  a| 
+Registri relativi alla richiesta del proxy S3 Select.
+
+
+
+| Metriche  a| 
+Log di servizio per Grafana, Jaeger, node esporter e Prometheus.
+
+
+
+| errore  a| 
+Accesso Miscd e log degli errori.
+
+
+
+| mysql  a| 
+La configurazione del database MariaDB e i relativi log.
+
+
+
+| netto  a| 
+Log generati da script correlati alla rete e dal servizio Dynip.
+
+
+
+| nginx  a| 
+File e log di configurazione del bilanciamento del carico e della federazione di griglie. Include anche i log di traffico di Grid Manager e Tenant Manager.
+
+
+
+| nginx-gw  a| 
+File e log di configurazione del bilanciamento del carico e della federazione di griglie.
+
+
+
+| ntp  a| 
+File di configurazione NTP e registri.
+
+
+
+| sistema operativo  a| 
+File di stato del nodo e della griglia, inclusi i servizi `pid`.
+
+
+
+| altro  a| 
+File di log in `/var/local/log` che non vengono raccolte in altre cartelle.
+
+
+
+| perf  a| 
+Informazioni sulle prestazioni per CPU, rete e i/o del disco
+
+
+
+| prometheus-data  a| 
+Metriche Prometheus correnti, se la raccolta di log include i dati Prometheus.
+
+
+
+| provisioning  a| 
+Log relativi al processo di provisioning della griglia.
+
+
+
+| zattera  a| 
+Log dal cluster Raft utilizzato nei servizi della piattaforma.
+
+
+
+| ssh  a| 
+Registri relativi alla configurazione e al servizio SSH.
+
+
+
+| snmp  a| 
+Configurazione dell'agente SNMP e elenchi di allow/deny degli allarmi utilizzati per l'invio di notifiche SNMP.
+
+
+
+| socket-dati  a| 
+Dati socket per il debug di rete.
+
+
+
+| system-commands.txt  a| 
+Output dei comandi del container StorageGRID. Contiene informazioni di sistema, ad esempio le reti e l'utilizzo del disco.
+
+|===

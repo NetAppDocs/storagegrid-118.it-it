@@ -1,0 +1,20 @@
+---
+permalink: admin/how-admin-nodes-show-acknowledged-alarms.html 
+sidebar: sidebar 
+keywords: admin node, acknowledge alarm 
+summary: 'Quando si riconosce un allarme su un nodo di amministrazione, l"allarme confermato non viene copiato in nessun altro nodo di amministrazione. Poiché i riconoscimenti non vengono copiati in altri nodi di amministrazione, l"albero topologia griglia potrebbe non avere lo stesso aspetto per ciascun nodo di amministrazione.' 
+---
+= Modalità di visualizzazione degli allarmi riconosciuti da Admin Node (sistema legacy)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Quando si riconosce un allarme su un nodo di amministrazione, l'allarme confermato non viene copiato in nessun altro nodo di amministrazione. Poiché i riconoscimenti non vengono copiati in altri nodi di amministrazione, l'albero topologia griglia potrebbe non avere lo stesso aspetto per ciascun nodo di amministrazione.
+
+Questa differenza può essere utile quando si connettono client web. I client Web possono avere viste diverse del sistema StorageGRID in base alle esigenze dell'amministratore.
+
+image::../media/grid_topology_with_differing_alarm_acknowledgments.gif[Più nodi di amministrazione e riconoscimenti di allarme]
+
+Si noti che le notifiche vengono inviate dal nodo di amministrazione in cui si verifica la conferma.

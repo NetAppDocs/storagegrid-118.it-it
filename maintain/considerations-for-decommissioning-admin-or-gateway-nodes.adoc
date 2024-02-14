@@ -1,0 +1,64 @@
+---
+permalink: maintain/considerations-for-decommissioning-admin-or-gateway-nodes.html 
+sidebar: sidebar 
+keywords: storagegrid, decommission admin node, gateway node, archive node 
+summary: Esaminare le considerazioni relative allo smantellamento di un nodo amministrativo, di un nodo gateway o di un nodo archivio. 
+---
+= Considerazioni sulla disattivazione dei nodi Admin, Gateway o Archive
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Esaminare le considerazioni relative allo smantellamento di un nodo amministrativo, di un nodo gateway o di un nodo archivio.
+
+
+
+== Considerazioni sul nodo amministrativo
+
+* Impossibile decommissionare il nodo di amministrazione primario.
+* Non è possibile decommissionare un nodo amministrativo se una delle sue interfacce di rete fa parte di un gruppo ad alta disponibilità (ha). Rimuovere prima le interfacce di rete dal gruppo ha. Consultare le istruzioni per link:../admin/managing-high-availability-groups.html["Gestione dei gruppi ha"].
+* Se necessario, è possibile modificare in modo sicuro i criteri ILM durante il decommissioning di un nodo amministrativo.
+* Se si decommissiona un nodo amministratore e si attiva l'accesso singolo (SSO) per il sistema StorageGRID, è necessario ricordare di rimuovere l'attendibilità della parte di base del nodo dai servizi di federazione di Active Directory (ad FS).
+* Se si utilizza link:../admin/grid-federation-overview.html["federazione di grid"], Assicurarsi che l'indirizzo IP del nodo che si sta smantellando non sia stato specificato per una connessione a federazione di griglia.
+* Quando si decommissiona un nodo di amministrazione disconnesso, i registri di controllo andranno persi da quel nodo; tuttavia, questi registri dovrebbero esistere anche nel nodo di amministrazione primario.
+
+
+
+
+== Considerazioni per il nodo gateway
+
+* Non è possibile decommissionare un nodo gateway se una delle sue interfacce di rete fa parte di un gruppo ad alta disponibilità (ha). Rimuovere prima le interfacce di rete dal gruppo ha. Consultare le istruzioni per link:../admin/managing-high-availability-groups.html["Gestione dei gruppi ha"].
+* Se necessario, è possibile modificare in modo sicuro i criteri ILM durante il decommissionamento di un nodo gateway.
+* Se si utilizza link:../admin/grid-federation-overview.html["federazione di grid"], Assicurarsi che l'indirizzo IP del nodo che si sta smantellando non sia stato specificato per una connessione a federazione di griglia.
+* È possibile decommissionare in modo sicuro un nodo gateway mentre è disconnesso.
+
+
+
+
+== [[considerations-for-archive-node]]considerazioni sul nodo di archiviazione
+
+
+NOTE: Il supporto per i nodi di archivio e l'opzione Cloud Tiering - Simple Storage Service (S3) è stato obsoleto. Il supporto del nodo di archivio verrà rimosso completamente in una versione futura.
+
+* Non è possibile smantellare un nodo di archivio se è ancora connesso alla rete. Per rimuovere un nodo di archivio, verificare che il nodo non sia più utilizzato, che i dati siano stati migrati in una posizione diversa e che il nodo sia spento. Quindi, utilizzare la procedura di decommissionamento per i nodi disconnessi.
+* Se il nodo di archivio è ancora in uso, assicurarsi che la pianificazione includa un tempo sufficiente per spostare i dati esistenti nei nodi di storage o in un pool di archiviazione cloud. Lo spostamento dei dati da un nodo di archiviazione può richiedere diversi giorni o settimane.
+
+
+.Fasi
+. Se si sta utilizzando un nodo di archiviazione con l'opzione Cloud Tiering - Simple Storage Service (S3), link:../admin/migrating-objects-from-cloud-tiering-s3-to-cloud-storage-pool.html["Migrare gli oggetti in un pool di storage cloud"].
+. Verificare che il nodo di archiviazione non sia più utilizzato da nessuna regola ILM nei criteri ILM attivi.
++
+.. Andare alla pagina *ILM* > *Storage Pools*.
+.. Dall'elenco dei pool di archiviazione, selezionare tutti i pool di archiviazione che contengono solo nodi di archiviazione.
+.. Selezionare la scheda *utilizzo ILM*.
+.. Se sono elencate regole ILM, esaminare la colonna *utilizzato nei criteri attivi* per determinare se il pool di archiviazione del nodo di archiviazione viene utilizzato in un criterio attivo.
+.. Se si utilizza il pool di storage, link:../ilm/creating-ilm-policy.html["Creare una nuova policy ILM"] Che non utilizza più il nodo di archiviazione.
+.. Attivare la nuova policy.
+.. Attendere che tutti gli oggetti vengano spostati dal pool di archiviazione del nodo di archiviazione. Questa operazione potrebbe richiedere diversi giorni o settimane.
+
+
+. Dopo aver verificato che tutti gli oggetti sono stati spostati dal nodo di archiviazione, spegnere il nodo.
+. Eseguire link:decommissioning-disconnected-grid-nodes.html["procedura di decommissionamento per i nodi disconnessi"].
+

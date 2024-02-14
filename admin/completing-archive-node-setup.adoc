@@ -1,0 +1,20 @@
+---
+permalink: admin/completing-archive-node-setup.html 
+sidebar: sidebar 
+keywords: archive node setup 
+summary: 'Il nodo di archiviazione non funziona dopo aver completato il processo di installazione. Prima che il sistema StorageGRID possa salvare gli oggetti nel nodo di archivio TSM, è necessario completare l"installazione e la configurazione del server TSM e configurare il nodo di archivio per comunicare con il server TSM.' 
+---
+= Completare la configurazione del nodo di archiviazione
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il nodo di archiviazione non funziona dopo aver completato il processo di installazione. Prima che il sistema StorageGRID possa salvare gli oggetti nel nodo di archivio TSM, è necessario completare l'installazione e la configurazione del server TSM e configurare il nodo di archivio per comunicare con il server TSM.
+
+Fare riferimento alla seguente documentazione IBM, se necessario, durante la preparazione del server TSM per l'integrazione con il nodo di archiviazione in un sistema StorageGRID:
+
+* http://www.ibm.com/support/docview.wss?rs=577&uid=ssg1S7002972["Guida per l'installazione e l'utente dei driver di dispositivo su nastro IBM"^]
+* http://www.ibm.com/support/docview.wss?rs=577&uid=ssg1S7003032["IBM Tape Device Drivers Programming Reference"^]
+

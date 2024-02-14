@@ -1,0 +1,34 @@
+---
+permalink: admin/modifying-cloud-tiering-service-state.html 
+sidebar: sidebar 
+keywords: cloud tiering 
+summary: 'È possibile controllare la capacità di lettura e scrittura del nodo di archiviazione nel sistema storage di archiviazione esterno di destinazione che si connette attraverso l"API S3 modificando lo stato del servizio di tiering cloud.' 
+---
+= Modificare lo stato del Cloud Tiering Service
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile controllare la capacità di lettura e scrittura del nodo di archiviazione nel sistema storage di archiviazione esterno di destinazione che si connette attraverso l'API S3 modificando lo stato del servizio di tiering cloud.
+
+.Prima di iniziare
+* È necessario accedere a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Lo hai fatto link:admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+* Il nodo di archiviazione deve essere configurato.
+
+
+.A proposito di questa attività
+È possibile disattivare il nodo di archiviazione modificando lo stato del servizio di tiering cloud in *Read-Write Disabled*.
+
+.Fasi
+. Selezionare *SUPPORT* > *Tools* > *Grid topology*.
+. Selezionare *_Archive Node_* > *ARC*.
+. Selezionare *Configurazione* > *principale*.
++
+image::../media/modifying_middleware_state.gif[Stato del servizio di tiering cloud]
+
+. Selezionare un *Cloud Tiering Service state*.
+. Selezionare *Applica modifiche*.
+

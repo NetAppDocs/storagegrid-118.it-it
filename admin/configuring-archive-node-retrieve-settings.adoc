@@ -1,0 +1,41 @@
+---
+permalink: admin/configuring-archive-node-retrieve-settings.html 
+sidebar: sidebar 
+keywords: archive node, retrieve settings 
+summary: È possibile configurare le impostazioni di recupero per un nodo di archiviazione per impostare lo stato su Online o Offline, oppure reimpostare i conteggi degli errori rilevati per gli allarmi associati. 
+---
+= Configurare le impostazioni di recupero del nodo di archiviazione
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È possibile configurare le impostazioni di recupero per un nodo di archiviazione per impostare lo stato su Online o Offline, oppure reimpostare i conteggi degli errori rilevati per gli allarmi associati.
+
+.Prima di iniziare
+* Hai effettuato l'accesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Lo hai fatto link:admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+
+
+.Fasi
+. Selezionare *SUPPORT* > *Tools* > *Grid topology*.
+. Selezionare *nodo archivio* > *ARC* > *Recupera*.
+. Selezionare *Configurazione* > *principale*.
++
+image::../media/archive_node_retreive.gif[Pagina di configurazione per un nodo di archiviazione > Recupera impostazioni]
+
+. Modificare le seguenti impostazioni, se necessario:
++
+** *Stato di recupero*: Impostare lo stato del componente su:
++
+*** Online: Il nodo Grid è disponibile per recuperare i dati degli oggetti dal dispositivo di archiviazione.
+*** Offline: Il nodo Grid non è disponibile per recuperare i dati dell'oggetto.
+
+
+** Reset Request Failures Count (Ripristina numero di errori richiesta): Selezionare la casella di controllo per azzerare il contatore dei guasti richiesta. Questa opzione può essere utilizzata per cancellare l'allarme ARRF (Request Failures).
+** Reset Verification Failure Count (Ripristina conteggio errori di verifica): Selezionare la casella di controllo per ripristinare il contatore per gli errori di verifica sui dati dell'oggetto recuperati. Questa opzione può essere utilizzata per cancellare l'allarme ARRV (Verification Failures) (errori di verifica).
+
+
+. Selezionare *Applica modifiche*.
+

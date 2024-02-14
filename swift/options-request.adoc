@@ -1,0 +1,45 @@
+---
+permalink: swift/options-request.html 
+sidebar: sidebar 
+keywords: swift options request 
+summary: 'La richiesta DI OPZIONI verifica la disponibilità di un singolo servizio Swift. La richiesta DI OPZIONI viene elaborata dal nodo di storage o dal nodo gateway specificato nell"URL.' 
+---
+= Richiesta DI OPZIONI
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+La richiesta DI OPZIONI verifica la disponibilità di un singolo servizio Swift. La richiesta DI OPZIONI viene elaborata dal nodo di storage o dal nodo gateway specificato nell'URL.
+
+
+
+== Metodo DI OPZIONI
+
+Ad esempio, le applicazioni client possono inviare una richiesta DI OPZIONI alla porta Swift su un nodo di storage, senza fornire credenziali di autenticazione Swift, per determinare se il nodo di storage è disponibile. È possibile utilizzare questa richiesta per il monitoraggio o per consentire ai bilanciatori di carico esterni di identificare quando un nodo di storage è inattivo.
+
+Se utilizzato con l'URL info o l'URL di storage, il metodo OPTIONS restituisce un elenco di verbi supportati per l'URL specificato (ad esempio, HEAD, GET, OPZIONI e PUT). Il metodo DELLE OPZIONI non può essere utilizzato con l'URL auth.
+
+È necessario il seguente parametro di richiesta:
+
+* `Account`
+
+
+I seguenti parametri di richiesta sono facoltativi:
+
+* `Container`
+* `Object`
+
+
+Un'esecuzione riuscita restituisce le seguenti intestazioni con una risposta "HTTP/1,1 204 Nessun contenuto". Le OPZIONI richieste all'URL di storage non richiedono l'esistenza della destinazione.
+
+* `Allow` (Un elenco di verbi supportati per l'URL specificato, ad esempio, HEAD, GET, OPZIONI, E PUT)
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `X-Trans-Id`
+
+
+.Informazioni correlate
+link:supported-swift-api-endpoints.html["Endpoint API Swift supportati"]

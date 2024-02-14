@@ -1,0 +1,71 @@
+---
+permalink: troubleshoot/troubleshooting-storage-status-alarm.html 
+sidebar: sidebar 
+keywords: how to troubleshoot storage status alarm, how to troubleshoot ssts alarm 
+summary: 'L"allarme Storage Status (SST) viene attivato se un nodo di storage non dispone di spazio libero sufficiente per lo storage a oggetti.' 
+---
+= Risolvere i problemi relativi all'allarme Storage Status (SST)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'allarme Storage Status (SST) viene attivato se un nodo di storage non dispone di spazio libero sufficiente per lo storage a oggetti.
+
+.Prima di iniziare
+* È necessario accedere a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Lo hai fatto link:../admin/admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+
+
+.A proposito di questa attività
+L'allarme SSTS (Storage Status) viene attivato a livello di Notice quando la quantità di spazio libero su ogni volume in un nodo di storage scende al di sotto del valore del watermark Storage Volume Soft Read Only (*CONFIGURATION* > *System* > *Storage options*).
+
+image::../media/storage_watermarks.png[Panoramica delle opzioni di storage]
+
+Ad esempio, si supponga che la filigrana Storage Volume Soft Read-Only sia impostata su 10 GB, che è il valore predefinito. L'allarme SSTS viene attivato se su ciascun volume di storage nel nodo di storage rimangono meno di 10 GB di spazio utilizzabile. Se uno dei volumi dispone di almeno 10 GB di spazio disponibile, l'allarme non viene attivato.
+
+Se è stato attivato un allarme SSTS, è possibile seguire questa procedura per comprendere meglio il problema.
+
+.Fasi
+. Selezionare *SUPPORTO* > *Allarmi (legacy)* > *Allarmi correnti*.
+. Dalla colonna Service (Servizio), selezionare il data center, il nodo e il servizio associati all'allarme SSTS.
++
+Viene visualizzata la pagina Grid Topology (topologia griglia). La scheda Allarmi mostra gli allarmi attivi per il nodo e il servizio selezionato.
+
++
+image::../media/ssts_alarm.png[Nodo di storage > LDR > Storage > scheda Alarms (Allarmi)]
+
++
+In questo esempio, gli allarmi SST (Storage Status) e SAVP (Total usable Space (Percent)) sono stati attivati a livello di notifica.
+
++
+
+NOTE: In genere, sia l'allarme SSTS che l'allarme SAVP vengono attivati circa contemporaneamente; tuttavia, l'attivazione di entrambi gli allarmi dipende dall'impostazione del watermark in GB e dall'impostazione dell'allarme SAVP in percentuale.
+
+. Per determinare la quantità di spazio utilizzabile effettivamente disponibile, selezionare *LDR* > *Storage* > *Overview* e individuare l'attributo Total Usable Space (STAS).
++
+image::../media/storage_node_total_usable_space.png[Spazio totale utilizzabile]
+
++
+In questo esempio, rimangono disponibili solo 19.6 GB dei 164 GB di spazio su questo nodo di storage. Si noti che il valore totale è la somma dei valori *Available* per i tre volumi dell'archivio di oggetti. L'allarme SSTS è stato attivato perché ciascuno dei tre volumi di storage aveva meno di 10 GB di spazio disponibile.
+
+. Per capire come lo storage è stato utilizzato nel tempo, selezionare la scheda *Report* e tracciare lo spazio utilizzabile totale nelle ultime ore.
++
+In questo esempio, lo spazio utilizzabile totale è sceso da circa 155 GB a 12:00 a 20 GB a 12:35, il che corrisponde al momento in cui è stato attivato l'allarme SSTS.
+
++
+image::../media/total_usable_space_chart.png[Spazio totale utilizzabile - grafico]
+
+. Per comprendere come lo storage viene utilizzato come percentuale del totale, tracciare lo spazio utilizzabile totale (percentuale) nelle ultime ore.
++
+In questo esempio, lo spazio utilizzabile totale è sceso dal 95% a poco più del 10% circa contemporaneamente.
+
++
+image::../media/total_usable_storage_percent_chart.png[Spazio totale utilizzabile (percentuale) - grafico]
+
+. Secondo necessità, link:../expand/guidelines-for-adding-object-capacity.html["aggiungere capacità di storage"].
++
+Vedere anche link:../admin/managing-full-storage-nodes.html["Gestire nodi storage completi"].
+
+

@@ -1,0 +1,57 @@
+---
+permalink: audit/audit-messages-and-object-lifecycle.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, log, object lifecycle, ingest, retrieve, delete, s3, swift, timing, ILM, Information lifecycle management, archive node, archive nodes 
+summary: 'I messaggi di audit vengono generati ogni volta che un oggetto viene acquisito, recuperato o eliminato. È possibile identificare queste transazioni nel registro di audit individuando i messaggi di audit specifici dell"API (S3 o Swift).' 
+---
+= Quando vengono generati i messaggi di audit?
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I messaggi di audit vengono generati ogni volta che un oggetto viene acquisito, recuperato o eliminato. È possibile identificare queste transazioni nel registro di controllo individuando i messaggi di audit specifici dell'API (S3 o Swift).
+
+I messaggi di audit sono collegati tramite identificatori specifici di ciascun protocollo.
+
+[cols="1a,1a"]
+|===
+| Protocollo | Codice 
+
+
+ a| 
+Collegamento delle operazioni S3
+ a| 
+S3BK (bucket), S3KY (chiave) o entrambi
+
+
+
+ a| 
+Collegamento delle operazioni Swift
+ a| 
+WCON (contenitore), WOBJ (oggetto) o entrambi
+
+
+
+ a| 
+Collegamento delle operazioni interne
+ a| 
+CBID (identificatore interno dell'oggetto)
+
+|===
+
+
+== Tempistiche dei messaggi di audit
+
+A causa di fattori come le differenze di tempo tra i nodi della griglia, le dimensioni degli oggetti e i ritardi di rete, l'ordine dei messaggi di controllo generati dai diversi servizi può variare rispetto a quello mostrato negli esempi di questa sezione.
+
+
+
+== Nodi di archiviazione
+
+La serie di messaggi di audit generati quando un nodo di archiviazione invia dati a oggetti a un sistema di storage di archiviazione esterno è simile a quella dei nodi di storage, ad eccezione del fatto che non esiste alcun messaggio SCMT (Store Object Commit), Inoltre, vengono generati i messaggi ATCE (Archive Object Store Begin) e ASCE (Archive Object Store End) per ogni copia archiviata dei dati dell'oggetto.
+
+La serie di messaggi di controllo generati quando un nodo di archiviazione recupera i dati degli oggetti da un sistema di storage di archiviazione esterno è simile a quella dei nodi di storage, ad eccezione del fatto che i messaggi ARCB (Archive Object Retrieve Begin) e ARCE (Archive Object Retrieve End) vengono generati per ogni copia recuperata dei dati degli oggetti.
+
+La serie di messaggi di controllo generati quando un nodo di archiviazione elimina i dati degli oggetti da un sistema di storage di archiviazione esterno è simile a quella dei nodi di storage, ad eccezione del fatto che non è presente alcun messaggio SREM (Object Store Remove) e che è presente un messaggio AREM (Archive Object Remove) per ogni richiesta di eliminazione.

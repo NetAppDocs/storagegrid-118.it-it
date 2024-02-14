@@ -1,0 +1,95 @@
+---
+permalink: swift/history-of-swift-api-support-in-storagegrid.html 
+sidebar: sidebar 
+keywords: swift api support history 
+summary: 'È necessario essere a conoscenza delle modifiche apportate al supporto del sistema StorageGRID per l"API DI Swift REST.' 
+---
+= Cronologia del supporto delle API Swift in StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+È necessario essere a conoscenza delle modifiche apportate al supporto del sistema StorageGRID per l'API DI Swift REST.
+
+[cols="1a,3a"]
+|===
+| Rilasciare | Commenti 
+
+
+ a| 
+11,8
+ a| 
+
+
+
+ a| 
+11,7
+ a| 
+Il supporto per le applicazioni client Swift è stato obsoleto e verrà rimosso in una release futura.
+
+
+
+ a| 
+11,6
+ a| 
+Modifiche editoriali minori.
+
+
+
+ a| 
+11,5
+ a| 
+Eliminata la debole consistenza. Verrà invece utilizzata la coerenza disponibile.
+
+
+
+ a| 
+11,4
+ a| 
+Aggiunto supporto per TLS 1.3. Aggiunta descrizione dell'interrelazione tra ILM e coerenza.
+
+
+
+ a| 
+11,3
+ a| 
+Aggiornate le operazioni PUT object per descrivere l'impatto delle regole ILM che utilizzano il posizionamento sincrono all'acquisizione (le opzioni bilanciate e rigide per il comportamento di Ingest). Aggiunta descrizione delle connessioni client che utilizzano endpoint di bilanciamento del carico o gruppi ad alta disponibilità. Le crittografia TLS 1.1 non sono più supportate.
+
+
+
+ a| 
+11,2
+ a| 
+Modifiche editoriali minori al documento.
+
+
+
+ a| 
+11,1
+ a| 
+Aggiunto supporto per l'utilizzo di HTTP per connessioni client Swift ai nodi grid. Aggiornate le definizioni dei valori di coerenza.
+
+
+
+ a| 
+11,0
+ a| 
+Aggiunto supporto per 1,000 container per ciascun account tenant.
+
+
+
+ a| 
+10,3
+ a| 
+Aggiornamenti amministrativi e correzioni del documento. Rimosse le sezioni per la configurazione dei certificati server personalizzati.
+
+
+
+ a| 
+10,2
+ a| 
+Supporto iniziale dell'API Swift da parte del sistema StorageGRID. La versione attualmente supportata è OpenStack Swift Object Storage API v1.
+
+|===

@@ -1,0 +1,40 @@
+---
+permalink: ilm/workflow-for-s3-object-lock.html 
+sidebar: sidebar 
+keywords: object lock workflow 
+summary: In qualità di amministratore della griglia, è necessario coordinare strettamente gli utenti tenant per garantire che gli oggetti siano protetti in modo da soddisfare i requisiti di conservazione. 
+---
+= Workflow per blocco oggetti S3
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+In qualità di amministratore della griglia, è necessario coordinare strettamente gli utenti tenant per garantire che gli oggetti siano protetti in modo da soddisfare i requisiti di conservazione.
+
+Il diagramma del flusso di lavoro mostra i passaggi di alto livello per l'utilizzo di S3 Object Lock. Questi passaggi vengono eseguiti dall'amministratore della griglia e dagli utenti del tenant.
+
+image::../media/s3_object_lock_workflow_gm.png[Workflow di blocco oggetti S3 per Grid Manager]
+
+
+
+== Attività dell'amministratore di rete
+
+Come mostra il diagramma del flusso di lavoro, un amministratore della griglia deve eseguire due attività di alto livello prima che gli utenti del tenant S3 possano utilizzare il blocco oggetti S3:
+
+. Creare almeno una regola ILM conforme e impostarla come regola predefinita in un criterio ILM attivo.
+. Attivare l'impostazione globale S3 Object Lock per l'intero sistema StorageGRID.
+
+
+
+
+== Attività utente tenant
+
+Una volta attivata l'impostazione globale S3 Object Lock, i tenant possono eseguire le seguenti attività:
+
+. Creare bucket con S3 Object Lock attivato.
+. Facoltativamente, specificare le impostazioni di conservazione predefinite per il bucket. Tutte le impostazioni predefinite del bucket vengono applicate solo a nuovi oggetti che non dispongono di impostazioni di conservazione personalizzate.
+. Aggiungere oggetti a tali bucket e specificare facoltativamente i periodi di conservazione a livello di oggetto e le impostazioni di conservazione a livello legale.
+. Come richiesto, aggiornare la conservazione predefinita per il bucket o aggiornare il periodo di conservazione o l'impostazione di conservazione legale per un singolo oggetto.
+

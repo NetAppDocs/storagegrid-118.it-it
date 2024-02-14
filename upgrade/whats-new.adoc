@@ -1,0 +1,107 @@
+---
+permalink: upgrade/whats-new.html 
+sidebar: sidebar 
+keywords: what is new in StorageGRID 11.8 
+summary: Questa versione di StorageGRID introduce le seguenti funzionalità. 
+---
+= Novità di StorageGRID 11,8
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Questa versione di StorageGRID introduce le seguenti funzionalità e modifiche funzionali.
+
+
+
+== Installazione, aggiornamento, hotfix
+
+Password di installazione temporanea:: Quando vuoi link:../vmware/deploying-storagegrid-node-as-virtual-machine.html["Implementare un nodo StorageGRID come macchina virtuale"] Oppure utilizza VMware vSphere per link:../vmware/automating-grid-node-deployment-in-vmware-vsphere.html["automatizzare l'implementazione dei nodi grid"], viene ora richiesto di impostare una password di installazione temporanea. Questa password viene utilizzata solo se è necessario accedere alla console della macchina virtuale o utilizzare SSH prima che il nuovo nodo si unisca alla griglia.
+
+
+
+
+== Appliance
+
+Sito della documentazione per le apparecchiature:: La documentazione per le appliance StorageGRID è stata spostata in una nuova link:https://docs.netapp.com/us-en/storagegrid-appliances/["sito della documentazione relativa alle apparecchiature"^].
+Supporto FIPS:: Supporto per la crittografia validata FIPS 140-2.
+SGF6112 miglioramenti:: Supporto per StorageGRID 11,8 e StorageGRID Appliance Installer versione firmware 3.8.0:
++
+--
+* Miglioramento significativo delle prestazioni di MESSA per le nuove installazioni SGF6112.
+* Avvio protetto UEFI su nodi SGF6112 aggiornati e nuovi.
+* Gestore delle chiavi locale per le password delle unità SSD DAS NVMe.
+
+
+--
+
+
+
+
+== Configurare e gestire
+
+Impostazione predefinita per l'intera griglia di coerenza:: È possibile modificare link:../s3/consistency-controls.html["coerenza predefinita a livello di griglia"] Utilizzando il Grid Manager o l'endpoint grid-config di link:../admin/using-grid-management-api.html["API privata di Grid Management"]. Il nuovo default verrà applicato ai bucket creati dopo la modifica.
+Tag dei criteri ILM:: Consente il controllo delle policy ILM per bucket con etichette bucket. Possono esistere più criteri ILM attivi e inattivi contemporaneamente. Vedere link:../ilm/ilm-policy-overview.html["Criteri ILM: Panoramica"].
+Endpoint Kafka:: Supporto per endpoint Kafka per link:../tenant/understanding-notifications-for-buckets.html["notifiche eventi bucket"].
+Bilanciamento del carico per il traffico delle interfacce di gestione:: Creare endpoint di bilanciamento del carico per gestire il carico di lavoro dell'interfaccia di gestione sui nodi amministrativi. Vedere link:../admin/managing-load-balancing.html["considerazioni per il bilanciamento del carico"]. Come parte di questa modifica, è ora possibile utilizzare le porte 443, 8443 e 9443 di Grid Manager e Tenant Manager quando si creano endpoint di bilanciamento del carico HTTPS per l'accesso client S3 o Swift.
+Scheda Gestisci unità:: Aggiunto link:../monitor/viewing-manage-drives-tab.html["Scheda Gestisci unità"] Per l'apparecchio SGF6112.
+Nodi di storage solo metadati:: È ora possibile specificare un nuovo link:../primer/what-storage-node-is.html#types-of-storage-nodes["Nodo storage basato su software"] verranno utilizzati per memorizzare solo i metadati al posto degli oggetti e dei metadati.
+SSO supporta i nomi principali degli utenti:: Quando link:../admin/configuring-sso.html["Configurazione SSO (Single Sign-on)"] Per Active Directory Federation Service (ad FS) o PingFederate, è ora possibile mappare il nome principale utente a. `Name ID` nella regola delle richieste di rimborso o a. `sAMAccountName=${username}` nell'istanza della scheda.
+Configurazione delle policy TLS e supporto KMIP::
++
+--
+* StorageGRID ora supporta il protocollo TLS 1,2 o TLS 1,3 per le connessioni KMIP. Vedere link:../admin/kms-considerations-and-requirements.html["Considerazioni e requisiti per l'utilizzo di un server di gestione delle chiavi"].
+* link:../admin/kms-configuring-storagegrid-as-client.html["Hashicorp è ora completamente supportato per KMIP"].
+* Sono stati apportati miglioramenti a. link:../admin/manage-tls-ssh-policy.html["Configurazione dei criteri TLS"].
+
+
+--
+
+
+
+
+== Espandi il grid, mantieni la grid, ripristina o sostituisci i nodi
+
+Miglioramento dei cloni degli account:: Gli account esistenti possono essere clonati in una griglia remota. Vedere link:../admin/grid-federation-what-is-account-clone.html["Cos'è il clone dell'account"].
+I nodi di archivio possono essere dismessi:: È ora possibile utilizzare la procedura nodi di decompressione per rimuovere tutti i nodi di archiviazione non utilizzati che sono disconnessi dalla griglia. Vedere link:../maintain/decommissioning-disconnected-grid-nodes.html["Decommissionare nodi di rete disconnessi"].
++
+--
+
+NOTE: I nodi di archivio sono stati deprecati in StorageGRID 11,7.
+
+--
+Ripristino automatico del volume:: È stato aggiunto un interruttore per il ripristino automatico del volume. Vedere link:../maintain/restoring-volume.html["Ripristinare i dati degli oggetti utilizzando Grid Manager"].
+Erasure coding, modifiche alle configurazioni e procedura di ribilanciamento:: Miglioramenti alle configurazioni di erasure coding.
++
+--
+Ridistribuzione dei frammenti sottoposti a erasure coding tra i nodi storage nuovi ed esistenti. Ricalcolare il bilanciamento durante le attività di manutenzione per fornire una distribuzione migliore al termine delle attività. Vedere link:../expand/rebalancing-erasure-coded-data-after-adding-storage-nodes.html["Procedura di ribilanciamento dell'erasure coding"].
+
+--
+Traccia stack API di gestione:: L'impostazione di protezione *Management API Stack Trace* consente di controllare se una traccia stack viene restituita nelle risposte agli errori di Grid Manager e Tenant Manager API. Vedere link:../admin/changing-browser-session-timeout-interface.html["Modificare le impostazioni di sicurezza dell'interfaccia"].
+Procedura di riavvio in sequenza:: È ora possibile utilizzare link:../maintain/rolling-reboot-procedure.html["procedura di riavvio in sequenza"] per riavviare più nodi grid senza causare un'interruzione del servizio.
+
+
+
+
+== Grid Manager
+
+Reti client non attendibili, informazioni sulle porte aggiuntive:: L'elenco delle porte aperte alla rete client non attendibile di Grid Manager si trova ora in una colonna denominata "Apri a rete client non attendibile" in *CONFIGURAZIONE* > *rete* > *endpoint del bilanciamento del carico* > *interfaccia di gestione* (precedentemente situata nella pagina di controllo del firewall). Vedere link:../admin/configuring-load-balancer-endpoints.html["Configurare gli endpoint del bilanciamento del carico"].
+
+
+
+
+== Manager tenant
+
+S3 Console non più sperimentale:: Funzionalità aggiuntive descritte in link:../tenant/use-s3-console.html["Utilizzare la console S3"].
+Permesso tenant:: Il link:../tenant/tenant-management-permissions.html["autorizzazione gestione tenant"], È stato aggiunto Visualizza tutti i bucket.
+
+
+
+
+== API REST S3
+
+* link:../s3/changes-to-s3-rest-api-support.html["Modifiche al supporto delle API REST S3"].
+* S3 eliminare i marcatori con UUID. Vedere link:../ilm/how-objects-are-deleted.html#delete-s3-versioned-objects["Modalità di eliminazione degli oggetti"] e. link:../audit/sdel-s3-delete.html["SDEL: ELIMINAZIONE S3"].
+* link:../s3/select-object-content.html["S3 selezionare ScanRange"] Viene utilizzato quando viene fornito nelle richieste di file CSV e Parquet.
+

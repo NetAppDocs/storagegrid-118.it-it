@@ -1,0 +1,35 @@
+---
+permalink: admin/verifying-nfs-audit-integration.html 
+sidebar: sidebar 
+keywords: nfs, audit share, audit client 
+summary: Dopo aver configurato una condivisione di audit e aggiunto un client di audit NFS, è possibile montare la condivisione del client di audit e verificare che i file siano disponibili dalla condivisione di audit. 
+---
+= Verificare l'integrazione dell'audit NFS
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dopo aver configurato una condivisione di audit e aggiunto un client di audit NFS, è possibile montare la condivisione del client di audit e verificare che i file siano disponibili dalla condivisione di audit.
+
+
+NOTE: Il supporto per NFS è stato obsoleto e verrà rimosso in una versione futura.
+
+.Fasi
+. Verificare la connettività (o la variante per il sistema client) utilizzando l'indirizzo IP lato client del nodo di amministrazione che ospita il servizio AMS. Inserire: `ping IP_address`
++
+Verificare che il server risponda, indicando la connettività.
+
+. Montare la condivisione di sola lettura dell'audit utilizzando un comando appropriato per il sistema operativo del client. Un esempio di comando Linux è (invio su una riga):
++
+`mount -t nfs -o hard,intr _Admin_Node_IP_address_:/var/local/log _myAudit_`
+
++
+Utilizzare l'indirizzo IP del nodo di amministrazione che ospita il servizio AMS e il nome di condivisione predefinito per il sistema di audit. Il punto di montaggio può essere qualsiasi nome selezionato dal client (ad esempio, `_myAudit_` nel comando precedente).
+
+. Verificare che i file siano disponibili dalla condivisione dell'audit. Inserire: `ls _myAudit_ /*`
++
+dove `_myAudit_` è il punto di montaggio della condivisione dell'audit. Dovrebbe essere presente almeno un file di log.
+
+

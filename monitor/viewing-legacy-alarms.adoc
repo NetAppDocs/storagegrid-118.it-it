@@ -1,0 +1,101 @@
+---
+permalink: monitor/viewing-legacy-alarms.html 
+sidebar: sidebar 
+keywords: legacy alarms 
+summary: 'Gli allarmi (sistema legacy) vengono attivati quando gli attributi di sistema raggiungono i valori di soglia degli allarmi. È possibile visualizzare gli allarmi attualmente attivi dalla pagina Allarmi correnti.' 
+---
+= Visualizzare gli allarmi legacy
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Gli allarmi (sistema legacy) vengono attivati quando gli attributi di sistema raggiungono i valori di soglia degli allarmi. È possibile visualizzare gli allarmi attualmente attivi dalla pagina Allarmi correnti.
+
+
+NOTE: Mentre il sistema di allarme legacy continua a essere supportato, il sistema di allarme offre vantaggi significativi ed è più facile da utilizzare.
+
+.Prima di iniziare
+* È necessario accedere a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+
+
+.Fasi
+. Selezionare *SUPPORTO* > *Allarmi (legacy)* > *Allarmi correnti*.
++
+image::../media/current_alarms_page.png[Pagina Allarmi correnti]
+
++
+L'icona di allarme indica la gravità di ciascun allarme, come indicato di seguito:
+
++
+[cols="1a,1a,1a,3a"]
+|===
+| Icona | Colore | Severità degli allarmi | Significato 
+
+
+ a| 
+image:../media/icon_alarm_yellow_notice.gif["icona quadrata gialla"]
+ a| 
+Giallo
+ a| 
+Avviso
+ a| 
+Il nodo è connesso alla rete, ma esiste una condizione insolita che non influisce sulle normali operazioni.
+
+
+
+ a| 
+image:../media/icon_alert_yellow_minor.png["icona a forma di diamante arancione chiaro"]
+ a| 
+Arancione chiaro
+ a| 
+Minore
+ a| 
+Il nodo è collegato alla rete, ma esiste una condizione anomala che potrebbe influire sul funzionamento in futuro. È necessario indagare per evitare l'escalation.
+
+
+
+ a| 
+image:../media/icon_alert_orange_major.png["icona a forma di diamante arancione scuro"]
+ a| 
+Arancione scuro
+ a| 
+Maggiore
+ a| 
+Il nodo è collegato alla rete, ma esiste una condizione anomala che attualmente influisce sul funzionamento. Ciò richiede una rapida attenzione per evitare l'escalation.
+
+
+
+ a| 
+image:../media/icon_alert_red_critical.png["icona x rossa"]
+ a| 
+Rosso
+ a| 
+Critico
+ a| 
+Il nodo è connesso alla rete, ma esiste una condizione anomala che ha interrotto le normali operazioni. Il problema deve essere risolto immediatamente.
+
+|===
+. Per informazioni sull'attributo che ha causato l'attivazione dell'allarme, fare clic con il pulsante destro del mouse sul nome dell'attributo nella tabella.
+. Per visualizzare ulteriori dettagli su un allarme, fare clic sul nome del servizio nella tabella.
++
+Viene visualizzata la scheda Allarmi per il servizio selezionato (*SUPPORT* > *Tools* > *Grid topology* > *_Grid Node_* > *_Service_* > *Alarms*).
+
++
+image::../media/alarms_acknowledging.png[Conferma degli allarmi]
+
+. Se si desidera azzerare il conteggio degli allarmi correnti, è possibile eseguire le seguenti operazioni:
++
+** Riconoscere l'allarme. Un allarme confermato non viene più incluso nel conteggio degli allarmi legacy a meno che non venga attivato al livello di severità successivo o venga risolto e si verifichi di nuovo.
+** Disattivare un particolare allarme predefinito o Global Custom per l'intero sistema per evitare che venga attivato nuovamente.
+
+
+
+
+.Informazioni correlate
+link:alarms-reference.html["Riferimento allarmi (sistema legacy)"]
+
+link:managing-alarms.html["Riconoscere gli allarmi correnti (sistema precedente)"]
+
+link:managing-alarms.html["Disattivazione degli allarmi (sistema legacy)"]

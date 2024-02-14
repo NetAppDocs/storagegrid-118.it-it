@@ -1,0 +1,13 @@
+---
+layout: landing-page 
+sidebar: sidebar 
+permalink: landing-maintain/index.html 
+summary: È possibile aggiungere nodi o siti per espandere la capacità o le funzionalità del sistema. È inoltre possibile eseguire varie procedure di manutenzione per eseguire il ripristino in caso di guasti o per mantenere il sistema StorageGRID aggiornato e in grado di funzionare in modo efficiente. 
+---
+= Gestire un sistema StorageGRID
+:hardbreaks:
+:allow-uri-read: 
+:linkattrs: 
+:imagesdir: ./media/
+
+

@@ -1,0 +1,110 @@
+---
+permalink: admin/what-storage-volume-watermarks-are.html 
+sidebar: sidebar 
+keywords: what are storage volume watermarks, storage volume soft read-only watermark, storage volume hard read-only watermark, storage volume read-write watermark 
+summary: StorageGRID utilizza tre filigrane dei volumi di storage per garantire che i nodi di storage vengano trasferiti in modo sicuro in uno stato di sola lettura prima che lo spazio sia estremamente ridotto e per consentire ai nodi di storage che sono stati trasferiti in uno stato di sola lettura di tornare in lettura e scrittura. 
+---
+= Cosa sono le filigrane dei volumi di storage?
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID utilizza tre filigrane dei volumi di storage per garantire che i nodi di storage vengano trasferiti in modo sicuro in uno stato di sola lettura prima che lo spazio sia estremamente ridotto e per consentire ai nodi di storage che sono stati trasferiti in uno stato di sola lettura di tornare in lettura e scrittura.
+
+image::../media/storage_volume_watermarks.png[Filigrane dei volumi di storage]
+
+
+NOTE: Le filigrane dei volumi di storage si applicano solo allo spazio utilizzato per i dati degli oggetti replicati e codificati in cancellazione. Per ulteriori informazioni sullo spazio riservato ai metadati degli oggetti sul volume 0, visitare il sito Web
+link:managing-object-metadata-storage.html["Gestire lo storage dei metadati degli oggetti"].
+
+
+
+== Che cos'è la filigrana di sola lettura?
+
+La filigrana *Storage Volume Soft Read-Only* è la prima filigrana a indicare che lo spazio utilizzabile di un nodo di storage per i dati dell'oggetto sta diventando pieno.
+
+Se ogni volume in un nodo di storage ha meno spazio libero rispetto alla filigrana di sola lettura soft del volume, il nodo di storage passa alla _modalità di sola lettura_. La modalità di sola lettura indica che il nodo di storage annuncia servizi di sola lettura al resto del sistema StorageGRID, ma soddisfa tutte le richieste di scrittura in sospeso.
+
+Ad esempio, si supponga che ogni volume in un nodo di storage abbia un watermark di sola lettura soft di 10 GB. Non appena ogni volume dispone di meno di 10 GB di spazio libero, il nodo di storage passa alla modalità di sola lettura.
+
+
+
+== Che cos'è la filigrana di sola lettura?
+
+La filigrana *Storage Volume Hard Read-Only* è la filigrana successiva per indicare che lo spazio utilizzabile di un nodo per i dati dell'oggetto sta diventando pieno.
+
+Se lo spazio libero su un volume è inferiore a quello della filigrana di sola lettura del volume, la scrittura sul volume non avrà esito positivo. Tuttavia, le scritture su altri volumi possono continuare fino a quando lo spazio libero su tali volumi non è inferiore alle filigrane di sola lettura.
+
+Ad esempio, si supponga che ogni volume in un nodo di storage abbia un watermark di sola lettura hard di 5 GB. Non appena ogni volume dispone di meno di 5 GB di spazio libero, Storage Node non accetta più richieste di scrittura.
+
+La filigrana hard Read-only è sempre inferiore alla filigrana soft Read-only.
+
+
+
+== Che cos'è la filigrana Read-Write?
+
+Il watermark *Storage Volume Read-Write* si applica solo ai nodi di storage che sono passati alla modalità di sola lettura. Determina quando il nodo può diventare di nuovo in lettura/scrittura. Quando lo spazio libero su un volume di storage in un nodo di storage è superiore al watermark Read-Write di quel volume, il nodo ritorna automaticamente allo stato Read-write.
+
+Ad esempio, supponiamo che il nodo di storage sia passato alla modalità di sola lettura. Si supponga inoltre che ogni volume abbia un watermark Read-Write di 30 GB. Non appena lo spazio libero per qualsiasi volume aumenta fino a 30 GB, il nodo diventa di nuovo in lettura/scrittura.
+
+La filigrana Read-Write è sempre più grande della filigrana di sola lettura e della filigrana di sola lettura.
+
+
+
+== Visualizzare le filigrane dei volumi di storage
+
+È possibile visualizzare le impostazioni correnti del watermark e i valori ottimizzati per il sistema. Se non si utilizzano filigrane ottimizzate, è possibile determinare se è possibile o necessario regolare le impostazioni.
+
+.Prima di iniziare
+* L'aggiornamento a StorageGRID 11.6 o versione successiva è stato completato.
+* Hai effettuato l'accesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Hai il link:admin-group-permissions.html["Autorizzazione di accesso root"].
+
+
+
+
+=== Consente di visualizzare le impostazioni correnti del watermark
+
+È possibile visualizzare le impostazioni correnti del filigrana dello storage in Grid Manager.
+
+.Fasi
+. Selezionare *SUPPORT* > *other* > *Storage Watermarks*.
+. Nella pagina Storage Watermark (Filigrane di archiviazione), controllare la casella di controllo Use Optimized Values (Usa valori ottimizzati).
++
+** Se la casella di controllo è selezionata, tutte e tre le filigrane sono ottimizzate per ogni volume di archiviazione su ogni nodo di archiviazione, in base alle dimensioni del nodo di archiviazione e alla capacità relativa del volume.
++
+Questa è l'impostazione predefinita e consigliata. Non aggiornare questi valori. Se lo si desidera, è possibile <<view-optimized-storage-watermarks,Visualizza filigrane di storage ottimizzate>>.
+
+** Se la casella di controllo Usa valori ottimizzati non è selezionata, vengono utilizzate filigrane personalizzate (non ottimizzate). Si sconsiglia di utilizzare le impostazioni personalizzate della filigrana. Seguire le istruzioni per link:../troubleshoot/troubleshoot-low-watermark-alert.html["Risoluzione dei problemi gli avvisi di override del watermark di sola lettura bassa"] per determinare se è possibile o necessario regolare le impostazioni.
++
+Quando si specificano le impostazioni personalizzate della filigrana, è necessario immettere valori superiori a 0.
+
+
+
+
+
+
+
+=== [[filigrane-memorizzazione-ottimizzate-vista]]Visualizza filigrane di memorizzazione ottimizzate
+
+StorageGRID utilizza due metriche Prometheus per mostrare i valori ottimizzati che ha calcolato per la filigrana di sola lettura del volume di storage *Soft Read-only*. È possibile visualizzare i valori minimi e massimi ottimizzati per ciascun nodo di storage nella griglia.
+
+. Selezionare *SUPPORT* > *Tools* > *Metrics*.
+. Nella sezione Prometheus, selezionare il collegamento per accedere all'interfaccia utente Prometheus.
+. Per visualizzare la filigrana minima di sola lettura soft consigliata, immettere la seguente metrica Prometheus e selezionare *Esegui*:
++
+`storagegrid_storage_volume_minimum_optimized_soft_readonly_watermark`
+
++
+L'ultima colonna mostra il valore minimo ottimizzato della filigrana di sola lettura soft per tutti i volumi di storage su ciascun nodo di storage. Se questo valore è superiore all'impostazione personalizzata per *Storage Volume Soft Read-Only Watermark*, viene attivato l'avviso *Low Read-only watermark override* per il nodo di storage.
+
+. Per visualizzare la filigrana di sola lettura soft massima consigliata, immettere la seguente metrica Prometheus e selezionare *Esegui*:
++
+`storagegrid_storage_volume_maximum_optimized_soft_readonly_watermark`
+
++
+L'ultima colonna mostra il valore massimo ottimizzato della filigrana di sola lettura soft per tutti i volumi di storage su ciascun nodo di storage.
+
+

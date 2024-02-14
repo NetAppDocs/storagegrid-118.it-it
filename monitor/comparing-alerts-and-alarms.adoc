@@ -1,0 +1,241 @@
+---
+permalink: monitor/comparing-alerts-and-alarms.html 
+sidebar: sidebar 
+keywords: how to compare alerts and alarms 
+summary: Esistono diverse analogie tra il sistema di allarme e il sistema di allarme legacy, ma il sistema di allarme offre notevoli vantaggi ed è più semplice da utilizzare. 
+---
+= Confrontare avvisi e allarmi
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Esistono diverse analogie tra il sistema di allarme e il sistema di allarme legacy, ma il sistema di allarme offre notevoli vantaggi ed è più semplice da utilizzare.
+
+Fare riferimento alla seguente tabella per informazioni su come eseguire operazioni simili.
+
+[cols="1a,1a,1a"]
+|===
+|  | Avvisi | Allarmi (sistema precedente) 
+
+
+ a| 
+Come si visualizzano gli avvisi o gli allarmi attivi?
+ a| 
+* Selezionare il collegamento *Current alerts* (Avvisi correnti) nella dashboard.
+* Selezionare l'avviso nella pagina *NODI* > *Panoramica*.
+* Selezionare *ALERTS* > *current*.
+
+
+link:monitoring-system-health.html#view-current-and-resolved-alerts["Visualizzare gli avvisi correnti"]
+ a| 
+Selezionare *SUPPORTO* > *Allarmi (legacy)* > *Allarmi correnti*.
+
+link:managing-alarms.html["Gestire gli allarmi (sistema legacy)"]
+
+
+
+ a| 
+Cosa causa l'attivazione di un allarme o di un allarme?
+ a| 
+Gli avvisi vengono attivati quando un'espressione Prometheus in una regola di avviso valuta true per la condizione di attivazione e la durata specifiche.
+
+link:view-alert-rules.html["Visualizzare le regole degli avvisi"]
+ a| 
+Gli allarmi vengono attivati quando un attributo StorageGRID raggiunge un valore di soglia.
+
+link:managing-alarms.html["Gestire gli allarmi (sistema legacy)"]
+
+
+
+ a| 
+Se viene attivato un allarme o un allarme, come si risolve il problema sottostante?
+ a| 
+Le azioni consigliate per un avviso sono incluse nelle notifiche e-mail e sono disponibili nelle pagine Avvisi di Grid Manager.
+
+Come richiesto, ulteriori informazioni sono fornite nella documentazione di StorageGRID.
+
+link:alerts-reference.html["Riferimenti agli avvisi"]
+ a| 
+Per informazioni su un allarme, selezionare il nome dell'attributo oppure cercare un codice di allarme nella documentazione di StorageGRID.
+
+link:alarms-reference.html["Riferimento allarmi (sistema legacy)"]
+
+
+
+ a| 
+Dove è possibile visualizzare un elenco di avvisi o allarmi risolti?
+ a| 
+Selezionare *ALERTS* > *resolved*.
+
+link:monitoring-system-health.html#view-current-and-resolved-alerts["Visualizzare gli avvisi correnti e risolti"]
+ a| 
+Selezionare *SUPPORTO* > *Allarmi (legacy)* > *Allarmi storici*.
+
+link:managing-alarms.html["Gestire gli allarmi (sistema legacy)"]
+
+
+
+ a| 
+Dove posso gestire le impostazioni?
+ a| 
+Selezionare *ALERTS* > *Rules*.
+
+link:managing-alerts.html["Gestire gli avvisi"]
+ a| 
+Selezionare *SUPPORT*. Quindi, utilizzare le opzioni nella sezione *Allarmi (legacy)* del menu.
+
+link:managing-alarms.html["Gestire gli allarmi (sistema legacy)"]
+
+
+
+ a| 
+Quali autorizzazioni di gruppo utenti sono necessarie?
+ a| 
+* Chiunque possa accedere a Grid Manager può visualizzare gli avvisi correnti e risolti.
+* È necessario disporre dell'autorizzazione Manage alerts (Gestisci avvisi) per gestire silenzi, notifiche di avviso e regole di avviso.
+
+
+link:../admin/index.html["Amministrare StorageGRID"]
+ a| 
+* Chiunque possa accedere a Grid Manager può visualizzare gli allarmi legacy.
+* Per riconoscere gli allarmi, è necessario disporre dell'autorizzazione di riconoscimento degli allarmi.
+* Per gestire gli allarmi globali e le notifiche e-mail, è necessario disporre sia della configurazione della pagina topologia griglia che di altre autorizzazioni di configurazione griglia.
+
+
+link:../admin/index.html["Amministrare StorageGRID"]
+
+
+
+ a| 
+Come si gestiscono le notifiche e-mail?
+ a| 
+Selezionare *ALERTS* > *email setup*.
+
+*Nota:* poiché gli allarmi e gli avvisi sono sistemi indipendenti, la configurazione dell'e-mail utilizzata per le notifiche di allarme e AutoSupport non viene utilizzata per le notifiche di avviso. Tuttavia, è possibile utilizzare lo stesso server di posta per tutte le notifiche.
+
+link:email-alert-notifications.html["Imposta le notifiche via email per gli avvisi"]
+ a| 
+Selezionare *SUPPORT* > *Alarms (legacy)* > *Legacy email setup*.
+
+link:managing-alarms.html["Gestire gli allarmi (sistema legacy)"]
+
+
+
+ a| 
+Come si gestiscono le notifiche SNMP?
+ a| 
+Selezionare *CONFIGURATION* > *Monitoring* > *SNMP Agent*.
+
+link:using-snmp-monitoring.html["Utilizzare il monitoraggio SNMP"]
+ a| 
+_Non supportato_
+
+
+
+ a| 
+Come posso controllare chi riceve le notifiche?
+ a| 
+. Selezionare *ALERTS* > *email setup*.
+. Nella sezione *destinatari*, immettere un indirizzo e-mail per ciascun elenco o persona che deve ricevere un'e-mail quando si verifica un avviso.
+
+
+link:email-alert-notifications.html["Imposta le notifiche via email per gli avvisi"]
+ a| 
+. Selezionare *SUPPORT* > *Alarms (legacy)* > *Legacy email setup*.
+. Creazione di una mailing list.
+. Selezionare *Notifiche*.
+. Selezionare la mailing list.
+
+
+link:managing-alarms.html["Gestire gli allarmi (sistema legacy)"]
+
+
+
+ a| 
+Quali nodi di amministrazione inviano notifiche?
+ a| 
+Un singolo nodo Admin (il mittente preferito).
+
+link:../primer/what-admin-node-is.html["Che cos'è un nodo amministratore?"]
+ a| 
+Un singolo nodo Admin (il mittente preferito).
+
+link:../primer/what-admin-node-is.html["Che cos'è un nodo amministratore?"]
+
+
+
+ a| 
+Come posso eliminare alcune notifiche?
+ a| 
+. Selezionare *ALERTS* > *silences*.
+. Selezionare la regola di avviso che si desidera disattivare.
+. Specificare la durata del silenzio.
+. Selezionare il livello di gravità dell'avviso che si desidera disattivare.
+. Selezionare per applicare il silenzio all'intera griglia, a un singolo sito o a un singolo nodo.
+
+
+*Nota*: Se è stato attivato l'agente SNMP, le silenzi sopprimono anche i trap SNMP e informano.
+
+link:silencing-alert-notifications.html["Tacitare le notifiche di avviso"]
+ a| 
+. Selezionare *SUPPORT* > *Alarms (legacy)* > *Legacy email setup*.
+. Selezionare *Notifiche*.
+. Selezionare una mailing list e selezionare *Sospendi*.
+
+
+link:managing-alarms.html["Gestire gli allarmi (sistema legacy)"]
+
+
+
+ a| 
+Come posso eliminare tutte le notifiche?
+ a| 
+Selezionare *ALERTS* > *silences*.quindi, selezionare *All rules*.
+
+*Nota*: Se è stato attivato l'agente SNMP, le silenzi sopprimono anche i trap SNMP e informano.
+
+link:silencing-alert-notifications.html["Tacitare le notifiche di avviso"]
+ a| 
+_Non supportato_
+
+
+
+ a| 
+Come si personalizzano le condizioni e i trigger?
+ a| 
+. Selezionare *ALERTS* > *Rules*.
+. Selezionare una regola predefinita da modificare oppure selezionare *Crea regola personalizzata*.
+
+
+link:editing-alert-rules.html["Modificare le regole degli avvisi"]
+
+link:creating-custom-alert-rules.html["Creare regole di avviso personalizzate"]
+ a| 
+. Selezionare *SUPPORTO* > *Allarmi (legacy)* > *Allarmi globali*.
+. Creare un allarme personalizzato globale per ignorare un allarme predefinito o per monitorare un attributo che non ha un allarme predefinito.
+
+
+link:managing-alarms.html["Gestire gli allarmi (sistema legacy)"]
+
+
+
+ a| 
+Come si disattiva un singolo avviso o allarme?
+ a| 
+. Selezionare *ALERTS* > *Rules*.
+. Selezionare la regola e selezionare *Modifica regola*.
+. Deselezionare la casella di controllo *Enabled*.
+
+
+link:disabling-alert-rules.html["Disattiva le regole di avviso"]
+ a| 
+. Selezionare *SUPPORTO* > *Allarmi (legacy)* > *Allarmi globali*.
+. Selezionare la regola e l'icona Modifica.
+. Deselezionare la casella di controllo *Enabled*.
+
+
+link:managing-alarms.html["Gestire gli allarmi (sistema legacy)"]
+
+|===

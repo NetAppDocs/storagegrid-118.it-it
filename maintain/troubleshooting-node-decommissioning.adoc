@@ -1,0 +1,42 @@
+---
+permalink: maintain/troubleshooting-node-decommissioning.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, decommission, troubleshoot 
+summary: Se la procedura di decommissionamento del nodo si interrompe a causa di un errore, è possibile eseguire operazioni specifiche per risolvere il problema. 
+---
+= Risolvere i problemi relativi alla disattivazione del nodo
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se la procedura di decommissionamento del nodo si interrompe a causa di un errore, è possibile eseguire operazioni specifiche per risolvere il problema.
+
+.Prima di iniziare
+Hai effettuato l'accesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+
+.A proposito di questa attività
+Se si arresta il nodo della griglia da smantellare, l'attività si interrompe fino al riavvio del nodo della griglia. Il nodo Grid deve essere in linea.
+
+.Fasi
+. Selezionare *SUPPORT* > *Tools* > *Grid topology*.
+. Nell'albero Grid Topology, espandere ogni voce Storage Node e verificare che i servizi DDS e LDR siano entrambi online.
++
+Per eseguire la disattivazione dei nodi di storage, tutti i nodi e tutti i servizi devono essere integri all'inizio della disattivazione di un nodo/sito online.
+
+. Per visualizzare le attività attive della griglia, selezionare *nodo amministratore primario* > *CMN* > *attività griglia* > *Panoramica*.
+. Controllare lo stato dell'attività della griglia di disattivazione.
++
+.. Se lo stato dell'attività griglia di decommissionamento indica un problema con il salvataggio dei pacchetti di attività griglia, selezionare *nodo amministrativo principale* > *CMN* > *Eventi* > *Panoramica*.
+.. Controllare il numero di relè di audit disponibili.
++
+Se l'attributo Available Audit Relay è uno o più, il servizio CMN è connesso ad almeno un servizio ADC. I servizi ADC fungono da relè di audit.
+
++
+Il servizio CMN deve essere connesso ad almeno un servizio ADC e la maggior parte (50% più uno) dei servizi ADC del sistema StorageGRID deve essere disponibile per consentire a un'attività Grid di passare da una fase di disattivazione a un'altra e terminare.
+
+.. Se il servizio CMN non è connesso a un numero sufficiente di servizi ADC, assicurarsi che i nodi di storage siano in linea e controllare la connettività di rete tra il nodo di amministrazione primario e i nodi di storage.
+
+
+

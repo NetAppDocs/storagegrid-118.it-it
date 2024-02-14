@@ -1,0 +1,95 @@
+---
+permalink: maintain/recovering-storage-node-that-has-been-down-more-than-15-days.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, storage node failure 
+summary: Se un singolo nodo di storage è stato offline e non connesso ad altri nodi di storage per più di 15 giorni, è necessario ricostruire Cassandra sul nodo. 
+---
+= Recovery Storage Node Down per più di 15 giorni
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Se un singolo nodo di storage è stato offline e non connesso ad altri nodi di storage per più di 15 giorni, è necessario ricostruire Cassandra sul nodo.
+
+.Prima di iniziare
+* È stato verificato che non è in corso la decommissionamento di un nodo di storage oppure che la procedura di decommissionamento del nodo è stata sospesa. (In Grid Manager, selezionare *MANUTENZIONE* > *attività* > *smantellamento*).
+* Hai verificato che non è in corso un'espansione. (In Grid Manager, selezionare *MANUTENZIONE* > *attività* > *espansione*).
+
+
+.A proposito di questa attività
+I nodi di storage dispongono di un database Cassandra che include metadati a oggetti. Se un nodo di storage non è stato in grado di comunicare con altri nodi di storage per più di 15 giorni, StorageGRID presume che il database Cassandra del nodo sia obsoleta. Il nodo di storage non può ricongiungersi alla griglia fino a quando Cassandra non viene ricostruita utilizzando le informazioni provenienti da altri nodi di storage.
+
+Utilizzare questa procedura per ricostruire Cassandra solo se un singolo nodo di storage non è attivo. Contattare il supporto tecnico se altri nodi di storage sono offline o se Cassandra è stato ricostruito su un altro nodo di storage negli ultimi 15 giorni; ad esempio, Cassandra potrebbe essere stato ricostruito come parte delle procedure per ripristinare i volumi di storage guasti o per ripristinare un nodo di storage guasto.
+
+
+CAUTION: Se più di un nodo di storage si è guastato (o non è in linea), contattare il supporto tecnico. Non eseguire la seguente procedura di ripristino. Potrebbe verificarsi una perdita di dati.
+
+
+CAUTION: Se si tratta del secondo guasto del nodo di storage in meno di 15 giorni dopo un guasto o un ripristino del nodo di storage, contattare il supporto tecnico. Non eseguire la seguente procedura di ripristino. Potrebbe verificarsi una perdita di dati.
+
+
+NOTE: Se più di un nodo di storage in un sito si è guastato, potrebbe essere necessaria una procedura di ripristino del sito. Vedere link:how-site-recovery-is-performed-by-technical-support.html["Come il supporto tecnico recupera un sito"].
+
+.Fasi
+. Se necessario, accendere il nodo di storage che deve essere ripristinato.
+. Accedere al nodo Grid:
++
+.. Immettere il seguente comando: `ssh admin@_grid_node_IP_`
+.. Immettere la password elencata in `Passwords.txt` file.
+.. Immettere il seguente comando per passare a root: `su -`
+.. Immettere la password elencata in `Passwords.txt` file.
++
+Una volta effettuato l'accesso come root, il prompt cambia da `$` a. `#`.+
+
++
+
+NOTE: Se non si riesce ad accedere al nodo Grid, il disco di sistema potrebbe non essere intatto. Passare alla procedura per  link:recovering-from-system-drive-failure.html["ripristino in caso di guasto al disco di sistema"].
+
+
+
+. Eseguire i seguenti controlli sul nodo di storage:
++
+.. Eseguire questo comando: `nodetool status`
++
+L'output deve essere `Connection refused`
+
+.. In Grid Manager, selezionare *SUPPORT* > *Tools* > *Grid topology*.
+.. Selezionare *_Site_* > *Storage Node* > *SSM* > *Services*. Verificare che venga visualizzato il servizio Cassandra `Not Running`.
+.. Selezionare *Storage Node* > *SSM* > *Resources*. Verificare che non vi sia stato di errore nella sezione Volumes (volumi).
+.. Eseguire questo comando: `grep -i Cassandra /var/local/log/servermanager.log`
++
+Nell'output dovrebbe essere visualizzato il seguente messaggio:
+
++
+[listing]
+----
+Cassandra not started because it has been offline for more than 15 day grace period - rebuild Cassandra
+----
+
+
+. Eseguire questo comando e monitorare l'output dello script: `check-cassandra-rebuild`
++
+** Se il servizio Cassandra in base al volume 0 è in esecuzione, viene richiesto di interromperlo. Immettere: *Y*
++
+
+NOTE: Se il servizio Cassandra è già stato arrestato, non viene richiesto. Il servizio Cassandra viene arrestato solo per il volume 0.
+
+** Esaminare gli avvisi nello script. Se non sono applicabili, confermare che si desidera ricostruire Cassandra. Immettere: *Y*
++
+
+NOTE: Alcune procedure di ripristino StorageGRID utilizzano Reaper gestire le riparazioni Cassandra. Le riparazioni vengono eseguite automaticamente non appena vengono avviati i servizi correlati o richiesti. Si potrebbe notare un output di script che menziona "reaper" o "riparazione Cassandra". Se viene visualizzato un messaggio di errore che indica che la riparazione non è riuscita, eseguire il comando indicato nel messaggio di errore.
+
+
+
+. Al termine della ricostruzione, eseguire i seguenti controlli:
++
+.. In Grid Manager, selezionare *SUPPORT* > *Tools* > *Grid topology*.
+.. Selezionare *_Site_* > *Reupered Storage Node* > *SSM* > *Services*.
+.. Verificare che tutti i servizi siano in esecuzione.
+.. Selezionare *DDS* > *Data Store*.
+.. Verificare che lo stato *Data Store* sia "Up" e lo stato *Data Store* sia "Normal" (normale).
+
+
+

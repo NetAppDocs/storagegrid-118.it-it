@@ -1,0 +1,28 @@
+---
+permalink: admin/identifying-primary-admin-node.html 
+sidebar: sidebar 
+keywords: cmn service, primary admin node, configuration management node 
+summary: Il nodo di amministrazione primario ospita il servizio CMN. Alcune procedure di manutenzione possono essere eseguite solo utilizzando il nodo di amministrazione primario. 
+---
+= Identificare il nodo di amministrazione principale
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il nodo di amministrazione primario ospita il servizio CMN. Alcune procedure di manutenzione possono essere eseguite solo utilizzando il nodo di amministrazione primario.
+
+.Prima di iniziare
+* Hai effettuato l'accesso a Grid Manager utilizzando un link:../admin/web-browser-requirements.html["browser web supportato"].
+* Lo hai fatto link:admin-group-permissions.html["autorizzazioni di accesso specifiche"].
+
+
+.Fasi
+. Selezionare *SUPPORT* > *Tools* > *Grid topology*.
+. Selezionare *_Site_* > *Admin Node*, quindi scegliere image:../media/icon_plus_sign_black_on_white.gif["segno più"] Per espandere la struttura della topologia e mostrare i servizi ospitati su questo nodo di amministrazione.
++
+Il nodo di amministrazione primario ospita il servizio CMN.
+
+. Se questo nodo di amministrazione non ospita il servizio CMN, controllare gli altri nodi di amministrazione.
+

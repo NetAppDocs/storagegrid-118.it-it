@@ -1,0 +1,86 @@
+---
+permalink: tenant/configuring-search-integration-service.html 
+sidebar: sidebar 
+keywords: how to configure search integration service 
+summary: Il servizio di integrazione della ricerca invia i metadati degli oggetti a un indice di ricerca di destinazione ogni volta che un oggetto viene creato, cancellato o i relativi metadati o tag vengono aggiornati. 
+---
+= Configurare il servizio di integrazione della ricerca
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il servizio di integrazione della ricerca invia i metadati degli oggetti a un indice di ricerca di destinazione ogni volta che un oggetto viene creato, cancellato o i relativi metadati o tag vengono aggiornati.
+
+.Prima di iniziare
+* I servizi della piattaforma sono stati abilitati per l'account tenant da un amministratore di StorageGRID.
+* È già stato creato un bucket S3 di cui si desidera indicizzare il contenuto.
+* L'endpoint che si intende utilizzare come destinazione per il servizio di integrazione della ricerca esiste già e si dispone dell'URN.
+* L'utente appartiene a un gruppo di utenti che dispone di link:tenant-management-permissions.html["Gestire tutti i bucket o le autorizzazioni di accesso root"]. Queste autorizzazioni sovrascrivono le impostazioni di autorizzazione nelle policy di gruppo o bucket quando si configura il bucket utilizzando Tenant Manager.
+
+
+.A proposito di questa attività
+Dopo aver configurato il servizio di integrazione della ricerca per un bucket di origine, la creazione di un oggetto o l'aggiornamento dei metadati o dei tag di un oggetto attiva l'invio dei metadati dell'oggetto all'endpoint di destinazione. Se abiliti il servizio di integrazione della ricerca per un bucket che contiene già oggetti, le notifiche dei metadati non vengono inviate automaticamente per gli oggetti esistenti. È necessario aggiornare questi oggetti esistenti per assicurarsi che i relativi metadati vengano aggiunti all'indice di ricerca della destinazione.
+
+.Fasi
+. Utilizzare un editor di testo per creare l'XML di notifica dei metadati necessario per abilitare l'integrazione della ricerca.
++
+** Per l'integrazione della ricerca, consultare le informazioni relative all'XML di configurazione.
+** Quando si configura l'XML, utilizzare l'URN di un endpoint di integrazione della ricerca come destinazione.
+
+
++
+[listing]
+----
+<MetadataNotificationConfiguration>
+ <Rule>
+    <Status>Enabled</Status>
+    <Prefix></Prefix>
+    <Destination>
+       <Urn>arn:aws:es:us-east-1:11111111111111:domain/mydomain/myindex/mytype</Urn>
+       </Destination>
+ </Rule>
+</MetadataNotificationConfiguration>
+----
+. In Tenant Manager, selezionare *STORAGE (S3)* > *Bucket*.
+. Selezionare il nome del bucket di origine.
++
+Viene visualizzata la pagina dei dettagli del bucket.
+
+. Selezionare *Platform Services* > *Search Integration*
+. Selezionare la casella di controllo *Enable search Integration* (attiva integrazione ricerca).
+. Incollare la configurazione di notifica dei metadati nella casella di testo e selezionare *Salva modifiche*.
++
+image::../media/tenant_bucket_search_integration_configuration.png[schermata della finestra di dialogo di configurazione dell'integrazione della ricerca]
+
++
+
+NOTE: I servizi della piattaforma devono essere attivati per ciascun account tenant da un amministratore StorageGRID utilizzando il gestore di griglia o l'API di gestione. Se si verifica un errore durante il salvataggio del file XML di configurazione, contattare l'amministratore di StorageGRID.
+
+. Verificare che il servizio di integrazione della ricerca sia configurato correttamente:
++
+.. Aggiungere un oggetto al bucket di origine che soddisfi i requisiti per l'attivazione di una notifica dei metadati come specificato nel file XML di configurazione.
++
+Nell'esempio illustrato in precedenza, tutti gli oggetti aggiunti al bucket attivano una notifica dei metadati.
+
+.. Verificare che un documento JSON contenente i metadati e i tag dell'oggetto sia stato aggiunto all'indice di ricerca specificato nell'endpoint.
+
+
+
+
+.Al termine
+Se necessario, è possibile disattivare l'integrazione della ricerca per un bucket utilizzando uno dei seguenti metodi:
+
+* Selezionare *STORAGE (S3)* > *Bucket* e deselezionare la casella di controllo *Enable search Integration* (attiva integrazione ricerca).
+* Se si utilizza direttamente l'API S3, utilizzare una richiesta DI notifica DELETE Bucket metadata. Consultare le istruzioni per l'implementazione delle applicazioni client S3.
+
+
+.Informazioni correlate
+link:understanding-search-integration-service.html["Comprendere il servizio di integrazione della ricerca"]
+
+link:configuration-xml-for-search-configuration.html["XML di configurazione per l'integrazione della ricerca"]
+
+link:../s3/index.html["UTILIZZARE L'API REST S3"]
+
+link:creating-platform-services-endpoint.html["Creare endpoint di servizi di piattaforma"]

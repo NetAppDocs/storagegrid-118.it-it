@@ -1,0 +1,48 @@
+---
+permalink: primer/what-archive-node-is.html 
+sidebar: sidebar 
+keywords: archive node 
+summary: Il supporto per i nodi di archiviazione è obsoleto e verrà rimosso in una release futura. 
+---
+= Che cos'è un nodo di archiviazione?
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il supporto per i nodi di archiviazione è obsoleto e verrà rimosso in una release futura.
+
+[CAUTION]
+====
+Il supporto per i nodi di archiviazione è obsoleto e verrà rimosso in una release futura. Lo spostamento di oggetti da un nodo di archiviazione a un sistema storage di archiviazione esterno tramite l'API S3 è stato sostituito da pool di storage cloud ILM, che offrono maggiori funzionalità.
+
+Anche l'opzione Cloud Tiering - Simple Storage Service (S3) è obsoleta. Se si utilizza attualmente un nodo di archiviazione con questa opzione, link:../admin/migrating-objects-from-cloud-tiering-s3-to-cloud-storage-pool.html["Migrare gli oggetti in un pool di storage cloud"] invece.
+
+Inoltre, è necessario rimuovere i nodi di archiviazione dai criteri ILM attivi in StorageGRID 11,7 o versioni precedenti. La rimozione dei dati degli oggetti memorizzati nei nodi di archiviazione semplificherà gli aggiornamenti futuri. Vedere link:../ilm/working-with-ilm-rules-and-ilm-policies.html["Utilizzo delle regole ILM e delle policy ILM"].
+
+====
+
+
+== Servizi primari per i nodi di archiviazione
+
+La tabella seguente mostra i servizi primari per i nodi di archiviazione; tuttavia, questa tabella non elenca tutti i servizi dei nodi.
+
+[cols="1a,2a"]
+|===
+| Servizio | Funzione dei tasti 
+
+
+ a| 
+Archivio (ARC)
+ a| 
+Comunica con un sistema di storage su nastro esterno Tivoli Storage Manager (TSM).
+
+
+
+ a| 
+Server Status Monitor (SSM)
+ a| 
+Monitora il sistema operativo e l'hardware sottostante.
+
+|===

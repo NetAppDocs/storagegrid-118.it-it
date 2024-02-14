@@ -1,0 +1,105 @@
+---
+permalink: swift/get-container-consistency-request.html 
+sidebar: sidebar 
+keywords: get container consistency request 
+summary: I valori di coerenza forniscono un equilibrio tra la disponibilità degli oggetti e la coerenza di tali oggetti in diversi nodi e siti di storage. La richiesta di coerenza del contenitore GET consente di determinare la coerenza applicata a un determinato contenitore. 
+---
+= OTTENERE una richiesta di coerenza dei container
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+I valori di coerenza forniscono un equilibrio tra la disponibilità degli oggetti e la coerenza di tali oggetti in diversi nodi e siti di storage. La richiesta di coerenza del contenitore GET consente di determinare la coerenza applicata a un determinato contenitore.
+
+
+
+== Richiesta
+
+[cols="2a,4a"]
+|===
+| Richiedi intestazione HTTP | Descrizione 
+
+
+| X-Auth-Token  a| 
+Specifica il token di autenticazione Swift per l'account da utilizzare per la richiesta.
+
+
+
+| x-ntap-sg-consistency  a| 
+Specifica il tipo di richiesta, dove `true` = OTTENERE la coerenza del container, e. `false` = GET container (OTTIENI container).
+
+
+
+| Host  a| 
+Il nome host a cui viene indirizzata la richiesta.
+
+|===
+
+
+== Esempio di richiesta
+
+[listing]
+----
+GET /v1/28544923908243208806/Swift container
+X-Auth-Token: SGRD_3a877009a2d24cb1801587bfa9050f29
+x-ntap-sg-consistency: true
+Host: test.com
+----
+
+
+== Risposta
+
+[cols="2a,4a"]
+|===
+| Intestazione HTTP di risposta | Descrizione 
+
+
+| Data  a| 
+La data e l'ora della risposta.
+
+
+
+| Connessione  a| 
+Se la connessione al server è aperta o chiusa.
+
+
+
+| ID trasm. X  a| 
+Identificativo univoco della transazione per la richiesta.
+
+
+
+| Contenuto-lunghezza  a| 
+La lunghezza del corpo di risposta.
+
+
+
+| x-ntap-sg-consistency  a| 
+La consistenza applicata al contenitore. Sono supportati i seguenti valori:
+
+*All*: Tutti i nodi ricevono i dati immediatamente o la richiesta non riesce.
+
+*Strong-Global*: Garantisce la coerenza di lettura dopo scrittura per tutte le richieste dei client in tutti i siti.
+
+*Strong-Site*: Garantisce la coerenza di lettura dopo scrittura per tutte le richieste dei client all'interno di un sito.
+
+*Read-after-new-write*: (Default) fornisce coerenza lettura dopo scrittura per nuovi oggetti ed eventuale coerenza per gli aggiornamenti degli oggetti. Offre alta disponibilità e garanzie di protezione dei dati. Consigliato per la maggior parte dei casi.
+
+*Available*: Fornisce una coerenza finale sia per i nuovi oggetti che per gli aggiornamenti degli oggetti. Per i bucket S3, utilizzare solo se necessario (ad esempio, per un bucket che contiene valori di log che vengono raramente letti o per operazioni HEAD o GET su chiavi che non esistono). Non supportato per i bucket S3 FabricPool.
+
+|===
+
+
+== Esempio di risposta
+
+[listing]
+----
+HTTP/1.1 204 No Content
+Date: Sat, 29 Nov 2015 01:02:18 GMT
+Connection: CLOSE
+X-Trans-Id: 1936575373
+Content-Length: 0
+x-ntap-sg-consistency: strong-site
+----

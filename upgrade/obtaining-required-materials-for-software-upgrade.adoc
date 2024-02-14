@@ -1,0 +1,63 @@
+---
+permalink: upgrade/obtaining-required-materials-for-software-upgrade.html 
+sidebar: sidebar 
+keywords: upgrade, requirements, rhel, red hat, linux, ubuntu, debian 
+summary: 'Prima di iniziare l"aggiornamento del software, procurarsi tutto il materiale necessario.' 
+---
+= Ottenere il materiale necessario per un aggiornamento del software
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Prima di iniziare l'aggiornamento del software, procurarsi tutto il materiale necessario.
+
+[cols="1a,3a"]
+|===
+| Elemento | Note 
+
+
+ a| 
+Laptop di assistenza
+ a| 
+Il laptop di assistenza deve disporre di:
+
+* Porta di rete
+* Client SSH (ad esempio, putty)
+
+
+
+
+ a| 
+link:../admin/web-browser-requirements.html["Browser Web supportato"]
+ a| 
+Il supporto del browser in genere cambia per ogni release di StorageGRID. Assicurarsi che il browser sia compatibile con la nuova versione di StorageGRID.
+
+
+
+ a| 
+Passphrase di provisioning
+ a| 
+La passphrase viene creata e documentata al momento dell'installazione del sistema StorageGRID. La passphrase di provisioning non è elencata in `Passwords.txt` file.
+
+
+
+ a| 
+Linux RPM o archivio DEB
+ a| 
+Se vengono implementati nodi su host Linux, è necessario link:linux-installing-rpm-or-deb-package-on-all-hosts.html["Scaricare e installare il pacchetto RPM o DEB su tutti gli host"] prima di iniziare l'aggiornamento.
+
+*Importante*: Assicurati che il tuo sistema operativo sia aggiornato al kernel Linux 4.15 o superiore.
+
+
+
+ a| 
+Documentazione StorageGRID
+ a| 
+* link:../release-notes/index.html["Note di rilascio"] Per StorageGRID 11,8 (accesso richiesto). Leggere attentamente queste informazioni prima di avviare l'aggiornamento.
+* https://kb.netapp.com/hybrid/StorageGRID/Maintenance/StorageGRID_11.8_software_upgrade_resolution_guide["Guida alla risoluzione degli aggiornamenti del software StorageGRID"^] per la versione principale a cui si esegue l'aggiornamento (è necessario effettuare l'accesso)
+* Altro https://docs.netapp.com/us-en/storagegrid-118/index.html["Documentazione di StorageGRID 11,8"^], secondo necessità.
+
+
+|===

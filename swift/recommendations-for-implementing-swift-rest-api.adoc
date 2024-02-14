@@ -1,0 +1,60 @@
+---
+permalink: swift/recommendations-for-implementing-swift-rest-api.html 
+sidebar: sidebar 
+keywords: implement swift rest api 
+summary: 'Seguire questi consigli quando si implementa l"API di Swift REST per l"utilizzo con StorageGRID.' 
+---
+= Raccomandazioni per l'implementazione di Swift REST API
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Seguire questi consigli quando si implementa l'API di Swift REST per l'utilizzo con StorageGRID.
+
+
+
+== Raccomandazioni per la gestione di oggetti inesistenti
+
+Se l'applicazione verifica regolarmente se un oggetto esiste in un percorso in cui non si prevede che l'oggetto esista effettivamente, è necessario utilizzare la coerenza "disponibile". Ad esempio, è necessario utilizzare la coerenza "disponibile" se l'applicazione esegue un'operazione HEAD in una posizione prima di eseguire un'operazione PUT in quella posizione.
+
+In caso contrario, se l'operazione HEAD non trova l'oggetto, potrebbe essere visualizzato un numero elevato di errori 500 nel server interno se uno o più nodi di storage non sono disponibili.
+
+È possibile impostare la consistenza "disponibile" per ciascun contenitore utilizzando link:put-container-consistency-request.html["INVIO di una richiesta di coerenza del container"]. È possibile impostare la coerenza "disponibile" per ciascun contenitore utilizzando link:get-container-consistency-request.html["OTTENERE una richiesta di coerenza dei container"].
+
+
+
+== Raccomandazioni per i nomi degli oggetti
+
+Per i container creati in StorageGRID 11.4 o versioni successive, non è più necessario limitare i nomi degli oggetti per soddisfare le Best practice di performance. Ad esempio, è ora possibile utilizzare valori casuali per i primi quattro caratteri dei nomi degli oggetti.
+
+Per i container creati in release precedenti a StorageGRID 11.4, continuare a seguire questi consigli per i nomi degli oggetti:
+
+* Non utilizzare valori casuali come primi quattro caratteri dei nomi degli oggetti. Ciò è in contrasto con la precedente raccomandazione AWS per i prefissi dei nomi. Si consiglia invece di utilizzare prefissi non casuali e non univoci, ad esempio `image`.
+* Se si segue la precedente raccomandazione AWS per utilizzare caratteri casuali e univoci nei prefissi dei nomi, è necessario anteporre i nomi degli oggetti con un nome di directory. Ovvero, utilizzare questo formato:
++
+[listing]
+----
+mycontainer/mydir/f8e3-image3132.jpg
+----
++
+Invece di questo formato:
+
++
+[listing]
+----
+mycontainer/f8e3-image3132.jpg
+----
+
+
+
+
+== Raccomandazioni per "letture di gamma"
+
+Se il link:../admin/configuring-stored-object-compression.html["opzione globale per comprimere gli oggetti memorizzati"] È attivato, le applicazioni client Swift dovrebbero evitare di eseguire operazioni GET Object che specificano la restituzione di un intervallo di byte. Queste operazioni di "lettura dell'intervallo" sono inefficienti perché StorageGRID deve decomprimere efficacemente gli oggetti per accedere ai byte richiesti. LE operazioni GET Object che richiedono un piccolo intervallo di byte da un oggetto molto grande sono particolarmente inefficienti; ad esempio, è molto inefficiente leggere un intervallo di 10 MB da un oggetto compresso da 50 GB.
+
+Se gli intervalli vengono letti da oggetti compressi, le richieste del client possono scadere.
+
+
+NOTE: Se è necessario comprimere gli oggetti e l'applicazione client deve utilizzare le letture dell'intervallo, aumentare il timeout di lettura per l'applicazione.
