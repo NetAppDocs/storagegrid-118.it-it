@@ -88,7 +88,7 @@ Le differenze nelle impostazioni MTU potrebbero indicare che alcune, ma non tutt
 . Elencare le impostazioni MTU per eth0 su tutti i nodi.
 +
 ** Utilizzare la query fornita in Grid Manager.
-** Selezionare `_primary Admin Node IP address_/metrics/graph` e immettere la seguente query: `node_network_mtu_bytes{interface='eth0'}`
+** Selezionare `_primary Admin Node IP address_/metrics/graph` e immettere la seguente query: `node_network_mtu_bytes{device="eth0"}`
 
 
 . https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/changing-mtu-setting.html["Modificare le impostazioni MTU"^] Come necessario per garantire che siano gli stessi per l'interfaccia Grid Network (eth0) su tutti i nodi.
