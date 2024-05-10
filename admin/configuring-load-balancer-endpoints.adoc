@@ -22,7 +22,7 @@ NOTE: Il supporto per le applicazioni client Swift è stato obsoleto e verrà ri
 * Hai esaminato il link:managing-load-balancing.html["considerazioni per il bilanciamento del carico"].
 * Se in precedenza è stata rimappata una porta che si intende utilizzare per l'endpoint del bilanciamento del carico, è possibile link:../maintain/removing-port-remaps.html["rimosso il remap della porta"].
 * Hai creato tutti i gruppi ad alta disponibilità (ha) che intendi utilizzare. I gruppi HA sono consigliati, ma non richiesti. Vedere link:managing-high-availability-groups.html["Gestire i gruppi ad alta disponibilità"].
-* Se l'endpoint del bilanciamento del carico verrà utilizzato da link:../admin/manage-s3-select-for-tenant-accounts.html["S3 tenant per S3 Select"], Non deve utilizzare gli indirizzi IP o FQDN di nodi bare-metal. Solo le appliance SG100 o SG1000 e i nodi software basati su VMware sono consentiti per gli endpoint del bilanciamento del carico utilizzati per S3 Select.
+* Se l'endpoint del bilanciamento del carico verrà utilizzato da link:../admin/manage-s3-select-for-tenant-accounts.html["S3 tenant per S3 Select"], Non deve utilizzare gli indirizzi IP o FQDN di nodi bare-metal. Per gli endpoint del bilanciamento del carico utilizzati per S3 Select sono consentiti solo le appliance di servizi e i nodi software basati su VMware.
 * Sono state configurate le interfacce VLAN che si intende utilizzare. Vedere link:configure-vlan-interfaces.html["Configurare le interfacce VLAN"].
 * Se si crea un endpoint HTTPS (consigliato), si dispone delle informazioni per il certificato del server.
 +

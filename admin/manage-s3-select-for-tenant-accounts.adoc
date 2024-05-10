@@ -57,7 +57,7 @@ La richiesta SelectObjectContent deve essere inviata a link:configuring-load-bal
 
 I nodi Admin e Gateway utilizzati dall'endpoint devono essere uno dei seguenti:
 
-* Un nodo appliance SG100 o SG1000
+* Un nodo di appliance per i servizi
 * Nodo software basato su VMware
 * Nodo bare metal che esegue un kernel con cgroup v2 abilitato
 

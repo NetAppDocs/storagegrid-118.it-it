@@ -39,22 +39,29 @@ link:specifying-urn-for-platform-services-endpoint.html["Specificare URN per l'e
 +
 [role="tabbed-block"]
 ====
-.Endpoint di integrazione della ricerca AWS
+.Endpoint di integrazione della ricerca
 --
-Per gli endpoint di integrazione della ricerca AWS, puoi utilizzare le seguenti credenziali:
+Per gli endpoint di integrazione della ricerca, è possibile utilizzare le seguenti credenziali:
 
 *** Access Key (chiave di accesso): Access key ID (ID chiave di accesso) e secret access key
 *** HTTP di base: Nome utente e password
-*** CAP (C2S Access Portal): URL con credenziali temporanee, certificati server e client, chiavi client e passphrase opzionale con chiave privata del client.
 
 
 --
-.Replica CloudMirror e endpoint Amazon SNS
+.Endpoint di replica CloudMirror
 --
-Per la replica CloudMirror e gli endpoint Amazon SNS, puoi utilizzare le seguenti credenziali:
+Per la replica di CloudMirror, è possibile utilizzare le seguenti credenziali:
 
 *** Access Key (chiave di accesso): Access key ID (ID chiave di accesso) e secret access key
 *** CAP (C2S Access Portal): URL con credenziali temporanee, certificati server e client, chiavi client e passphrase opzionale con chiave privata del client.
+
+
+--
+.Endpoint Amazon SNS
+--
+Per gli endpoint Amazon SNS, è possibile utilizzare le seguenti credenziali:
+
+*** Access Key (chiave di accesso): Access key ID (ID chiave di accesso) e secret access key
 
 
 --
@@ -136,9 +143,9 @@ NOTE: Non è possibile modificare l'URN di un endpoint dopo la creazione dell'en
 +
 [role="tabbed-block"]
 ====
-.Endpoint di integrazione della ricerca AWS
+.Endpoint di integrazione della ricerca
 --
-Inserisci o carica le credenziali per un endpoint di integrazione della ricerca AWS.
+Immettere o caricare le credenziali per un endpoint di integrazione della ricerca.
 
 Le credenziali fornite devono disporre delle autorizzazioni di scrittura per la risorsa di destinazione.
 
@@ -176,25 +183,11 @@ Utilizza un nome utente e una password per autenticare le connessioni alla desti
 ** Password
 
 
-
-
- a| 
-CAP (portale di accesso C2S)
- a| 
-Utilizza certificati e chiavi per autenticare le connessioni alla destinazione.
- a| 
-** URL temporaneo delle credenziali
-** Certificato CA del server (caricamento file PEM)
-** Certificato client (caricamento file PEM)
-** Chiave privata del client (caricamento file PEM, formato crittografato OpenSSL o formato chiave privata non crittografato)
-** Passphrase della chiave privata del client (opzionale)
-
-
 |===
 --
-.Replica CloudMirror o endpoint Amazon SNS
+.Endpoint di replica CloudMirror
 --
-Immettere o caricare le credenziali per una replica CloudMirror o un endpoint Amazon SNS.
+Immettere o caricare le credenziali per un endpoint di replica CloudMirror.
 
 Le credenziali fornite devono disporre delle autorizzazioni di scrittura per la risorsa di destinazione.
 
@@ -233,6 +226,37 @@ Utilizza certificati e chiavi per autenticare le connessioni alla destinazione.
 ** Certificato client (caricamento file PEM)
 ** Chiave privata del client (caricamento file PEM, formato crittografato OpenSSL o formato chiave privata non crittografato)
 ** Passphrase della chiave privata del client (opzionale)
+
+
+|===
+--
+.Endpoint Amazon SNS
+--
+Immettere o caricare le credenziali per un endpoint Amazon SNS.
+
+Le credenziali fornite devono disporre delle autorizzazioni di scrittura per la risorsa di destinazione.
+
+[cols="1a,2a,2a"]
+|===
+| Tipo di autenticazione | Descrizione | Credenziali 
+
+
+ a| 
+Anonimo
+ a| 
+Fornisce l'accesso anonimo alla destinazione. Funziona solo per gli endpoint con protezione disattivata.
+ a| 
+Nessuna autenticazione.
+
+
+
+ a| 
+Chiave di accesso
+ a| 
+Utilizza credenziali di tipo AWS per autenticare le connessioni con la destinazione.
+ a| 
+** ID chiave di accesso
+** Chiave di accesso segreta
 
 
 |===

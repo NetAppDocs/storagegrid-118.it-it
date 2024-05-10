@@ -2,7 +2,7 @@
 permalink: maintain/replacing-failed-node-with-services-appliance.html 
 sidebar: sidebar 
 keywords: storagegrid, recover, replace failed node, services appliance 
-summary: 'È possibile utilizzare un"appliance di servizi SG100 o SG1000 per ripristinare un nodo gateway guasto, un nodo Admin non primario guasto o un nodo Admin primario guasto ospitato su VMware, un host Linux o un"appliance di servizi. Questa procedura è una fase della procedura di ripristino del nodo di rete.' 
+summary: 'È possibile utilizzare un"appliance di servizi per recuperare un nodo gateway guasto, un nodo di amministrazione non primario guasto o un nodo di amministrazione primario guasto ospitato su VMware, un host Linux o un"appliance di servizi. Questa procedura è una fase della procedura di ripristino del nodo di rete.' 
 ---
 = Sostituisci nodo guasto con appliance di servizi: Panoramica
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 'È possibile utilizzare un"appliance di servizi SG100 o SG1000 per rip
 
 
 [role="lead"]
-È possibile utilizzare un'appliance di servizi SG100 o SG1000 per ripristinare un nodo gateway guasto, un nodo Admin non primario guasto o un nodo Admin primario guasto ospitato su VMware, un host Linux o un'appliance di servizi. Questa procedura è una fase della procedura di ripristino del nodo di rete.
+È possibile utilizzare un'appliance di servizi per recuperare un nodo gateway guasto, un nodo di amministrazione non primario guasto o un nodo di amministrazione primario guasto ospitato su VMware, un host Linux o un'appliance di servizi. Questa procedura è una fase della procedura di ripristino del nodo di rete.
 
 .Prima di iniziare
 * Hai determinato che è vera una delle seguenti situazioni:
@@ -25,10 +25,10 @@ summary: 'È possibile utilizzare un"appliance di servizi SG100 o SG1000 per rip
 
 
 
-NOTE: Non implementare sia un'appliance SG100 che un'appliance di servizio SG1000 nello stesso sito. Potrebbero verificarsi performance imprevedibili.
+NOTE: Non installare un'appliance di servizi SG110 e SG1100 o un'appliance di servizi SG100 e SG1000 nello stesso sito. Potrebbero verificarsi performance imprevedibili.
 
 .A proposito di questa attività
-È possibile utilizzare un'appliance di servizi SG100 o SG1000 per ripristinare un nodo di rete guasto nei seguenti casi:
+È possibile utilizzare un'appliance per i servizi per ripristinare un nodo grid guasto nei seguenti casi:
 
 * Il nodo guasto è stato ospitato su VMware o Linux (link:installing-services-appliance-platform-change-only.html["cambiamento di piattaforma"])
 * Il nodo guasto è stato ospitato su un'appliance di servizi (link:preparing-appliance-for-reinstallation-platform-replacement-only.html["sostituzione della piattaforma"])

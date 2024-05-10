@@ -103,6 +103,7 @@ Per ulteriori informazioni sulla mappatura delle porte fisiche o virtuali alle i
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg6100.html["Appliance di storage SGF6112"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg6000.html["Appliance di storage SG6000"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg5700.html["Appliance di storage SG5700"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg110-and-1100.html["Appliance per i servizi SG110 e SG1100"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg100-and-1000.html["Appliance di servizi SG100 e SG1000"^]
 
 

@@ -28,7 +28,7 @@ Eseguire i controlli preliminari e aggiornare il nodo di amministrazione primari
  a| 
 Vengono eseguiti i controlli preliminari per l'aggiornamento e il nodo di amministrazione primario viene arrestato, aggiornato e riavviato.
  a| 
-Da 30 minuti a 1 ora, con nodi appliance SG100 e SG1000 che richiedono il maggior numero di tempi.
+da 30 minuti a 1 ora, con nodi di appliance di assistenza che richiedono la maggior parte del tempo.
 
 Gli errori di pre-controllo non risolti aumenteranno questo tempo.
  a| 

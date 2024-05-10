@@ -2,7 +2,7 @@
 permalink: maintain/starting-software-installation-on-services-appliance-recovery.html 
 sidebar: sidebar 
 keywords: storagegrid, recover, services appliance, start software installation 
-summary: 'Per installare un nodo gateway o un nodo amministratore su un"appliance di servizi SG100 o SG1000, utilizzare il programma di installazione dell"appliance StorageGRID, incluso nell"appliance.' 
+summary: 'Per installare un nodo gateway o un nodo amministrativo su un"appliance di servizi, utilizzare il programma di installazione dell"appliance StorageGRID, incluso nell"appliance.' 
 ---
 = Avviare l'installazione del software sull'appliance di servizi
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 'Per installare un nodo gateway o un nodo amministratore su un"applianc
 
 
 [role="lead"]
-Per installare un nodo gateway o un nodo amministratore su un'appliance di servizi SG100 o SG1000, utilizzare il programma di installazione dell'appliance StorageGRID, incluso nell'appliance.
+Per installare un nodo gateway o un nodo amministrativo su un'appliance di servizi, utilizzare il programma di installazione dell'appliance StorageGRID, incluso nell'appliance.
 
 .Prima di iniziare
 * L'appliance viene installata in un rack, collegata alla rete e accesa.
@@ -31,7 +31,7 @@ NOTE: Una versione recente del software StorageGRID viene precaricata sull'appli
 
 
 .A proposito di questa attività
-Per installare il software StorageGRID su un'appliance di servizi SG100 o SG1000:
+Per installare il software StorageGRID su un'appliance di servizi:
 
 * Per un nodo amministrativo primario, specificare il nome del nodo e caricare i pacchetti software appropriati (se necessario).
 * Per un nodo Admin non primario o un nodo gateway, specificare o confermare l'indirizzo IP del nodo Admin primario e il nome del nodo.
@@ -41,7 +41,7 @@ Per installare il software StorageGRID su un'appliance di servizi SG100 o SG1000
 
 
 .Fasi
-. Aprire un browser e inserire uno degli indirizzi IP per l'appliance di servizi SG100 o SG1000.
+. Aprire un browser e immettere uno degli indirizzi IP per il dispositivo di servizi.
 +
 `https://_Controller_IP_:8443`
 

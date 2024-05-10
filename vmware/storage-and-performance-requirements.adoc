@@ -25,7 +25,7 @@ Tutti i nodi StorageGRID richiedono che il disco del sistema operativo e tutti i
 
 == Requisiti delle macchine virtuali che utilizzano lo storage NetApp ONTAP
 
-Se stai implementando un nodo StorageGRID come macchina virtuale con lo storage assegnato da un sistema NetApp ONTAP, hai verificato che il volume non disponga di una policy di tiering FabricPool abilitata. Ad esempio, se un nodo StorageGRID viene eseguito come macchina virtuale su un host VMware, assicurarsi che il volume che esegue il backup del datastore per il nodo non abbia un criterio di tiering FabricPool attivato. La disattivazione del tiering FabricPool per i volumi utilizzati con i nodi StorageGRID semplifica la risoluzione dei problemi e le operazioni di storage.
+Se stai implementando un nodo StorageGRID come macchina virtuale con lo storage assegnato da un sistema NetApp ONTAP, hai verificato che il volume non disponga di una policy di tiering FabricPool abilitata. Ad esempio, se un nodo StorageGRID viene eseguito come macchina virtuale su un host VMware, assicurati che il volume che supporta l'archivio dati del nodo non disponga di una policy di tiering FabricPool abilitata. La disattivazione del tiering FabricPool per i volumi utilizzati con i nodi StorageGRID semplifica la risoluzione dei problemi e le operazioni di storage.
 
 
 NOTE: Non utilizzare mai FabricPool per eseguire il tiering dei dati relativi a StorageGRID su StorageGRID. Il tiering dei dati StorageGRID su StorageGRID aumenta la risoluzione dei problemi e la complessità operativa.
@@ -84,6 +84,8 @@ Dimensione massima LUN testata: 39 TB.
  a| 
 Nodo di storage (solo metadati)
  a| 
+LUN DA 100 GB PER SISTEMA OPERATIVO
+
 1 LUN
 
 Dimensione minima per LUN: 4 TB

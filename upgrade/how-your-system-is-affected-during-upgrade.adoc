@@ -49,6 +49,7 @@ Durante l'aggiornamento a StorageGRID 11,8:
 * Le appliance SG100 e SG1000 vengono aggiornate automaticamente alla versione del firmware del BIOS 3B12.EC e al firmware BMC versione 4.73.07.
 * L'appliance SGF6112 viene aggiornata automaticamente alla versione del firmware del BIOS 3A10.QD e al firmware BMC versione 3.15.07.
 * SGF6112 viene convertito dalla modalità di avvio legacy alla modalità di avvio UEFI con l'avvio protetto abilitato.
+* Le appliance SG110 e SG1100 sono state fornite con il firmware del BIOS compatibile con StorageGRID 11,8.
 
 
 

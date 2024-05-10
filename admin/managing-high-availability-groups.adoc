@@ -23,7 +23,7 @@ Ciascun gruppo ha fornisce l'accesso ai servizi condivisi sui nodi selezionati.
 
 * I gruppi HA che includono nodi gateway, nodi di amministrazione o entrambi forniscono connessioni dati altamente disponibili per i client S3 e Swift.
 * I gruppi HA che includono solo nodi Admin forniscono connessioni altamente disponibili al Grid Manager e al Tenant Manager.
-* Un gruppo ha che include solo appliance SG100 o SG1000 e nodi software basati su VMware può fornire connessioni altamente disponibili per link:../admin/manage-s3-select-for-tenant-accounts.html["S3 tenant che utilizzano S3 Select"].
+* Un gruppo ha che include solo appliance di servizi e nodi software basati su VMware può offrire connessioni ad alta disponibilità per link:../admin/manage-s3-select-for-tenant-accounts.html["S3 tenant che utilizzano S3 Select"].
 I gruppi HA sono consigliati quando si utilizza S3 Select, ma non sono richiesti.
 
 

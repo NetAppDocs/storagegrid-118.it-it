@@ -70,6 +70,8 @@ La tabella fornisce un riepilogo generale dei contenuti supportati per ciascuna 
 
  a| 
 Query
+
+(GET e GETNEXT)
  a| 
 Query MIB di sola lettura
  a| 
@@ -92,6 +94,8 @@ Utente del modello di sicurezza basato sull'utente (USM)
 
  a| 
 Notifiche
+
+(INTRAPPOLARE e INFORMARE)
  a| 
 Solo trap
  a| 

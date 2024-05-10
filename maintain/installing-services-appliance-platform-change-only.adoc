@@ -24,6 +24,6 @@ Sono disponibili le seguenti informazioni sul nodo guasto:
 Eseguire questa procedura solo se si sta ripristinando un nodo guasto ospitato su VMware o Linux e lo si sta sostituendo con un nodo ospitato su un'appliance di servizi.
 
 .Fasi
-. Seguire le istruzioni per l'installazione di una nuova appliance di servizi SG100 o SG1000. Vedere https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["Avvio rapido per l'installazione dell'hardware"^].
+. Seguire le istruzioni per l'installazione di un nuovo dispositivo di servizi. Vedere https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["Avvio rapido per l'installazione dell'hardware"^].
 . Quando viene richiesto il nome di un nodo, utilizzare il nome del nodo guasto.
 

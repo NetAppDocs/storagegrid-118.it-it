@@ -35,7 +35,7 @@ link:all-node-types-replacing-linux-node.html["Sostituire un nodo Linux"]
 
 
  a| 
-Appliance di servizi SG100 e SG1000
+Appliance di servizi
  a| 
 link:replacing-failed-node-with-services-appliance.html["Sostituire un'appliance di servizi"]
 

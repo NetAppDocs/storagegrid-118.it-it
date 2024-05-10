@@ -22,5 +22,6 @@ Consultare le informazioni relative alle modalità di port bond dell'appliance:
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/gathering-installation-information-sg6100.html#port-bond-modes["Modalità di port bond (SGF6112)"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/gathering-installation-information-sg6000.html#port-bond-modes["Modalità Port Bond (controller SG6000-CN)"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/gathering-installation-information-sg5700.html#port-bond-modes["Modalità di collegamento porte (controller E5700SG)"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/gathering-installation-information-sg110-and-sg1100.html#port-bond-modes["Modalità Port bond (SG110 e SG1100)"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/gathering-installation-information-sg100-and-sg1000.html#port-bond-modes["Modalità Port Bond (SG100 e SG1000)"^]
 
