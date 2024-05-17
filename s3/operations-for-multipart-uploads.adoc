@@ -31,9 +31,9 @@ Le seguenti condizioni e note si applicano a tutte le operazioni di caricamento 
 
 
 * Tutte le operazioni di caricamento multiparte supportano StorageGRID link:consistency-controls.html["valori di coerenza"].
+* Quando un oggetto viene acquisito utilizzando il caricamento multiparte, la link:../admin/what-object-segmentation-is.html["Soglia di segmentazione degli oggetti (1 GiB)"] non è applicato.
 * Se necessario, è possibile utilizzare link:using-server-side-encryption.html["crittografia lato server"] con upload multiparte. Per utilizzare SSE (crittografia lato server con chiavi gestite da StorageGRID), è necessario includere `x-amz-server-side-encryption` Intestazione della richiesta solo nella richiesta CreateMultipartUpload. Per utilizzare SSE-C (crittografia lato server con chiavi fornite dal cliente), specificare le stesse tre intestazioni di richiesta della chiave di crittografia nella richiesta CreateMultipartUpload e in ogni richiesta UploadPart successiva.
-
-
++
 [cols="2a,3a"]
 |===
 | Operazione | Implementazione 
@@ -89,3 +89,4 @@ UploadPartCopy
 Vedere link:upload-part-copy.html["UploadPartCopy"]
 
 |===
+

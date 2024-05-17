@@ -24,10 +24,3 @@ Il container e i segmenti non sono necessariamente memorizzati sullo stesso nodo
 Ogni segmento viene trattato dal sistema StorageGRID in modo indipendente e contribuisce al conteggio di attributi come oggetti gestiti e oggetti memorizzati. Ad esempio, se un oggetto memorizzato nel sistema StorageGRID viene suddiviso in due segmenti, il valore degli oggetti gestiti aumenta di tre dopo il completamento dell'acquisizione, come segue:
 
 `segment container + segment 1 + segment 2 = three stored objects`
-
-È possibile migliorare le prestazioni durante la gestione di oggetti di grandi dimensioni garantendo che:
-
-* Ciascun gateway e nodo di storage dispone di una larghezza di banda di rete sufficiente per il throughput richiesto. Ad esempio, configurare reti client e Grid separate su interfacce Ethernet a 10 Gbps.
-* Vengono implementati un numero sufficiente di gateway e nodi storage per il throughput richiesto.
-* Ogni nodo di storage dispone di prestazioni i/o del disco sufficienti per il throughput richiesto.
-

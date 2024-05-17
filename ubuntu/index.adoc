@@ -44,7 +44,7 @@ Per risparmiare tempo e garantire coerenza, è possibile automatizzare l'install
 
 * Utilizza un framework di orchestrazione standard come Ansible, Puppet o Chef per automatizzare:
 +
-** Installazione di RHEL
+** Installazione di Ubuntu o Debian
 ** Configurazione di rete e storage
 ** Installazione del motore del container e del servizio host StorageGRID
 ** Implementazione di nodi grid virtuali
