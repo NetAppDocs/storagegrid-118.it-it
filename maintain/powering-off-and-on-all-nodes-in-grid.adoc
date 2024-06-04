@@ -90,6 +90,13 @@ Per l'appliance, questo comando arresta il controller di calcolo, ma l'appliance
 
 
 --
+.SG6160
+--
+.. Spegnere il controller di storage SG6100-CN.
+.. Attendere lo spegnimento del LED di alimentazione blu sul controller di archiviazione SG6100-CN.
+
+
+--
 .SGF6112
 --
 .. Spegnere l'apparecchio.
@@ -156,7 +163,7 @@ NOTE: Non sarà possibile accedere ai nodi di amministrazione fino a quando i no
 
 
 .Informazioni correlate
-* https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["SGF6112 appliance di storage"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["Appliance di storage SGF6112 e SG6160"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/sg110-1100/index.html["Appliance per i servizi SG110 e SG1100"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/sg100-1000/index.html["Appliance di servizi SG100 e SG1000"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/index.html["Appliance di storage SG6000"^]

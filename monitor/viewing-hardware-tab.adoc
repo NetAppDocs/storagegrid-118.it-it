@@ -266,7 +266,7 @@ L'identificativo numerico dello shelf di storage.
 *** 1: Secondo shelf di espansione
 
 
-*Nota:* gli shelf di espansione si applicano solo a SG6060.
+*Nota:* gli scaffali di espansione si applicano solo ai modelli SG6060 e SG6160.
 
 
 

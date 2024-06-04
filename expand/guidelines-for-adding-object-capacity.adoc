@@ -23,6 +23,7 @@ Prima di aggiungere volumi di storage ai nodi di storage esistenti, consultare l
 * Non è possibile aumentare la capacità dei metadati del sistema aggiungendo volumi di storage perché i metadati degli oggetti vengono memorizzati solo sul volume 0.
 * Ogni nodo di storage basato su software può supportare un massimo di 16 volumi di storage. Se è necessario aggiungere capacità oltre tale limite, è necessario aggiungere nuovi nodi di storage.
 * È possibile aggiungere uno o due shelf di espansione a ciascuna appliance SG6060. Ogni shelf di espansione aggiunge 16 volumi di storage. Con entrambi gli shelf di espansione installati, SG6060 può supportare un totale di 48 volumi di storage.
+* Puoi aggiungere uno o due shelf di espansione a ogni appliance SG6160. Ogni shelf di espansione aggiunge 60 volumi di storage. Con i due shelf di espansione installati, SG6160 supporta un totale di 180 volumi di storage.
 * Non è possibile aggiungere volumi di storage ad altre appliance di storage.
 * Non è possibile aumentare le dimensioni di un volume di storage esistente.
 * Non è possibile aggiungere volumi di storage a un nodo di storage contemporaneamente all'aggiornamento del sistema, all'operazione di recovery o a un'altra espansione.
@@ -31,6 +32,7 @@ Prima di aggiungere volumi di storage ai nodi di storage esistenti, consultare l
 Dopo aver deciso di aggiungere volumi di storage e aver determinato i nodi di storage da espandere per soddisfare la policy ILM, seguire le istruzioni relative al tipo di nodo di storage:
 
 * Per aggiungere uno o due shelf di espansione a un'appliance di storage SG6060, visitare il sito Web all'indirizzo https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/adding-expansion-shelf-to-deployed-sg6060.html["Aggiunta di shelf di espansione a SG6060 implementato"^].
+* Per aggiungere uno o due shelf di espansione a un'appliance di storage SG6160, passare al https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/adding-expansion-shelf-to-deployed-sg6160.html["Aggiungi shelf di espansione alla piattaforma SG6160 implementata"^]
 * Per un nodo basato su software, seguire le istruzioni per
 link:adding-storage-volumes-to-storage-nodes.html["Aggiunta di volumi di storage ai nodi di storage"].
 

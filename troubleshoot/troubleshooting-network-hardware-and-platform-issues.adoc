@@ -180,6 +180,7 @@ NOTE: Questi passaggi sono applicabili solo agli errori NRER causati da mancata 
 .. Controllare l'integrità fisica dei cavi che collegano l'apparecchio allo switch.
 .. Se si desidera modificare le impostazioni FEC per tentare di risolvere l'allarme NRER, assicurarsi innanzitutto che l'appliance sia configurata per la modalità *auto* nella pagina di configurazione del collegamento del programma di installazione dell'appliance StorageGRID (consultare le istruzioni relative all'appliance:
 +
+*** https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/changing-link-configuration-of-sgf6112-appliance.html["SG6160"^]
 *** https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/changing-link-configuration-of-sgf6112-appliance.html["SGF6112"^]
 *** https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/changing-link-configuration-of-sg6000-cn-controller.html["SG6000"^]
 *** https://docs.netapp.com/us-en/storagegrid-appliances/sg5700/changing-link-configuration-of-e5700sg-controller.html["SG5700"^]

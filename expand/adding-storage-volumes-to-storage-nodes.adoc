@@ -17,7 +17,7 @@ summary: È possibile espandere la capacità di storage dei nodi di storage con 
 Prima di aggiungere volumi di storage, consultare link:guidelines-for-adding-object-capacity.html["linee guida per l'aggiunta della capacità degli oggetti"] Per assicurarsi di sapere dove aggiungere volumi per soddisfare i requisiti della policy ILM.
 
 
-NOTE: Queste istruzioni sono valide solo per i nodi storage basati su software. Vedere https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/adding-expansion-shelf-to-deployed-sg6060.html["Aggiunta di shelf di espansione a SG6060 implementato"^] Per scoprire come aggiungere volumi di storage a SG6060 installando shelf di espansione. Impossibile espandere altri nodi storage dell'appliance.
+NOTE: Queste istruzioni sono valide solo per i nodi storage basati su software. Vedere https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/adding-expansion-shelf-to-deployed-sg6060.html["Aggiunta di shelf di espansione a SG6060 implementato"^] oppure https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/adding-expansion-shelf-to-deployed-sg6160.html["Aggiungi shelf di espansione alla piattaforma SG6160 implementata"^] Per scoprire come aggiungere volumi di storage a SG6060 o SG6160 installando shelf di espansione. Impossibile espandere altri nodi storage dell'appliance.
 
 .A proposito di questa attività
 Lo storage sottostante di un nodo di storage è suddiviso in volumi di storage. I volumi di storage sono dispositivi di storage basati su blocchi formattati dal sistema StorageGRID e montati per memorizzare oggetti. Ciascun nodo di storage può supportare fino a 16 volumi di storage, denominati _archivi di oggetti_ in Grid Manager.

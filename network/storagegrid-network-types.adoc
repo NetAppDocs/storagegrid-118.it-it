@@ -100,6 +100,7 @@ Per ulteriori informazioni sulla mappatura delle porte fisiche o virtuali alle i
 
 
 .Nodi appliance
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg6100.html["Appliance di storage SG6160"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg6100.html["Appliance di storage SGF6112"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg6000.html["Appliance di storage SG6000"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg5700.html["Appliance di storage SG5700"^]

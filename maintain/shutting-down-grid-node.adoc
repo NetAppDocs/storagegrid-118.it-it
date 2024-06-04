@@ -66,6 +66,13 @@ Per l'appliance, questo comando spegne il controller, ma l'appliance è ancora a
 +
 [role="tabbed-block"]
 ====
+.SG6160
+--
+.. Spegnere il controller di storage SG6100-CN.
+.. Attendere lo spegnimento del LED di alimentazione blu sul controller di archiviazione SG6100-CN.
+
+
+--
 .SGF6112
 --
 .. Spegnere l'apparecchio.

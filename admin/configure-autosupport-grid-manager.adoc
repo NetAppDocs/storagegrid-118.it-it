@@ -190,10 +190,10 @@ Puoi utilizzare SANtricity per abilitare AutoSupport per ciascuna appliance di s
 
 È possibile includere in StorageGRID AutoSupport i pacchetti AutoSupport delle appliance e-Series configurando l'erogazione di AutoSupport in base al proxy link:../admin/sending-eseries-autosupport-messages-through-storagegrid.html["Gestore di sistema di SANtricity"].
 
-StorageGRID AutoSupport non segnala problemi di hardware, ad esempio errori DIMM o HIC (host Interface Card). Tuttavia, potrebbero verificarsi alcuni guasti ai componenti link:../monitor/alerts-reference.html["avvisi hardware"]. Per le appliance StorageGRID con un controller di gestione baseboard (BMC), come SG100, SG1000, SG6060 o SGF6024, è possibile configurare le trap e-mail e SNMP per segnalare gli errori hardware:
+StorageGRID AutoSupport non segnala problemi di hardware, ad esempio errori DIMM o HIC (host Interface Card). Tuttavia, potrebbero verificarsi alcuni guasti ai componenti link:../monitor/alerts-reference.html["avvisi hardware"]. Per le appliance StorageGRID con un controller di gestione baseboard (BMC) è possibile configurare trap e-mail e SNMP per segnalare errori hardware:
 
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/setting-up-email-notifications-for-alerts.html["Impostare le notifiche e-mail per gli avvisi BMC"^]
-* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/configuring-snmp-settings-for-bmc.html["Configurare le impostazioni SNMP per BMC"^] Per il controller SG6000-CN o le appliance di servizi SG100 e SG1000
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/configuring-snmp-settings-for-bmc.html["Configurare le impostazioni SNMP per BMC"^]
 
 
 .Informazioni correlate

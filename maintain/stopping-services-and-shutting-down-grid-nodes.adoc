@@ -74,6 +74,12 @@ Per l'appliance, questo comando arresta il controller di calcolo, ma l'appliance
 ... Attendere che il LED di alimentazione blu si spenga.
 
 
+** Per l'apparecchio SG6160
++
+... Spegnere il controller di storage SG6100-CN.
+... Attendere lo spegnimento del LED di alimentazione blu sul controller di archiviazione SG6100-CN.
+
+
 ** Per l'appliance SG6000
 +
 ... Attendere che il LED verde cache Active (cache attiva) sul retro dei controller dello storage si spenga.
@@ -101,7 +107,7 @@ La griglia StorageGRID è stata chiusa.
 
 
 .Informazioni correlate
-https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["SGF6112 appliance di storage"^]
+https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["Appliance di storage SGF6112 e SG6160"^]
 
 https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/index.html["Appliance di storage SG6000"^]
 
