@@ -89,6 +89,17 @@ Questo LED si accende quando i dati memorizzati nella cache devono essere scritt
 ... Spegnere l'apparecchio e attendere che il LED di alimentazione blu si spenga.
 
 
+** Per l'apparecchio SG5800
++
+... Attendere che il LED verde cache Active (cache attiva) sul retro del controller dello storage si spenga.
++
+Questo LED si accende quando i dati memorizzati nella cache devono essere scritti sui dischi. Prima di spegnere il prodotto, attendere che il LED si spenga.
+
+... Dalla home page di Gestione sistema SANtricity, selezionare *Visualizza operazioni in corso*.
+... Confermare che tutte le operazioni sono state completate prima di passare alla fase successiva.
+... Spegnere entrambi gli interruttori di alimentazione sul ripiano del controller e attendere lo spegnimento di tutti i LED sul ripiano del controller.
+
+
 ** Per l'apparecchio SG5700
 +
 ... Attendere che il LED verde cache Active (cache attiva) sul retro del controller dello storage si spenga.
@@ -110,6 +121,8 @@ La griglia StorageGRID è stata chiusa.
 https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["Appliance di storage SGF6112 e SG6160"^]
 
 https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/index.html["Appliance di storage SG6000"^]
+
+https://docs.netapp.com/us-en/storagegrid-appliances/sg5800/index.html["SG5800 appliance di storage"^]
 
 https://docs.netapp.com/us-en/storagegrid-appliances/sg5700/index.html["SG5700 appliance di storage"^]
 
