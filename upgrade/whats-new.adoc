@@ -42,6 +42,12 @@ SGF6112 miglioramenti:: Supporto per StorageGRID 11,8 e StorageGRID Appliance In
 == Configurare e gestire
 
 Impostazione predefinita per l'intera griglia di coerenza:: È possibile modificare link:../s3/consistency-controls.html["coerenza predefinita a livello di griglia"] Utilizzando il Grid Manager o l'endpoint grid-config di link:../admin/using-grid-management-api.html["API privata di Grid Management"]. Il nuovo default verrà applicato ai bucket creati dopo la modifica.
+Destinazioni di controllo predefinite:: Le nuove installazioni di StorageGRID 11,8 sono predefinite per le destinazioni di controllo dei nodi locali. In precedenza, i messaggi di controllo venivano inviati al registro di controllo (`/var/local/log/audit.log`) solo sui nodi Admin.
++
+--
+Per informazioni sulla modifica delle destinazioni del registro di controllo, fare riferimento alla sezione link:../monitor/configure-audit-messages.html#Select-audit-information-destinations["Selezionare le destinazioni delle informazioni di audit"].
+
+--
 Tag dei criteri ILM:: Consente il controllo delle policy ILM per bucket con etichette bucket. Possono esistere più criteri ILM attivi e inattivi contemporaneamente. Vedere link:../ilm/ilm-policy-overview.html["Criteri ILM: Panoramica"].
 Endpoint Kafka:: Supporto per endpoint Kafka per link:../tenant/understanding-notifications-for-buckets.html["notifiche eventi bucket"].
 Bilanciamento del carico per il traffico delle interfacce di gestione:: Creare endpoint di bilanciamento del carico per gestire il carico di lavoro dell'interfaccia di gestione sui nodi amministrativi. Vedere link:../admin/managing-load-balancing.html["considerazioni per il bilanciamento del carico"]. Come parte di questa modifica, è ora possibile utilizzare le porte 443, 8443 e 9443 di Grid Manager e Tenant Manager quando si creano endpoint di bilanciamento del carico HTTPS per l'accesso client S3 o Swift.

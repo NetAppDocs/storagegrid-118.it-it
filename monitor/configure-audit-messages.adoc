@@ -601,7 +601,7 @@ TIP: *Solo nodi locali* e *Server syslog esterno* in genere offrono prestazioni 
 
 
  a| 
-Solo nodi locali
+Solo nodi locali (impostazione predefinita)
  a| 
 I messaggi di controllo, i registri degli eventi di protezione e i registri delle applicazioni non vengono inviati ai nodi amministrativi. Vengono invece salvati solo sui nodi che li hanno generati ("nodo locale"). Le informazioni di controllo generate su ogni nodo locale sono memorizzate in `/var/local/log/localaudit.log`
 
