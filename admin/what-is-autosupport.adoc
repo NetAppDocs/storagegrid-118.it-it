@@ -64,7 +64,7 @@ Dimensione compressa AutoSupport +
 Dimensioni decompresse AutoSupport +
 Tempo totale di raccolta (ms)
  a| 
-File di cronologia AutoSupport
+File di cronologia AutoSupport.
 
 
 
@@ -158,6 +158,29 @@ File di stato delle attività della griglia (procedure di manutenzione). Fornisc
 
 
  a| 
+GRID.JSON
+ a| 
+Griglia + Revisione + versione software + Descrizione + licenza + password + DNS + NTP + Siti + nodi
+ a| 
+Informazioni sulla griglia.
+
+
+
+ a| 
+ILM-CONFIGURATION.XML
+ a| 
+ID attributo +
+Nome attributo +
+Valore +
+Indice +
+ID tabella +
+Nome tabella
+ a| 
+Elenco degli attributi per le configurazioni ILM.
+
+
+
+ a| 
 ILM-STATUS.XML
  a| 
 Nodo +
@@ -178,7 +201,7 @@ ILM.XML
  a| 
 XML raw ILM
  a| 
-File di criteri ILM attivo. Contiene dettagli sulle policy ILM attive, come ID del pool di storage, comportamento di acquisizione, filtri, regole e descrizione.
+File di criteri ILM attivo. Contiene dettagli sulle policy ILM attive, come ID del pool di storage, comportamento di acquisizione, filtri, regole e descrizione. Contiene inoltre l'XML per il criterio ILM predefinito.
 
 
 

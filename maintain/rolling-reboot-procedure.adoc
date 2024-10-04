@@ -131,5 +131,5 @@ Le tabelle forniscono una barra di avanzamento dell'operazione su ciascun nodo e
 
 .Fasi
 . Selezionare *MANUTENZIONE* > *attività* > *riavvio in sequenza*.
-. Dal passaggio *riavvio del monitor*, selezionare *Interrompi riavvio*.
+. Dal passaggio *Monitor reboot* (riavvio monitor), selezionare *Stop reboot procedure* (Interrompi procedura di riavvio).
 

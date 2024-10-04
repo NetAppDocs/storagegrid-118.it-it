@@ -38,7 +38,7 @@ Se il server proxy non richiede un nome utente o una password, lasciare vuoti qu
 
 . Selezionare una delle seguenti opzioni:
 +
-** Se si desidera proteggere la connessione al proxy amministratore, selezionare *verifica certificato*. Caricare un pacchetto CA per verificare l'autenticità dei certificati SSL presentati dal server proxy amministratore.
+** Se si desidera proteggere la connessione al proxy amministratore, selezionare *verifica certificato proxy*. Caricare un pacchetto CA per verificare l'autenticità dei certificati SSL presentati dal server proxy amministratore.
 +
 
 CAUTION: AutoSupport on Demand, e-Series AutoSupport tramite StorageGRID e la determinazione del percorso di aggiornamento nella pagina dell'upgrade della StorageGRID non funzionano se viene verificato un certificato proxy.
@@ -46,7 +46,7 @@ CAUTION: AutoSupport on Demand, e-Series AutoSupport tramite StorageGRID e la de
 +
 Dopo aver caricato il pacchetto CA, vengono visualizzati i relativi metadati.
 
-** Se non si desidera convalidare i certificati durante la comunicazione con il server proxy amministratore, selezionare *non verificare il certificato*.
+** Se non si desidera convalidare i certificati quando si comunica con il server proxy dell'amministratore, selezionare *non verificare il certificato proxy*.
 
 
 . Selezionare *Salva*.

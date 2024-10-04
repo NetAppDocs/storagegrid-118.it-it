@@ -80,7 +80,7 @@ Per determinare quando verrà inviato il pacchetto settimanale AutoSupport, anda
 
 == Disattiva AutoSupport attivato dagli eventi
 
-Per impostazione predefinita, il sistema StorageGRID è configurato in modo da inviare un pacchetto AutoSupport al supporto tecnico ogni ora o quando si verifica un avviso importante o un altro evento di sistema significativo.
+Per impostazione predefinita, il sistema StorageGRID è configurato per inviare un pacchetto AutoSupport all'assistenza tecnica ogni ora.
 
 È possibile disattivare AutoSupport attivato da eventi in qualsiasi momento.
 
