@@ -93,6 +93,8 @@ indexpage:
       url: https://community.netapp.com/
   - title: Altre versioni
     links:
+    - title: Documentazione di StorageGRID 11,9
+      url: https://docs.netapp.com/us-en/storagegrid/index.html
     - title: Documentazione di StorageGRID 11,7
       url: https://docs.netapp.com/us-en/storagegrid-117/index.html
     - title: Documentazione di StorageGRID 11,6
