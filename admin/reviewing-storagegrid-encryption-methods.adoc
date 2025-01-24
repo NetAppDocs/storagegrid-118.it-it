@@ -45,7 +45,7 @@ La crittografia dei dischi non si applica ai dischi gestiti da SANtricity. Se ha
  a| 
 Protezione dei dischi in Gestione di sistema SANtricity
  a| 
-Se la funzione Drive Security è attivata per un'appliance di storage SG5700 o SG6000, è possibile utilizzare https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/accessing-and-configuring-santricity-system-manager.html["Gestore di sistema di SANtricity"^] per creare e gestire la chiave di sicurezza. La chiave è necessaria per accedere ai dati sui dischi protetti.
+Se la funzione di protezione dell'unità è attivata per l'appliance StorageGRID, è possibile utilizzare https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/accessing-and-configuring-santricity-system-manager.html["Gestore di sistema di SANtricity"^] per creare e gestire la chiave di protezione. La chiave è necessaria per accedere ai dati sui dischi protetti.
  a| 
 Appliance storage con dischi FDE (Full Disk Encryption) o dischi a crittografia automatica. Tutti i dati presenti sulle unità protette sono protetti da perdita fisica o rimozione dal data center. Non è utilizzabile con alcune appliance di storage o con alcuna appliance di servizi.
 
