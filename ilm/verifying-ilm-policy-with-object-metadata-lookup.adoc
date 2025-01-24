@@ -53,8 +53,6 @@ Vengono visualizzati i risultati della ricerca dei metadati dell'oggetto. In que
 ** Per le copie di oggetti in un Cloud Storage Pool, la posizione dell'oggetto, incluso il nome del bucket esterno e l'identificatore univoco dell'oggetto.
 ** Per oggetti segmentati e multiparte, un elenco di segmenti di oggetti che include identificatori di segmenti e dimensioni dei dati. Per gli oggetti con più di 100 segmenti, vengono visualizzati solo i primi 100 segmenti.
 ** Tutti i metadati degli oggetti nel formato di storage interno non elaborato. Questi metadati raw includono metadati interni del sistema che non sono garantiti per la persistenza dalla release alla release.
-
-
 +
 Nell'esempio seguente vengono illustrati i risultati della ricerca dei metadati degli oggetti per un oggetto di test S3 memorizzato come due copie replicate.
 
@@ -64,6 +62,8 @@ NOTE: La seguente schermata è un esempio. I risultati variano a seconda della v
 
 +
 image::../media/object_lookup_results.png[Risultati della ricerca di oggetti]
+
+
 
 . Verificare che l'oggetto sia memorizzato nella posizione o nelle posizioni corrette e che si tratti del tipo di copia corretto.
 +
