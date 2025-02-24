@@ -60,7 +60,7 @@ Una volta effettuato l'accesso come root, il prompt cambia da `$` a. `#`.
 
 . Utilizzare `ObjectByUUID` Comando per trovare l'oggetto in base al relativo identificatore (UUID), quindi determinare se i dati sono a rischio.
 +
-.. Telnet all'host locale 1402 per accedere alla console LDR.
+.. Utilizzare SSH per accedere a qualsiasi nodo storage. Quindi accedere alla console LDR digitando "telnet 0 1402".
 .. Inserire: `/proc/OBRP/ObjectByUUID UUID_value`
 +
 In questo primo esempio, l'oggetto con `UUID 926026C4-00A4-449B-AC72-BCCA72DD1311` ha due posizioni elencate.
