@@ -184,7 +184,7 @@ Un banner verde indica che la configurazione è stata salvata.
 In alternativa, è possibile configurare un server syslog esterno per salvare registri di controllo, registri delle applicazioni e registri di eventi di sicurezza in una posizione esterna alla griglia.
 
 
-NOTE: Se non si desidera utilizzare un server syslog esterno, ignorare questo passaggio e passare a. <<Select-audit-information-destinations,Selezionare le destinazioni delle informazioni di audit>>.
+NOTE: Se non si desidera utilizzare un server syslog esterno, ignorare questo passaggio e andare a <<select-audit-information-destinations,Selezionare le destinazioni delle informazioni di audit>>.
 
 
 TIP: Se le opzioni di configurazione disponibili in questa procedura non sono sufficientemente flessibili da soddisfare le proprie esigenze, è possibile applicare ulteriori opzioni di configurazione utilizzando `audit-destinations` Endpoint, che si trovano nella sezione API privata di link:../admin/using-grid-management-api.html["API di Grid Management"]. Ad esempio, è possibile utilizzare l'API se si desidera utilizzare server syslog diversi per diversi gruppi di nodi.
@@ -585,9 +585,15 @@ NOTE: Le informazioni di audit StorageGRID non vengono inviate al server syslog 
 
 È possibile specificare la posizione dei registri di controllo, dei registri eventi di protezione e. link:../monitor/storagegrid-software-logs.html["Log del software StorageGRID"] vengono inviati.
 
+[NOTE]
+====
+StorageGRID utilizza per impostazione predefinita le destinazioni di controllo dei nodi locali e memorizza le informazioni di controllo in `/var/local/log/localaudit.log`.
 
-NOTE: Alcune destinazioni sono disponibili solo se è stato configurato un server syslog esterno.
+Quando si utilizza `/var/local/log/localaudit.log`, le voci del registro di controllo di Grid Manager e Tenant Manager potrebbero essere inviate a un nodo di archiviazione. È possibile individuare il nodo con le voci più recenti utilizzando il `run-each-node --parallel "zgrep MGAU /var/local/log/localaudit.log | tail"` comando.
 
+Alcune destinazioni sono disponibili solo se è stato configurato un server syslog esterno.
+
+====
 .Fasi
 . Nella pagina Audit and syslog server (Server audit e syslog), selezionare la destinazione per le informazioni di audit.
 +
@@ -603,7 +609,7 @@ TIP: *Solo nodi locali* e *Server syslog esterno* in genere offrono prestazioni 
  a| 
 Solo nodi locali (impostazione predefinita)
  a| 
-I messaggi di controllo, i registri degli eventi di protezione e i registri delle applicazioni non vengono inviati ai nodi amministrativi. Vengono invece salvati solo sui nodi che li hanno generati ("nodo locale"). Le informazioni di controllo generate su ogni nodo locale sono memorizzate in `/var/local/log/localaudit.log`
+I messaggi di controllo, i registri degli eventi di protezione e i registri delle applicazioni non vengono inviati ai nodi amministrativi. Vengono invece salvati solo sui nodi che li hanno generati ("nodo locale"). Le informazioni di controllo generate su ogni nodo locale sono memorizzate in `/var/local/log/localaudit.log`.
 
 *Nota*: StorageGRID rimuove periodicamente i log locali in una rotazione per liberare spazio. Quando il file di log di un nodo raggiunge 1 GB, il file esistente viene salvato e viene avviato un nuovo file di log. Il limite di rotazione per il log è di 21 file. Quando viene creata la ventiduesima versione del file di log, il file di log più vecchio viene cancellato. In media, su ciascun nodo vengono memorizzati circa 20 GB di dati di log.
 
@@ -612,21 +618,25 @@ I messaggi di controllo, i registri degli eventi di protezione e i registri dell
  a| 
 Nodi amministrativi/nodi locali
  a| 
-I messaggi di audit vengono inviati al registro di audit (`/var/local/log/audit.log`) Sui nodi Admin, i registri degli eventi di protezione e i registri delle applicazioni sono memorizzati sui nodi che li hanno generati.
+I messaggi di controllo vengono inviati al registro di controllo sui nodi Admin, mentre i registri degli eventi di protezione e i registri delle applicazioni vengono memorizzati sui nodi che li hanno generati. Le informazioni di controllo sono memorizzate nei seguenti file:
+
+** Nodi amministrativi (primario e non primario): `/var/local/audit/export/audit.log`
+** Tutti i nodi: Il `/var/local/log/localaudit.log` file è in genere vuoto o mancante. Potrebbe contenere informazioni secondarie, ad esempio una copia aggiuntiva di alcuni messaggi.
+
 
 
 
  a| 
 Server syslog esterno
  a| 
-Le informazioni di audit vengono inviate a un server syslog esterno e salvate sui nodi locali. Il tipo di informazioni inviate dipende dalla configurazione del server syslog esterno. Questa opzione viene attivata solo dopo aver configurato un server syslog esterno.
+Le informazioni di controllo vengono inviate a un server syslog esterno e salvate sui nodi locali (`/var/local/log/localaudit.log`). Il tipo di informazioni inviate dipende dalla configurazione del server syslog esterno. Questa opzione viene attivata solo dopo aver configurato un server syslog esterno.
 
 
 
  a| 
 Nodo di amministrazione e server syslog esterno
  a| 
-I messaggi di audit vengono inviati al registro di audit (`/var/local/log/audit.log`) Sui nodi Admin, e le informazioni di controllo vengono inviate al server syslog esterno e salvate sul nodo locale. Il tipo di informazioni inviate dipende dalla configurazione del server syslog esterno. Questa opzione viene attivata solo dopo aver configurato un server syslog esterno.
+I messaggi di controllo vengono inviati al registro di controllo (`/var/local/audit/export/audit.log`) sui nodi Admin e le informazioni di controllo vengono inviate al server syslog esterno e salvate sul nodo locale (`/var/local/log/localaudit.log`. Il tipo di informazioni inviate dipende dalla configurazione del server syslog esterno. Questa opzione viene attivata solo dopo aver configurato un server syslog esterno.
 
 |===
 . Selezionare *Salva*.
