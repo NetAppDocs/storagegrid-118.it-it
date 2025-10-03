@@ -191,11 +191,18 @@ Un allarme SMTT (Total Events) viene attivato quando il database Cassandra prese
 Se si verifica un errore di memoria insufficiente per il database Cassandra, viene creato un dump heap, viene attivato un allarme SMTT (Total Events) e il conteggio degli errori Cassandra Heap out of Memory viene incrementato di uno.
 
 .Fasi
-. Per visualizzare l'evento, selezionare *SUPPORT* > *Tools* > *Grid topology* > *Configuration*.
+. Guarda l'evento:
++
+.. Selezionare *SUPPORT* > *Tools* > *Grid topology*.
+.. Espandi il sito, quindi seleziona *_grid_node_*.
+.. Selezionare *SSM*, quindi selezionare *Eventi* > *Configurazione*.
+
+
 . Verificare che il conteggio degli errori di memoria esaurita di Cassandra sia pari o superiore a 1.
 +
 È possibile link:../monitor/running-diagnostics.html["eseguire la diagnostica"] per ottenere ulteriori informazioni sullo stato corrente della griglia.
 
+. Accedi al nodo selezionato come "admin" tramite SSH e passa all'utente root locale.
 . Passare a. `/var/local/core/`, comprimere `Cassandra.hprof` e inviarla al supporto tecnico.
 . Eseguire un backup di `Cassandra.hprof` ed eliminarlo da `/var/local/core/ directory`.
 +
