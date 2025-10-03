@@ -62,23 +62,7 @@ Dopo aver salvato la configurazione, tutte le porte esterne sul nodo di amminist
 
 
 
-=== Esempio 2: Limitare l'accesso a Grid Manager e Tenant Manager
-
-Si supponga di voler limitare l'accesso al Grid Manager e al responsabile del tenant (porte preimpostate) per motivi di sicurezza. È possibile utilizzare questi passaggi generali:
-
-. Utilizzare l'interruttore sulla scheda Gestisci accesso esterno per bloccare la porta 443.
-. Utilizzare il pulsante nella scheda Manage external access (Gestisci accesso esterno) per consentire l'accesso alla porta 8443.
-. Utilizzare l'interruttore sulla scheda Gestisci accesso esterno per consentire l'accesso alla porta 9443.
-
-
-Dopo aver salvato la configurazione, gli host non potranno accedere alla porta 443, ma potranno comunque accedere a Grid Manager attraverso la porta 8443 e a Tenant Manager attraverso la porta 9443.
-
-
-NOTE: Le porte 443, 8443 e 9443 sono le porte preimpostate per Grid Manager e Tenant Manager. È possibile attivare/disattivare qualsiasi porta per limitare l'accesso a uno specifico Grid Manager o Tenant Manager.
-
-
-
-=== Esempio 3: Blocco delle porte sensibili
+=== Esempio 2: Bloccare le porte sensibili
 
 Si supponga di voler bloccare le porte sensibili e il servizio su tale porta (ad esempio, SSH sulla porta 22). È possibile utilizzare i seguenti passaggi generali:
 
@@ -93,7 +77,7 @@ Dopo aver salvato la configurazione, la porta 22 e il servizio SSH saranno dispo
 
 
 
-=== Esempio 4: Disattivazione dell'accesso ai servizi inutilizzati
+=== Esempio 3: Disabilitare l'accesso ai servizi non utilizzati
 
 A livello di rete, è possibile disattivare alcuni servizi che non si intende utilizzare. Ad esempio, se non si fornisce l'accesso a Swift, attenersi alla seguente procedura generale:
 
