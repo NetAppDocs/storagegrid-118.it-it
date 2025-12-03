@@ -2,7 +2,7 @@
 permalink: troubleshoot/investigating-lost-objects.html 
 sidebar: sidebar 
 keywords: lost objects, investigating, objects 
-summary: 'Quando viene attivato l"avviso *oggetti persi*, è necessario eseguire un"analisi immediata. Raccogliere informazioni sugli oggetti interessati e contattare il supporto tecnico.' 
+summary: 'Quando viene attivato l"avviso Oggetti smarriti, è necessario indagare immediatamente. Raccogliere informazioni sugli oggetti interessati e contattare l"assistenza tecnica.' 
 ---
 = Esaminare gli oggetti persi
 :allow-uri-read: 
