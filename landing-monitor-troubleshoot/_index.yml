@@ -1,5 +1,13 @@
 ---
 indexpage:
+  title: Monitorare e risolvere i problemi di un sistema StorageGRID
+  summary: Quando il sistema è attivo e in funzione, è necessario monitorarne regolarmente
+    le attività e risolvere eventuali avvisi. È inoltre possibile configurare un server
+    syslog esterno, utilizzare il monitoraggio SNMP o raccogliere dati aggiuntivi.
+  keywords: monitor, troubleshoot, storagegrid system, dashboard, audit, message
+  lead: Quando il sistema è attivo e in funzione, è necessario monitorarne regolarmente
+    le attività e risolvere eventuali avvisi. È inoltre possibile configurare un server
+    syslog esterno, utilizzare il monitoraggio SNMP o raccogliere dati aggiuntivi.
   tiles:
   - title: Monitorare il sistema
     links:

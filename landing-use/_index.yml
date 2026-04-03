@@ -1,5 +1,13 @@
 ---
 indexpage:
+  title: Utilizzare tenant e client StorageGRID
+  summary: Una volta completata la configurazione iniziale, gli account tenant di
+    StorageGRID possono creare bucket e utilizzare applicazioni client S3 per acquisire,
+    recuperare ed eliminare gli oggetti.
+  keywords: applications, tenant, ingest, storagegrid systems, monitor, api, management
+  lead: Una volta completata la configurazione iniziale, gli account tenant di StorageGRID
+    possono creare bucket e utilizzare applicazioni client S3 per acquisire, recuperare
+    ed eliminare gli oggetti.
   tiles:
   - title: Informazioni sui locatari
     links:

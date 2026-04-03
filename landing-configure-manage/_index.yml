@@ -1,5 +1,15 @@
 ---
 indexpage:
+  title: Configurare e gestire un sistema StorageGRID
+  summary: Le attività di configurazione da eseguire per un nuovo sistema StorageGRID
+    dipendono dal modo in cui si utilizzerà il grid. Come minimo, è possibile configurare
+    l'accesso al sistema, utilizzare le procedure guidate FabricPool e S3 e gestire
+    varie impostazioni di storage e sicurezza.
+  keywords: storagegrid system, configure, manage, security, settings, admin, group
+  lead: Le attività di configurazione da eseguire per un nuovo sistema StorageGRID
+    dipendono dal modo in cui si utilizzerà il grid. Come minimo, è possibile configurare
+    l'accesso al sistema, utilizzare le procedure guidate FabricPool e S3 e gestire
+    varie impostazioni di storage e sicurezza.
   tiles:
   - title: Inizia subito
     links:

@@ -1,5 +1,15 @@
 ---
 indexpage:
+  title: Gestire un sistema StorageGRID
+  summary: È possibile aggiungere nodi o siti per espandere la capacità o le funzionalità
+    del sistema. È inoltre possibile eseguire varie procedure di manutenzione per
+    eseguire il ripristino in caso di guasti o per mantenere il sistema StorageGRID
+    aggiornato e in grado di funzionare in modo efficiente.
+  keywords: storagegrid system, maintenance, capacity, grid, remove, maintain, decommission
+  lead: È possibile aggiungere nodi o siti per espandere la capacità o le funzionalità
+    del sistema. È inoltre possibile eseguire varie procedure di manutenzione per
+    eseguire il ripristino in caso di guasti o per mantenere il sistema StorageGRID
+    aggiornato e in grado di funzionare in modo efficiente.
   tiles:
   - title: Inizia subito
     links:

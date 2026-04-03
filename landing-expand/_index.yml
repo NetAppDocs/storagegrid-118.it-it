@@ -1,5 +1,11 @@
 ---
 indexpage:
+  title: Espandere una griglia
+  summary: Puoi espandere la capacità o le funzionalità del tuo sistema StorageGRID
+    senza interrompere le operazioni di sistema.
+  keywords: storagegrid system, capacity, grid, capabilities, operations, expansion
+  lead: Puoi espandere la capacità o le funzionalità del tuo sistema StorageGRID senza
+    interrompere le operazioni di sistema.
   tiles:
   - title: Inizia subito
     links:

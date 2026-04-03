@@ -1,5 +1,16 @@
 ---
 indexpage:
+  title: Installazione, aggiornamento e correzione rapida StorageGRID
+  summary: Un sistema StorageGRID è costituito da singoli nodi basati su hardware
+    e software. Installare innanzitutto l'hardware per ciascun nodo appliance e configurare
+    ciascun host Linux o VMware. Quindi, installi il software StorageGRID su ogni
+    appliance o host software e colleghi i nodi in un grid.
+  keywords: storagegrid system, appliance hardware, software, install, vmware, red
+    gat, ubuntu, debian, automate
+  lead: Un sistema StorageGRID è costituito da singoli nodi basati su hardware e software.
+    Installare innanzitutto l'hardware per ciascun nodo appliance e configurare ciascun
+    host Linux o VMware. Quindi, installi il software StorageGRID su ogni appliance
+    o host software e colleghi i nodi in un grid.
   tiles:
   - title: Avvio rapido
     links:

@@ -1,5 +1,13 @@
 ---
 indexpage:
+  title: Recovery o sostituzione dei nodi
+  summary: In caso di guasto di un nodo Grid, è possibile ripristinarlo sostituendo
+    il server fisico o virtuale guasto, reinstallando il software StorageGRID e ripristinando
+    i dati ripristinabili.
+  keywords: recover, replace, warnings, grid, node, storagegrid systems
+  lead: In caso di guasto di un nodo Grid, è possibile ripristinarlo sostituendo il
+    server fisico o virtuale guasto, reinstallando il software StorageGRID e ripristinando
+    i dati ripristinabili.
   tiles:
   - title: Inizia subito
     links:
